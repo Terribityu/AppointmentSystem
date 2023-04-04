@@ -25,9 +25,9 @@ $(".team-slider").owlCarousel({
 });
 
 $(".service-tdc").click(function (e) {
-  window.location.href = "#";
+  window.location.href = "./tdc.php";
 });
 
 $(".service-pdc").click(function (e) {
-  window.location.href = "#";
+  window.location.href = "./pdc.php";
 });

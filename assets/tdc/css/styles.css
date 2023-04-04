@@ -1,0 +1,33 @@
+#tdc_banner {
+    height: 40vh;
+    background-image: url(../banner/destiny_bg.jpg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-attachment: fixed;
+    background-size: cover;
+    background-color: #3b3d49;
+    background-blend-mode: overlay;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+}
+
+/* Banner */
+.navigation {
+    margin-top: 50px;
+}
+.navigation a {
+    color: aqua;
+}
+
+/* Content */
+#content {
+    padding: 5rem;
+    display: flex;
+}
+
+.appointments {
+    display: flex;
+    justify-content: center;
+}

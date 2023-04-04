@@ -1,40 +1,73 @@
 <?php
     include("templates/header.php");
 ?>
+<style>
+ 
+#navbar {
+	transition: background-color 0.5s ease-in-out;
+  }
+  
+  #navbar.navbar-scrolled {
+	background-color: #ffffff;
+	box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.1);
+  }
+.navbar-brand {
+    color: white;
+}
 
-<header>
+#navbar .nav-link{
+    color:white;
+}
+     
+</style>
+<link rel="stylesheet" href="assets/index/css/styles.css"></style>
+<title>Destiny Driving School</title>
+</head>
+<body> 
+
+    <header>
         <div class="row">
             <div class="col-12">
-                    <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+                    <nav class="navbar navbar-expand-lg navbar-light bg-transparent fixed-top" id="navbar">
                         <div class="container">
-                            <a class="navbar-brand" href="#"><span class="text-warning">Destiny</span>Driving</a>
+                            <a class="navbar-brand" href="./index.php"><span class="text-warning">Destiny</span>Driving</a>
                             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                                <span class="navbar-toggler-icon"></span>
+                            <span class="navbar-toggler-icon"></span>
                             </button>
                             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                                 <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-                                <li class="nav-item">
-                                    <a class="nav-link" href="#">Home</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="#about">About</a>
-                                </li> 
-                                <li class="nav-item">
-                                    <a class="nav-link" href="#services">Services</a>
-                                </li> 
-                                <li class="nav-item">
-                                    <a class="nav-link" href="#portfolio">Portfolio</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="#team">Team</a>
-                                </li> 
-                                <li class="nav-item">
-                                    <a class="nav-link" href="#contact">Contact</a>
-                                </li>        
+                                    <li class="nav-item">
+                                    <a class="nav-link" href="./index.php#banner">Home</a>
+                                    </li>
+                                    <li class="nav-item">
+                                    <a class="nav-link" href="./index.php#about">About</a>
+                                    </li>    
+                                    <li class="nav-item">
+                                    <a class="nav-link" href="./index.php#testimonials-section">Feedback</a>
+                                    </li>
+                                    <li class="nav-item dropdown">
+                                        <a class="nav-link dropdown-toggle" href="#services" id="servicesDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                            Services
+                                        </a>
+                                        <ul class="dropdown-menu" aria-labelledby="servicesDropdown">
+                                            <li><a class="dropdown-item" href="./tdc.php">TDC</a></li>
+                                            <li><a class="dropdown-item" href="./pdc.php">PDC</a></li>
+                                        </ul>
+                                    </li>
+                                    <li class="nav-item">
+                                    <a class="nav-link" href="./index.php#team">Team</a>
+                                    </li> 
+                                    <li class="nav-item">
+                                    <a class="nav-link" href="./index.php#contact">Contact</a>
+                                    </li>     
+                                    <li class="nav-item">
+                                        <a class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#loginModal" href="#">Log in</a>
+                                    </li>     
                                 </ul>
                             </div>
                         </div>
                     </nav>
+
                 </div>
             </div>
     </header>
@@ -48,7 +81,7 @@
                 </div>
                 <div class="carousel-inner">
                     <div class="carousel-item carousel-nav-item active">
-                    <img src="assets/banner/destiny_bg.jpg" class="d-block w-100" alt="...">
+                    <img src="assets/index/banner/destiny_bg.jpg" class="d-block w-100" alt="...">
                     <div class="carousel-caption carousel-nav-caption d-none d-md-block">
                         <h5>Destiny Driving School</h5>
                         <p>Some representative placeholder content for the first slide.</p>
@@ -61,7 +94,7 @@
                     </div>
                     </div>
                     <div class="carousel-item carousel-nav-item">
-                    <img src="assets/banner/banner_bg.png" class="d-block w-100" alt="...">
+                    <img src="assets/index/banner/banner_bg.png" class="d-block w-100" alt="...">
                     <div class="carousel-caption carousel-nav-caption d-none d-md-block">
                         <h5>Second slide label</h5>
                         <p>Some representative placeholder content for the second slide.</p>
@@ -74,7 +107,7 @@
                     </div>
                     </div>
                     <div class="carousel-item carousel-nav-item">
-                    <img src="assets/banner/banner_bg.png" class="d-block w-100" alt="...">
+                    <img src="assets/index/banner/banner_bg.png" class="d-block w-100" alt="...">
                     <div class="carousel-caption carousel-nav-caption d-none d-md-block">
                         <h5>Third slide label</h5>
                         <p>Some representative placeholder content for the third slide.</p>
@@ -128,6 +161,7 @@
         </div>
     </section>
     <!-- End of Routes Section -->
+    <!-- Start of Testimonials -->
     <section id="testimonials-section">
         <div class="container">
             <h1 class="testimonial-header">Client Review <span>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</span></h1>
@@ -141,7 +175,7 @@
                               <div class="col-md-5">
                                   <div class="profile">
                                       <div class="testimonial-img-area">
-                                          <img src="assets/testimonials/1.jpg" alt="">
+                                          <img src="assets/index/testimonials/1.jpg" alt="">
                                       </div>
                                       <div class="bio">
                                           <h2>Dave Wood</h2>
@@ -170,7 +204,7 @@
                               <div class="col-md-5">
                                   <div class="profile">
                                       <div class="testimonial-img-area">
-                                          <img src="assets/testimonials/2.jpg" alt="">
+                                          <img src="assets/index/testimonials/2.jpg" alt="">
                                       </div>
                                       <div class="bio">
                                           <h2>Martin Guptill</h2>
@@ -199,7 +233,7 @@
                               <div class="col-md-5">
                                   <div class="profile">
                                       <div class="testimonial-img-area">
-                                          <img src="assets/testimonials/3.jpg" alt="">
+                                          <img src="assets/index/testimonials/3.jpg" alt="">
                                       </div>
                                       <div class="bio">
                                           <h2>Stephen Jones</h2>
@@ -236,7 +270,8 @@
             </div>
         </div>
     </section>
-
+    <!-- End of Testimonials -->
+    <!-- Start of Team -->
     <section id="team">
         <div class="container">
 			<div class="row">
@@ -293,7 +328,8 @@
 			</div>
 		</div>
     </section>
-
+    <!-- End of Teams -->
+    <!-- Start of Services -->
     <section id="services">
         <div class="row">
 
@@ -318,69 +354,25 @@
             </div>
         </div>
     </section>
+    <!-- End of Services -->
 
-    <footer>
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-3 col-sm-6">
-                    <div class="footer-single-box">
-                        <img src="img/logo.png" alt="">
-                    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quam repellendus sunt praesentium aspernatur iure molestias.</p>
-                    <h3>We Accept</h3>
-                    <div class="card-area">
-                            <i class="fa-brands fa-cc-visa"></i>
-                            <i class="fa-solid fa-credit-card"></i>
-                            <i class="fa-brands fa-cc-mastercard"></i>
-                            <i class="fa-brands fa-cc-paypal"></i>
-                    </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-sm-6">
-                    <div class="footer-single-box">
-                        <h2>Hosting</h2>
-                    <ul>
-                        <li><a href="#">Web Hosting</a></li>
-                        <li><a href="#">Cloud Hosting</a></li>
-                        <li><a href="#">CMS Hosting</a></li>
-                        <li><a href="#">WordPress Hosting</a></li>
-                        <li><a href="#">Email Hosting</a></li>
-                        <li><a href="#">VPS Hosting</a></li>
-                    </ul>
-                    </div>                    
-                </div>
-                <div class="col-lg-3 col-sm-6">
-                    <div class="footer-single-box">
-                        <h2>Domain</h2>
-                    <ul>
-                        <li><a href="#">Web Domain</a></li>
-                        <li><a href="#">Cloud Domain</a></li>
-                        <li><a href="#">CMS Domain</a></li>
-                        <li><a href="#">WordPress Domain</a></li>
-                        <li><a href="#">Email Domain</a></li>
-                        <li><a href="#">VPS Domain</a></li>
-                    </ul>
-                    </div>                    
-                </div>
-                <div class="col-lg-3 col-sm-6">
-                    <div class="footer-single-box">
-                        <h2>Newsletter</h2>
-                        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Consequuntur doloremque earum similique fugiat nobis. Facere?</p>
-                        <div class="input-group mb-3">
-                            <input type="text" class="form-control" placeholder="Recipient's username" aria-label="Enter your Email ..." aria-describedby="basic-addon2">
-                            <span class="input-group-text" id="basic-addon2"><i class="fa fa-long-arrow-right"></i></span>
-                        </div>
-                        <h2>Follow us on</h2>
-                        <p class="footer-socials">
-                            <i class="fa-brands fa-facebook-f"></i>
-                            <i class="fa-brands fa-dribbble"></i>
-                            <i class="fa-brands fa-pinterest"></i>
-                            <i class="fa-brands fa-twitter"></i>
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </footer>
+    <script>
+        window.onload = function () {
+            $(window).scroll(function () {
+            if ($(document).scrollTop() > 50) {
+                $("#navbar").addClass("navbar-scrolled");
+                $("#navbar").removeClass("bg-transparent");
+                $(".nav-link").css({ color: "black" });
+                $(".navbar-brand").css({ color: "black" });
+            } else {
+                $("#navbar").removeClass("navbar-scrolled");
+                $("#navbar").addClass("bg-transparent");
+                $(".nav-link").css({ color: "white" });
+                $(".navbar-brand").css({ color: "white" });
+            }
+            });
+        }
+    </script>
 <?php
     include("templates/footer.php")
 ?>
