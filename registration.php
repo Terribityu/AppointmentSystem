@@ -69,61 +69,21 @@
                     </div>
                     
                     <div class="row form_details_body">
-                        <div class="col-md-3">
+                        <div class="col-md-3 mb-2">
                             <label for="firstname">First Name <span id="form_required">*</span></label>
                             <input type="text" class="form-control" name="firstname" required></input>
                         </div>
-                        <div class="col-md-3">
+                        <div class="col-md-3 mb-2">
                             <label for="firstname">Middle Name <span id="form_required">*</span></label>
                             <input type="text" class="form-control" name="firstname" required></input>
                         </div>
-                        <div class="col-md-3">
+                        <div class="col-md-3 mb-2">
                             <label for="firstname">Last Name <span id="form_required">*</span></label>
                             <input type="text" class="form-control" name="firstname" required></input>
                         </div>
-                        <div class="col-md-3">
+                        <div class="col-md-3 mb-2">
                             <label for="firstname">Suffix <span id="form_required"></span></label>
                             <input type="text" class="form-control" name="firstname"></input>
-                        </div>
-                    </div>
-                </div>
-                <div class="form_details mb-4">
-                    <div class="row text-center form_details_header">
-                        <h2>Residence Address</h2>
-                    </div>
-                    
-                    <div class="row form_details_body">
-                    <div class="col-md-3 mb-2">
-                            <label for="housenumber">House Number <span id="form_required">*</span></label>
-                            <input type="number" class="form-control" name="housenumber" required></input>
-                        </div>
-                        <div class="col-md-3 mb-2">
-                            <label for="street">Street <span id="form_required">*</span></label>
-                            <input type="text" class="form-control" name="street" required></input>
-                        </div>
-                        <div class="col-md-3 mb-2">
-                            <label for="zone">Zone <span id="form_required">*</span></label>
-                            <input type="text" class="form-control" name="zone" required></input>
-                        </div>
-                        <div class="col-md-3 mb-2">
-                            <label for="village">Village/Subdivision <span id="form_required"></span></label>
-                            <input type="text" class="form-control" name="village"></input>
-                        </div>
-                        <div class="col-md-3 mb-2">
-                            <label for="barangay">Barangay <span id="form_required">*</span></label>
-                            <input type="text" class="form-control" name="barangay" required></input>
-                        </div>
-                        <div class="col-md-3 mb-2">
-                            <label for="municipality">Municipality <span id="form_required">*</span></label>
-                            <input type="text" class="form-control" name="municipality" required></input>
-                        </div>
-                        <div class="col-md-3 mb-2">
-                            <label for="province">Province <span id="form_required">*</span></label>
-                            <input type="text" class="form-control" name="province" required></input>
-                        </div>
-                        <div class="col-md-3 mb-2">
-                            <label for="zipcode">Zip Code <span id="form_required"></span>*</label>
-                            <input type="number" class="form-control" name="zipcode" required></input>
                         </div>
                     </div>
                 </div>
@@ -133,21 +93,29 @@
                     </div>
                     
                     <div class="row form_details_body">
-                        <div class="col-md-3">
+                        <div class="col-md-3 mb-2">
                             <label for="dateofbirth">Date of Birth <span id="form_required">*</span></label>
                             <input type="date" class="form-control" name="dateofbirth" required></input>
                         </div>
-                        <div class="col-md-3">
+                        <div class="col-md-3 mb-2">
                             <label for="age">Age <span id="form_required">*</span></label>
                             <input type="number" class="form-control" name="age" required></input>
                         </div>
-                        <div class="col-md-3">
+                        <div class="col-md-3 mb-2">
                             <label for="gender">Gender <span id="form_required">*</span></label>
                             <input type="text" class="form-control" name="gender" required></input>
                         </div>
-                        <div class="col-md-3">
+                        <div class="col-md-3 mb-2">
                             <label for="civilstatus">Civil Status <span id="form_required">*</span></label>
                             <input type="text" class="form-control" name="civilstatus" required></input>
+                        </div>
+                        <div class="col-md-7 mb-2">
+                            <label for="province">Complete Address <span id="form_required">*</span></label>
+                            <input type="text" class="form-control" name="province" required></input>
+                        </div>
+                        <div class="col-md-5 mb-2">
+                            <label for="zipcode">Zip Code <span id="form_required">*</span></label>
+                            <input type="number" class="form-control" name="zipcode" required></input>
                         </div>
                     </div>
                 </div>
