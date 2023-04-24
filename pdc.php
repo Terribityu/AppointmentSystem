@@ -54,16 +54,16 @@
     <section id="pdc_banner">
         <div class="text-center navigation">
             <h2>Practical Driving Course</h2>
-            <p>Home / <a href="#">PDC</a></p>
+            <p><a href="index.php#">Home</a> / PDC</p>
         </div>
     </section>
     
     <section id="content">
         <div class="container">
             <h2 class="text-center">Appointments</h2>
-            <ul class="list-group my-3">
+            <ul id="schedlist" class="list-group my-3">
                 <li class="list-group-item d-flex align-items-center">
-                <img src="" style="height:250px; width:250px;" alt="">
+                <img src="assets/img/avatar.jpg" style="height:250px; width:250px;" alt="">
                 &nbsp;
                 <div>  
                     <div class="instruct_name">
@@ -78,26 +78,6 @@
                     </div>
 
                 </div>
-                </li>
-                <li class="list-group-item d-flex justify-content-between align-items-center">
-                Appointment 2
-                <span class="badge bg-primary rounded-pill">02:30 PM</span>
-                </li>
-                <li class="list-group-item d-flex justify-content-between align-items-center">
-                Appointment 3
-                <span class="badge bg-primary rounded-pill">03:45 PM</span>
-                </li>
-                <li class="list-group-item d-flex justify-content-between align-items-center">
-                Appointment 4
-                <span class="badge bg-primary rounded-pill">05:15 PM</span>
-                </li>
-                <li class="list-group-item d-flex justify-content-between align-items-center">
-                Appointment 5
-                <span class="badge bg-primary rounded-pill">06:30 PM</span>
-                </li>
-                <li class="list-group-item d-flex justify-content-between align-items-center">
-                Appointment 6
-                <span class="badge bg-primary rounded-pill">08:15 PM</span>
                 </li>
             </ul>
         </div>

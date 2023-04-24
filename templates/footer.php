@@ -64,8 +64,6 @@
 <!-- Popper and Bootstrap 5.3 -->
 <script src="./assets/bootstrap/js/popper.min.js"></script>
 <script src="./assets/bootstrap/js/bootstrap.min.js"></script>
-<!-- jQuery -->
-<script src="./assets/jquery/jquery-3.6.4.min.js"></script>
 <!-- Alertify JS -->
 <script src="./assets/alertify/js/alertify.min.js" ></script>
 <!-- Owl Carousel -->

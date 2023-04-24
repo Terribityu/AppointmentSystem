@@ -41,6 +41,33 @@
     padding: 40px 20px 40px 20px;
 }
 
-#registrationForm label{
+#formlabel{
     font-weight: 700;
 }
+
+#registrationForm a{
+    color: #6A6972;
+}
+.image-upload>input {
+    display: none;
+  }
+  
+  .error {
+    color: red;
+  }
+
+  input.error {
+    border: thin solid red;
+  }
+
+  #sendotp {
+    font-size: 14px;
+  }
+  
+  .sendotp {
+    color: #007bff !important;
+  }
+
+  .resendotp {
+    color: #007bff !important;
+  }

@@ -54,7 +54,7 @@
     <section id="tdc_banner">
         <div class="text-center navigation">
             <h2>Theoretical Driving Course</h2>
-            <p>Home / <a href="#">TDC</a></p>
+            <p><a href="index.php#">Home</a> / TDC</p>
         </div>
     </section>
     

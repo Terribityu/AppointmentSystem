@@ -12,6 +12,9 @@
     <!-- Alertify -->
     <link rel="stylesheet" href="./assets/alertify/css/alertify.min.css" />
     <link rel="stylesheet" href="./assets/alertify/css/default.min.css" />
+    <!-- jQuery -->
+    <script src="./assets/jquery/jquery-3.6.4.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.min.js"></script>
     <!-- Font Awesome JS -->
     <link rel="stylesheet" href="./assets/fontawesome/css/all.min.css"/>
     <link rel="stylesheet" href="assets/css/style.css">

@@ -2,6 +2,7 @@
     include("templates/header.php");
 ?>
 <link rel="stylesheet" href="assets/registration/css/styles.css"></style>
+<script src="assets/registration/js/script.js"></script>
 <title>Destiny Driving School</title>
 </head>
 <body> 
@@ -70,20 +71,20 @@
                     
                     <div class="row form_details_body">
                         <div class="col-md-3 mb-2">
-                            <label for="firstname">First Name <span id="form_required">*</span></label>
+                            <label id="formlabel" for="firstname">First Name <span id="form_required">*</span></label>
                             <input type="text" class="form-control" name="firstname" required></input>
                         </div>
                         <div class="col-md-3 mb-2">
-                            <label for="firstname">Middle Name <span id="form_required">*</span></label>
-                            <input type="text" class="form-control" name="firstname" required></input>
+                            <label id="formlabel" for="middlename">Middle Name <span id="form_required">*</span></label>
+                            <input type="text" class="form-control" name="middlename" required></input>
                         </div>
                         <div class="col-md-3 mb-2">
-                            <label for="firstname">Last Name <span id="form_required">*</span></label>
-                            <input type="text" class="form-control" name="firstname" required></input>
+                            <label id="formlabel" for="lastname">Last Name <span id="form_required">*</span></label>
+                            <input type="text" class="form-control" name="lastname" required></input>
                         </div>
                         <div class="col-md-3 mb-2">
-                            <label for="firstname">Suffix <span id="form_required"></span></label>
-                            <input type="text" class="form-control" name="firstname"></input>
+                            <label id="formlabel" for="suffix">Suffix <span id="form_required"></span></label>
+                            <input type="text" class="form-control" name="suffix"></input>
                         </div>
                     </div>
                 </div>
@@ -94,48 +95,80 @@
                     
                     <div class="row form_details_body">
                         <div class="col-md-3 mb-2">
-                            <label for="dateofbirth">Date of Birth <span id="form_required">*</span></label>
-                            <input type="date" class="form-control" name="dateofbirth" required></input>
+                            <label id="formlabel" for="dateofbirth">Date of Birth <span id="form_required">*</span></label>
+                            <input type="date" class="form-control" max="<?php echo date('Y-12-31', strtotime('-17 years')); ?>" name="dateofbirth" required></input>
                         </div>
                         <div class="col-md-3 mb-2">
-                            <label for="age">Age <span id="form_required">*</span></label>
+                            <label id="formlabel" for="age">Age <span id="form_required">*</span></label>
                             <input type="number" class="form-control" name="age" required></input>
                         </div>
                         <div class="col-md-3 mb-2">
-                            <label for="gender">Gender <span id="form_required">*</span></label>
-                            <input type="text" class="form-control" name="gender" required></input>
+                            <label id="formlabel" for="gender">Gender <span id="form_required">*</span></label>
+                            <select class="form-select" required name="gender" aria-label="Default select example">
+                              <option selected value="Male">Male</option>
+                              <option value="Female">Female</option>
+                            </select>
                         </div>
                         <div class="col-md-3 mb-2">
-                            <label for="civilstatus">Civil Status <span id="form_required">*</span></label>
-                            <input type="text" class="form-control" name="civilstatus" required></input>
+                            <label id="formlabel" for="civilstatus">Civil Status <span id="form_required">*</span></label>
+                            <select class="form-select" name="civilstatus" required aria-label="Default select example">
+                              <option selected value="Single">Single</option>
+                              <option value="Married">Married</option>
+                            </select>
                         </div>
                         <div class="col-md-7 mb-2">
-                            <label for="province">Complete Address <span id="form_required">*</span></label>
+                            <label id="formlabel" for="province">Complete Address <span id="form_required">*</span></label>
                             <input type="text" class="form-control" name="province" required></input>
                         </div>
                         <div class="col-md-5 mb-2">
-                            <label for="zipcode">Zip Code <span id="form_required">*</span></label>
+                            <label id="formlabel" for="zipcode">Zip Code <span id="form_required">*</span></label>
                             <input type="number" class="form-control" name="zipcode" required></input>
                         </div>
                     </div>
                 </div>
                 <div class="form_details mb-4">
                     <div class="row text-center form_details_header">
-                        <h2>Contact Details</h2>
+                        <h2>Account Details</h2>
                     </div>
                     
                     <div class="row form_details_body">
                         <div class="col-md-4">
-                            <label for="mobilenumber">Mobile Number <span id="form_required">*</span></label>
-                            <input type="number" class="form-control" name="mobilenumber" maxlength="10" required></input>
+                            <div class="input-group mb-2 mr-sm-2 image-upload d-flex justify-content-center">
+                                <label id="formlabel" for="image">
+                                <img src="assets/registration/img/avatar.jpg" title="Upload Image" alt="assets/registration/img/upimg.png" id="preview"/>
+                                </label>
+                                <input type="file" class="form-control" id = "image" name="image">
+                            </div>
                         </div>
-                        <div class="col-md-4">
-                            <label for="telephone">Telephone Number <span id="form_required"></span></label>
-                            <input type="number" class="form-control" name="telephone"></input>
-                        </div>
-                        <div class="col-md-4">
-                            <label for="email">Email <span id="form_required">*</span></label>
-                            <input type="email" class="form-control" name="email" required></input>
+                        <div class="col-md-8">
+                            <div class="row">
+                                <div class="col-md-5">
+                                    <label id="formlabel" for="mobilenumber">Mobile Number (0 is not Included) <span id="form_required">*</span></label>
+                                    <input type="number " id="mobilenum" class="form-control" name="mobilenumber" minlength="10" maxlength="10" required></input>
+                                    <span id="id_number_error" class="error"></span>
+                                    <a id = "sendotp" class = "sendotp" href>Send OTP verication Code.</a>
+                                </div>
+                                <div class="col-md-2">
+                                    <label id="formlabel" for="emailotp">OTP <span id="form_required">*</span></label>
+                                    <input type="number" id="otp" disabled class="form-control" name="emailotp" required></input>
+                                </div>
+                                <div class="col-md-5">
+                                    <label id="formlabel" for="email">Email <span id="form_required">*</span></label>
+                                    <input type="email" id="email" class="form-control" name="email" required></input>
+                                </div>
+                                <div class="col-md-4">
+                                    <label id="formlabel" for="username">Username <span id="form_required">*</span></label>
+                                    <input type="text" class="form-control" name="username" required></input>
+                                </div>
+                                <div class="col-md-4">
+                                    <label id="formlabel" for="password">Password <span id="form_required">*</span></label>
+                                    <input type="password" class="form-control" name="password" required></input>
+                                </div>
+                                <div class="col-md-4">
+                                    <label id="formlabel" for="password_cnf">Confirm Password <span id="form_required">*</span></label>
+                                    <input type="password" class="form-control" name="password_cnf" required></input>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>

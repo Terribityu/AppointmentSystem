@@ -48,20 +48,20 @@
                         <span id='link-label'>Schedules</span>
                     </a>
                 </li>
-                <li class="active">
+                <li >
                     <a href="appointments.php">
                         <i class="fa-solid fa-calendar-check"></i>
                         <span id='link-label'>Appointments</span>
                     </a>
                 </li>
-                <li>
+                <li class="active">
                     <a href="enrollment.php">
                         <i class="fa-solid fa-pen"></i>
                         <span id='link-label'>Enrollment</span>
                     </a>
                 </li>
                 <li>
-                    <a href="enrollment.php">
+                    <a href="feedback.php">
                         <i class="fa-solid fa-comments"></i>
                         <span id='link-label'>Feedbacks</span>
                     </a>
