@@ -6,6 +6,8 @@ require ('../connect.php');
                         if($stats == "approved"){
                                 addSystemLogs($id, "approveappointment");
                         }else{
+                                $sql = "UPDATE schedules SET slots = slots + 1 WHERE id = $schedID";
+                                mysqli_query($conn , $sql);
                                 addSystemLogs($id, "rejectappointment");
                         }
                 }else{

@@ -1,0 +1,61 @@
+#profile__banner {
+    height: 40vh;
+    background-image: url(../banner/destiny_bg.jpg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-attachment: fixed;
+    background-size: cover;
+    background-color: #3b3d49;
+    background-blend-mode: overlay;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+}
+
+/* Banner */
+.navigation {
+    margin-top: 50px;
+}
+.navigation a {
+    color: aqua;
+}
+
+/* Content */
+#profile__content {
+    padding: 5rem;
+}
+
+#profile__info {
+    position: relative;
+    margin-top: -200px;
+    display: flex;
+    align-items: end;
+}
+
+#profile__info h1 {
+    margin-left: 50px;
+}
+
+.appointments {
+    display: flex;
+    justify-content: center;
+}
+
+#user__details, #user__accounts, #user__feedbacks {
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+    padding: 2rem;
+  }
+
+#personal__info span, #personal__info p {
+    font-size: 1.2em;
+    color: black;
+ }
+
+ #personal__info p {
+    font-weight: 700;
+ }
+
+ #personal__info span {
+    font-weight: 100;
+ }

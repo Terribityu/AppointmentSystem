@@ -1,7 +1,8 @@
 $(document).ready(function () {
-  load_data();
+  load_data(); // Call the function every page ready. To Load all data of appointments
 
   function getStudentList() {
+    // Function to get All Students
     $.ajax({
       url: "database/appointments/getStudent.php",
       method: "post",
@@ -12,6 +13,7 @@ $(document).ready(function () {
   }
 
   function getScheduleList() {
+    // Function to get the List of Schedules
     $.ajax({
       url: "database/appointments/getSchedule.php",
       method: "post",
@@ -22,25 +24,27 @@ $(document).ready(function () {
     });
   }
   function load_data(search) {
+    // Function to get the list of appointments and print it on the table
     var pend = $("#pendingapp").val();
     // var appr = $('#approvedblogs').val();
     if (pend == "active") {
+      // Select the status of what list the user wants to view (Pending, Rejected)
       stats = "pending";
     } else {
       stats = "rejected";
     }
-    console.log(stats);
     $.ajax({
       url: "database/appointments/display.php",
       method: "post",
       data: { search: search, stats: stats },
       success: function (data) {
-        $("#displayAppointments tbody").html(data);
+        $("#displayAppointments tbody").html(data); // Populate the tbody of displayAppointments Table with data gathered from database
       },
     });
   }
 
   $("#search_text").keyup(function () {
+    // event listener to search for data that user desired.
     var search = $(this).val();
     if (search != "") {
       load_data(search);
@@ -50,6 +54,7 @@ $(document).ready(function () {
   });
 
   function mySuccess(text) {
+    // Sweet Alert for better Alert UI
     Swal.fire({
       position: "center",
       icon: "success",
@@ -61,21 +66,25 @@ $(document).ready(function () {
   }
 
   $("#addAppointmentModal").on("hidden.bs.modal", function () {
+    // Reset the form everytime the modal Close. So data won't stay after reopening the modal
     $("#addAppointmentForm")[0].reset();
   });
 
   $("#editAppointmentModal").on("hidden.bs.modal", function () {
+    // Reset the form everytime the modal Close. So data won't stay after reopening the modal
     $("#editAppointmentForm")[0].reset();
   });
 
   $(document).on("click", "#addAppointment", function (e) {
+    // Click Event Listenr for #addAppointment to populate the input in the modal
     $("#addAppointmentForm")[0].reset();
-    getStudentList();
-    getScheduleList();
+    getStudentList(); // Call The function to get student list
+    getScheduleList(); // Call The Function to get schedule list
   });
 
   $("#addAppointmentForm").on("submit", function (e) {
-    e.preventDefault();
+    // Form Submit event listener, to process the data that the user input.
+    e.preventDefault(); // Stop the Default form submission so the page wont reload.
     var data = $(this).serialize();
     $.ajax({
       type: "POST",
@@ -83,8 +92,8 @@ $(document).ready(function () {
       data: data,
       success: function () {
         $("#addAppointmentModal").modal("hide");
-        mySuccess(data.firstname + " successfully added.");
-        load_data();
+        mySuccess(data.firstname + " successfully added."); // Call Sweetalert
+        load_data(); // Call the function to update the table after adding new data.
       },
       error: function (xhr, status, error) {
         $("body").html("<h1>" + xhr["status"] + " " + error + "</h1>");
@@ -197,6 +206,7 @@ $(document).ready(function () {
   $(document).on("click", "#rejectAppointment", function () {
     var id = $(this).attr("value");
     var name = $(this).attr("data-value");
+    var sched = $(this).attr("old-value");
     var pend = $("#pendingapp");
     var appr = $("#rejectapp");
     alertify
@@ -209,7 +219,8 @@ $(document).ready(function () {
             url:
               "database/appointments/status_up.php?id=" +
               id +
-              "&stats=rejected",
+              "&stats=rejected&schedID=" +
+              sched,
             success: function (data) {
               pend.removeClass("btn-primary");
               pend.addClass("btn-outline-primary");

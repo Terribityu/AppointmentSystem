@@ -1,7 +1,15 @@
 <?php
+    session_start();
+    if(isset($_SESSION['userType'])){  
+        if($_SESSION['userType'] == "admin"){
+            header('location:admin/index.php');
+        }
+    }
+
     include("templates/header.php");
 ?>
 <link rel="stylesheet" href="assets/pdc/css/styles.css"></style>
+
 <title>Destiny Driving School</title>
 </head>
 <body> 
@@ -40,9 +48,29 @@
                                     <li class="nav-item">
                                     <a class="nav-link" href="./index.php#contact">Contact</a>
                                     </li>     
-                                    <li class="nav-item">
-                                        <a class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#loginModal" href="#">Log in</a>
-                                    </li>     
+                                    <?php 
+                                        if(isset($_SESSION['username'])){
+                                    ?>
+                                        <li class="nav-item dropdown">
+                                        <a class="nav-link dropdown-toggle" href="#" id="servicesDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                            <img src="<?php echo $_SESSION['avatar'];?>" alt="" id="nav__avatar">
+                                        </a>
+                                        <ul class="dropdown-menu" aria-labelledby="servicesDropdown">
+                                            <li><a class="dropdown-item" href="./profile.php"><?php echo $_SESSION['username'];?></a></li>
+                                            <li><a class="dropdown-item" href="./tdc.php">My Appointments</a></li>
+                                            <li><a class="dropdown-item" href="./database/registration/logout.php">Logout</a></li>
+                                        </ul>
+                                    </li>  
+                                    <?php
+                                        }
+                                        else{
+                                    ?> 
+                                        <li class="nav-item">
+                                            <a class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#loginModal" href="#">Log in</a>
+                                        </li>    
+                                    <?php
+                                        }
+                                    ?>
                                 </ul>
                             </div>
                         </div>
@@ -75,6 +103,7 @@
                         <span class="badge bg-primary rounded-pill">12:00 PM</span>
                         <span class="badge bg-primary rounded-pill">12:00 PM</span>
                         <span class="badge bg-primary rounded-pill">12:00 PM</span>
+                        <button href="#" onclick='chooseSched(1,2); event.preventDefault();' class="badge bg-primary rounded-pill">12:00pm</button>
                     </div>
 
                 </div>
@@ -82,8 +111,11 @@
             </ul>
         </div>
     </section>
-
+    <script>
+    </script>
     <!-- End of Services -->
+    
+<script src="./assets/pdc/js/scripts.js"></script>
 <?php
     include("templates/footer.php")
 ?>

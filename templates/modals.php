@@ -10,12 +10,12 @@
                 <span class="ion-ios-person"></span>
             </div>
             <h3 class="text-center mb-4">Sign In</h3>
-            <form action="#" class="login-form">
+            <form action="#" id="loginForm" class="login-form">
                 <div class="form-group mb-4">
-                    <input type="text" class="form-control rounded-left" placeholder="Username / Email" required>
+                    <input type="text" class="form-control rounded-left" name="username" placeholder="Username / Email" required>
                 </div>
                 <div class="form-group mb-4">
-                    <input type="password" class="form-control rounded-left" placeholder="Password" required>
+                    <input type="password" class="form-control rounded-left" name="password" placeholder="Password" required>
                 </div>
                 <div class="form-group mb-4">
                     <button type="submit" class="form-control btn btn-primary rounded submit px-3">Login</button>

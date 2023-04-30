@@ -1,4 +1,14 @@
 <?php
+    session_start();
+    if(isset($_SESSION['userType'])){  
+        if(isset($_SESSION['username'])){
+            header('location:index.php');
+        }else{
+            if($_SESSION['userType'] == "admin"){
+                header('location:admin/index.php');
+            }
+        }
+    }
     include("templates/header.php");
 ?>
 <link rel="stylesheet" href="assets/registration/css/styles.css"></style>
@@ -41,9 +51,29 @@
                                     <li class="nav-item">
                                     <a class="nav-link" href="./index.php#contact">Contact</a>
                                     </li>     
-                                    <li class="nav-item">
-                                        <a class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#loginModal" href="#">Log in</a>
-                                    </li>     
+                                    <?php 
+                                        if(isset($_SESSION['username'])){
+                                    ?>
+                                        <li class="nav-item dropdown">
+                                        <a class="nav-link dropdown-toggle" href="#" id="servicesDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                            <img src="<?php echo $_SESSION['avatar'];?>" alt="" id="nav__avatar">
+                                        </a>
+                                        <ul class="dropdown-menu" aria-labelledby="servicesDropdown">
+                                            <li><a class="dropdown-item" href="./profile.php"><?php echo $_SESSION['username'];?></a></li>
+                                            <li><a class="dropdown-item" href="./tdc.php">My Appointments</a></li>
+                                            <li><a class="dropdown-item" href="./database/registration/logout.php">Logout</a></li>
+                                        </ul>
+                                    </li>  
+                                    <?php
+                                        }
+                                        else{
+                                    ?> 
+                                        <li class="nav-item">
+                                            <a class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#loginModal" href="#">Log in</a>
+                                        </li>    
+                                    <?php
+                                        }
+                                    ?>   
                                 </ul>
                             </div>
                         </div>
@@ -117,8 +147,8 @@
                             </select>
                         </div>
                         <div class="col-md-7 mb-2">
-                            <label id="formlabel" for="province">Complete Address <span id="form_required">*</span></label>
-                            <input type="text" class="form-control" name="province" required></input>
+                            <label id="formlabel" for="address">Complete Address <span id="form_required">*</span></label>
+                            <input type="text" class="form-control" name="address" required></input>
                         </div>
                         <div class="col-md-5 mb-2">
                             <label id="formlabel" for="zipcode">Zip Code <span id="form_required">*</span></label>
@@ -166,8 +196,10 @@
                                 </div>
                                 <div class="col-md-4">
                                     <label id="formlabel" for="password_cnf">Confirm Password <span id="form_required">*</span></label>
-                                    <input type="password" class="form-control" name="password_cnf" required></input>
+                                    <input type="password" id="password_cnf" class="form-control" name="password_cnf" required></input>
+                                    <span id="password_cnf_error" class="error"></span>
                                 </div>
+                                <input type="hidden" class="form-control" name="avatar" required></input>
                             </div>
                         </div>
                     </div>

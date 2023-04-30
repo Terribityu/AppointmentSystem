@@ -35,7 +35,7 @@ require ('../connect.php');
                 if($status_a == "pending"){
                     echo "
                     <td><button id='approveAppointment' title='Approve Appointment' value='$appointmentID' data-value='$firstname $lastname' class='btn btn-success'><i class='fa-solid fas fa-check'></i></button>&nbsp
-                    <button id='rejectAppointment' title='Reject Appointment' value='$appointmentID' data-value='$firstname $lastname' class='btn btn-danger'><i class='fa-solid fa-xmark'></i></button></td>";
+                    <button id='rejectAppointment' title='Reject Appointment' value='$appointmentID' old-value='$scheduleID' data-value='$firstname $lastname' class='btn btn-danger'><i class='fa-solid fa-xmark'></i></button></td>";
                 }else{
                     echo "<td>$status_a</td>";
                 }
