@@ -89,7 +89,7 @@
     
     <section id="profile__content">
         <div class="container mb-5" id="profile__info">
-            <img src="assets/img/avatar.jpg" alt="">
+            <img id="profile__img" alt="">
             <h1 id="fullname__text">John Rey D Sto Domingo</h1><h1><button id="profile__edit" class="fa-sharp fa-regular fa-pen-to-square" title="Edit Profile"></button></h1>
         </div>
         <div id="personal__info" class="container">
