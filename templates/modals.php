@@ -40,3 +40,30 @@
       </div>
     </div>
   </div>
+
+  <!-- Appointment Modal -->
+
+  <div class="modal fade" id="appointInfoModal" tabindex="-1" aria-labelledby="appointModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-login-header ms-auto">
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body p-4 p-md-5">
+            <div class="icon d-flex align-items-center justify-content-center">
+                <span class="ion-ios-person"></span>
+            </div>
+            <h3 class="text-center mb-4">Appointment Details</h3>
+            <p>Appointment Type: <span id="title__text">PDC</span></p>
+            <p>Instructor: <span id="instructor__text">Juan Dela Cruz</span></p>
+            <p>Date: <span id="date__text">May 05, 2000</span></p>
+            <p>Time: <span id="time__text">09:00 AM</span></p>
+            <p>Status: <span id="status__text">Upcoming</span></p>
+            <p>Price: <span id="status__text">5000</span></p>            
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-primary" value="1" id="cancelAppoint">Cancel Appointment</button>
+      </div>
+      </div>
+    </div>
+  </div>

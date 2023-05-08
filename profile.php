@@ -58,7 +58,7 @@
                                         </a>
                                         <ul class="dropdown-menu" aria-labelledby="servicesDropdown">
                                             <li><a class="dropdown-item" href="./profile.php"><?php echo $_SESSION['username'];?></a></li>
-                                            <li><a class="dropdown-item" href="./tdc.php">My Appointments</a></li>
+                                            <li><a class="dropdown-item" href="./myappointments.php">My Appointments</a></li>
                                             <li><a class="dropdown-item" href="./database/registration/logout.php">Logout</a></li>
                                         </ul>
                                     </li>  

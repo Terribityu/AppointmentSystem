@@ -8,11 +8,12 @@
 
     include("templates/header.php");
 ?>
-<link rel="stylesheet" href="assets/pdc/css/styles.css"></style>
+<link rel="stylesheet" href="assets/appointments/css/styles.css"></style>
 
 <title>Destiny Driving School</title>
 </head>
 <body> 
+    <input type="hidden" name="userID" id="user__id" value="<?php echo $_SESSION['userID'];?>">
     <header>
         <div class="row">
             <div class="col-12">
@@ -79,43 +80,66 @@
                 </div>
             </div>
     </header>
-    <section id="pdc_banner">
+    <section id="appointments__banner">
         <div class="text-center navigation">
-            <h2>Practical Driving Course</h2>
-            <p><a href="index.php#">Home</a> / PDC</p>
+            <h2>My Appointments</h2>
+            <p><a href="index.php#">Home</a> / My Appointments</p>
         </div>
     </section>
     
-    <section id="content">
+    <section id="appointments__content">
         <div class="container">
-            <h2 class="text-center">Appointments</h2>
-            <ul id="schedlist" class="list-group my-3">
-                <li class="list-group-item d-flex align-items-center">
-                <img src="assets/img/avatar.jpg" style="height:250px; width:250px;" alt="">
-                &nbsp;
-                <div>  
-                    <div class="instruct_name">
-                        <h5>Instructor Name</h5>
-                        <p>View Bio</p>
-                    </div>
-                    <div class="instruct_schedules">
-                        <span class="badge bg-primary rounded-pill">January 5, 2013 12:00 PM</span>
-                        <span class="badge bg-primary rounded-pill">12:00 PM</span>
-                        <span class="badge bg-primary rounded-pill">12:00 PM</span>
-                        <span class="badge bg-primary rounded-pill">12:00 PM</span>
-                        <button href="#" onclick='chooseSched(1,2); event.preventDefault();' class="badge bg-primary rounded-pill">12:00pm</button>
-                    </div>
-
-                </div>
-                </li>
-            </ul>
+            <h2 class="text-center">My Appointments</h2>
+            <table id="displayAppointments" class="table table-hover">
+                <thead>
+                    <tr>
+                    <th scope="col">Instructor</th>
+                    <th scope="col">Type</th>
+                    <th scope="col">Date</th>
+                    <th scope="col">Time</th>
+                    <th scope="col">Remarks</th>
+                    <th scope="col">Status</th>
+                    <th scope="col">Payment</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                    <th scope="row">Name</th>
+                    <td>PDC</td>
+                    <td>May 5 2000</td>
+                    <td>8:00 am</td>
+                    <td>TBA</td>
+                    <td>On Going</td>
+                    <td>Unpaid</td>
+                    </tr>
+                    <tr>
+                    <th scope="row">Gorr</th>
+                    <td>PDC</td>
+                    <td>May 5 2000</td>
+                    <td>8:00 am</td>
+                    <td>TBA</td>
+                    <td>On Going</td>
+                    <td>Unpaid</td>
+                    </tr>
+                    <tr>
+                    <th scope="row">Jerry</th>
+                    <td>PDC</td>
+                    <td>May 5 2000</td>
+                    <td>8:00 am</td>
+                    <td>TBA</td>
+                    <td>On Going</td>
+                    <td>Unpaid</td>
+                    </tr>
+                </tbody>
+            </table>
+            
         </div>
     </section>
     <script>
     </script>
     <!-- End of Services -->
     
-<script src="./assets/pdc/js/scripts.js"></script>
+<script src="./assets/appointments/js/scripts.js"></script>
 <?php
     include("templates/footer.php")
 ?>

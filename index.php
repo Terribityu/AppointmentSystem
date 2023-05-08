@@ -77,7 +77,7 @@
                                         </a>
                                         <ul class="dropdown-menu" aria-labelledby="servicesDropdown">
                                             <li><a class="dropdown-item" href="./profile.php"><?php echo $_SESSION['username'];?></a></li>
-                                            <li><a class="dropdown-item" href="./tdc.php">My Appointments</a></li>
+                                            <li><a class="dropdown-item" href="./myappointments.php">My Appointments</a></li>
                                             <li><a class="dropdown-item" href="./database/registration/logout.php">Logout</a></li>
                                         </ul>
                                     </li>  
@@ -124,7 +124,7 @@
                     <div class="carousel-item carousel-nav-item">
                     <img src="assets/index/banner/banner_bg.png" class="d-block w-100" alt="...">
                     <div class="carousel-caption carousel-nav-caption d-none d-md-block">
-                        <h5>Second slide label</h5>
+                        <h5>Destiny Driving School</h5>
                         <p>Some representative placeholder content for the second slide.</p>
 
                         <div class="slider-btn slider-nav-btn">
@@ -137,7 +137,7 @@
                     <div class="carousel-item carousel-nav-item">
                     <img src="assets/index/banner/banner_bg.png" class="d-block w-100" alt="...">
                     <div class="carousel-caption carousel-nav-caption d-none d-md-block">
-                        <h5>Third slide label</h5>
+                        <h5>Destiny Driving School</h5>
                         <p>Some representative placeholder content for the third slide.</p>
 
                         <div class="slider-btn slider-nav-btn">
@@ -244,11 +244,11 @@
                                   <div class="testimonial-content">
                                       <p><span><i class="fa fa-quote-left"></i></span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vel a eius excepturi molestias commodi aliquam error magnam consectetur laboriosam numquam, minima eveniet nostrum sequi saepe ipsam non ea, inventore tenetur! Corporis commodi consequatur molestiae voluptatum!</p>
                                       <p class="socials">
-                                          <i class="fa fa-twitter"></i>
-                                          <i class="fa fa-behance"></i>
-                                          <i class="fa fa-pinterest"></i>
-                                          <i class="fa fa-dribbble"></i>
-                                          <i class="fa fa-vimeo"></i>
+                                          <i class="fa-brands fas fa-twitter"></i>
+                                          <i class="fa-brands fas fa-behance"></i>
+                                          <i class="fa-brands fas fa-pinterest"></i>
+                                          <i class="fa-brands fas fa-dribbble"></i>
+                                          <i class="fa-brands fas fa-vimeo"></i>
                                       </p>
                                   </div>
                               </div>
@@ -273,11 +273,11 @@
                                   <div class="testimonial-content">
                                       <p><span><i class="fa fa-quote-left"></i></span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vel a eius excepturi molestias commodi aliquam error magnam consectetur laboriosam numquam, minima eveniet nostrum sequi saepe ipsam non ea, inventore tenetur! Corporis commodi consequatur molestiae voluptatum!</p>
                                       <p class="socials">
-                                          <i class="fa fa-twitter"></i>
-                                          <i class="fa fa-behance"></i>
-                                          <i class="fa fa-pinterest"></i>
-                                          <i class="fa fa-dribbble"></i>
-                                          <i class="fa fa-vimeo"></i>
+                                          <i class="fa-brands fas fa-twitter"></i>
+                                          <i class="fa-brands fas fa-behance"></i>
+                                          <i class="fa-brands fas fa-pinterest"></i>
+                                          <i class="fa-brands fas fa-dribbble"></i>
+                                          <i class="fa-brands fas fa-vimeo"></i>
                                       </p>
                                   </div>
                               </div>
