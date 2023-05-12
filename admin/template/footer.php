@@ -5,5 +5,8 @@
 <script src="./assets/alertify/js/alertify.min.js" ></script>
 <!-- Main Script -->
 <script src="assets/js/script.js"></script>
+<?php
+require_once("script.php");
+?>
 </body>
 </html>

@@ -10,6 +10,7 @@
     
 include("template/header.php");
 ?>
+
 <link rel="stylesheet" href="assets/index/css/styles.css">
 <script src="assets/index/js/script.js"></script>
 <title>Students</title>
