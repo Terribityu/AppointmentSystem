@@ -4,7 +4,7 @@ require ('../connect.php');
     if(isset($search))
     {
         $search = mysqli_real_escape_string($conn, $_POST["search"]);
-        $query = "SELECT * FROM `appointments` JOIN users ON appointments.usersID = users.userID JOIN user_details ON user_details.username = users.username JOIN schedules ON appointments.scheduleID = schedules.id
+        $query = "SELECT * FROM `appointments` JOIN users ON appointments.studentID = users.userID JOIN user_details ON user_details.username = users.username JOIN schedules ON appointments.scheduleID = schedules.id
         where (appointmentID like '%$search%'
         or firstname like '%$search%'
         or middlename like '%$search%'
@@ -15,7 +15,7 @@ require ('../connect.php');
         or email like '%$search%') and status_a = '$stats'";
         
     }else {
-        $query = "SELECT * FROM `appointments` JOIN users ON appointments.usersID = users.userID JOIN user_details ON user_details.username = users.username JOIN schedules ON appointments.scheduleID = schedules.id where status_a = '$stats'";
+        $query = "SELECT * FROM `appointments` JOIN users ON appointments.studentID = users.userID JOIN user_details ON user_details.username = users.username JOIN schedules ON appointments.scheduleID = schedules.id where status_a = '$stats'";
     }
 
     $result = mysqli_query($conn,$query);

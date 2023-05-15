@@ -32,6 +32,8 @@ if ($stmt1 && $stmt2) {
     mysqli_stmt_execute($stmt2);
 
     addSystemLogs($last_id, "addinstructor");
+
+    echo json_encode(array("username" => $username, "password" => $password, "email" => $email));
 } else {
     echo mysqli_error($conn);
 }

@@ -72,7 +72,7 @@
         </div>
         <div class="modal-footer">
           <input type="submit" class="btn btn-primary" name="btn_add" value="Add Student"></input>
-            <button type="button" class="btn btn-secondary" id="close" data-bs-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
           </form>
       </div>
       </div>
@@ -153,7 +153,7 @@
         </div>
         <div class="modal-footer">
           <input type="submit" class="btn btn-primary" name="btn_add" value="Update Student"></input>
-            <button type="button" class="btn btn-secondary" id="close" data-bs-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
           </form>
       </div>
       </div>
@@ -235,7 +235,7 @@
         </div>
         <div class="modal-footer">
           <input type="submit" class="btn btn-primary" name="btn_add" value="Add Instructor"></input>
-            <button type="button" class="btn btn-secondary" id="close" data-bs-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
           </form>
       </div>
       </div>
@@ -316,7 +316,7 @@
         </div>
         <div class="modal-footer">
           <input type="submit" class="btn btn-primary" name="btn_add" value="Update Instructor"></input>
-            <button type="button" class="btn btn-secondary" id="close" data-bs-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
           </form>
       </div>
       </div>
@@ -359,7 +359,7 @@
         </div>
         <div class="modal-footer">
           <input type="submit" class="btn btn-primary" name="btn_add" value="Create Appointment"></input>
-            <button type="button" class="btn btn-secondary" id="close" data-bs-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
           </form>
       </div>
       </div>
@@ -403,7 +403,7 @@
         </div>
         <div class="modal-footer">
           <input type="submit" class="btn btn-primary" name="btn_add" value="Edit Appointment"></input>
-            <button type="button" class="btn btn-secondary" id="close" data-bs-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
           </form>
       </div>
       </div>

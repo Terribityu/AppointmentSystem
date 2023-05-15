@@ -8,6 +8,8 @@
         }
     }
     include("template/header.php");
+    include("template/modal.php");
+    
 ?>
 <link rel="stylesheet" href="./assets/instructors/css/styles.css">
 <script src="./assets/instructors/js/scripts.js"></script>
@@ -22,26 +24,46 @@
                 <h3>Destiny Driving School</h3>
                 <strong>DDS</strong>
             </div>
-
+            
             <ul class="list-unstyled components">
-                <li >
+                <li>
+                    <a id="user__name" href="#homeSubmenu" data-bs-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+                        <img src="<?php echo $_SESSION['avatar'];?>" alt="" id="nav__avatar">
+                        <span id='link-label'><?php echo $_SESSION['username'];?></span>
+                    </a>
+                    <ul class="collapse list-unstyled" id="homeSubmenu">
+                        <li>
+                            <a href="profile.php"> My Profile </a>
+                        </li>
+                        <li>
+                            <a href="myappointments.php">My Appointments </a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="active">
                     <a href="index.php">
                         <i class="fas fa-home"></i>
                         <span id='link-label'>Dashboard</span>
                     </a>
                 </li>
-                <li >
+                <?php
+                    if($_SESSION['userType'] == "admin"){
+                ?>
+                <li>
                     <a href="students.php">
                         <i class="fa-solid fa-users"></i>
                         <span id='link-label'>Students</span>
                     </a>
                 </li>
-                <li class="active">
+                <li>
                     <a href="instructor.php">
                         <i class="fa-solid fa-chalkboard-user"></i>
                         <span id='link-label'>Instructor</span>
                     </a>
                 </li>
+                <?php
+                    }
+                ?>
                 <li>
                     <a href="schedules.php">
                         <i class="fas fa-clipboard-user"></i>
@@ -61,7 +83,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="enrollment.php">
+                    <a href="feedback.php">
                         <i class="fa-solid fa-comments"></i>
                         <span id='link-label'>Feedbacks</span>
                     </a>
@@ -70,6 +92,9 @@
 
             <ul class="list-unstyled CTAs">
             </ul>
+
+
+
         </nav>
 
         <!-- Page Content  -->

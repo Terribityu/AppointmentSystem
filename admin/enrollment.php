@@ -8,6 +8,7 @@
         }
     }
     include("template/header.php");
+    include("template/modal.php");
 ?>
 <link rel="stylesheet" href="./assets/enrollment/css/styles.css">
 <script src="./assets/enrollment/js/scripts.js"></script>
@@ -22,39 +23,59 @@
                 <h3>Destiny Driving School</h3>
                 <strong>DDS</strong>
             </div>
-
+            
             <ul class="list-unstyled components">
-                <li >
+                <li>
+                    <a id="user__name" href="#homeSubmenu" data-bs-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+                        <img src="<?php echo $_SESSION['avatar'];?>" alt="" id="nav__avatar">
+                        <span id='link-label'><?php echo $_SESSION['username'];?></span>
+                    </a>
+                    <ul class="collapse list-unstyled" id="homeSubmenu">
+                        <li>
+                            <a href="profile.php"> My Profile </a>
+                        </li>
+                        <li>
+                            <a href="myappointments.php">My Appointments </a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="active">
                     <a href="index.php">
                         <i class="fas fa-home"></i>
                         <span id='link-label'>Dashboard</span>
                     </a>
                 </li>
-                <li >
+                <?php
+                    if($_SESSION['userType'] == "admin"){
+                ?>
+                <li>
                     <a href="students.php">
                         <i class="fa-solid fa-users"></i>
                         <span id='link-label'>Students</span>
                     </a>
                 </li>
-                <li >
+                <li>
                     <a href="instructor.php">
                         <i class="fa-solid fa-chalkboard-user"></i>
                         <span id='link-label'>Instructor</span>
                     </a>
                 </li>
-                <li >
+                <?php
+                    }
+                ?>
+                <li>
                     <a href="schedules.php">
                         <i class="fas fa-clipboard-user"></i>
                         <span id='link-label'>Schedules</span>
                     </a>
                 </li>
-                <li >
+                <li>
                     <a href="appointments.php">
                         <i class="fa-solid fa-calendar-check"></i>
                         <span id='link-label'>Appointments</span>
                     </a>
                 </li>
-                <li class="active">
+                <li>
                     <a href="enrollment.php">
                         <i class="fa-solid fa-pen"></i>
                         <span id='link-label'>Enrollment</span>
@@ -70,6 +91,9 @@
 
             <ul class="list-unstyled CTAs">
             </ul>
+
+
+
         </nav>
 
         <!-- Page Content  -->
@@ -82,7 +106,7 @@
                         <i class="fa-solid fa-bars"></i>
                     </button>
                         
-                    &nbsp;<button type="button" class="btn btn-success" id="addAppointment" data-bs-toggle="modal" data-bs-target="#addAppointmentModal" title="Add Students"><i class="fa-regular fas fa-circle-plus"></i></button>
+                    <!-- &nbsp;<button type="button" class="btn btn-success" id="addAppointment" data-bs-toggle="modal" data-bs-target="#addAppointmentModal" title="Add Students"><i class="fa-regular fas fa-circle-plus"></i></button> -->
                     
                     
                     <button class="btn btn-dark d-inline-block d-lg-none ms-auto" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">

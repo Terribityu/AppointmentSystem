@@ -154,18 +154,19 @@ $(document).ready(function () {
 
   $(document).on("click", ".sendotp", function (e) {
     e.preventDefault();
-    var inputValue = $("#mobilenum").val().trim();
+    var inputValue = $("#editAccountInfo [name='mobilenumber']").val().trim();
     if (inputValue.length != 10) {
-      $("#mobilenum").addClass("error");
-      $("#id_number_error").text("Mobile number should be 10 characters.");
+      // $("#editAccountInfo [name='mobilenumber']").addClass("error");
+      // $("#id_number_error").text("Mobile number should be 10 characters.");
     } else {
-      $("#mobilenum").attr("readonly", true);
-      number = $("#mobilenum").val();
+      $("#editAccountInfo [name='mobilenumber']").attr("readonly", true);
+      $("#editAccountInfo [name='emailotp']").attr("readonly", false);
+      number = $("#editAccountInfo [name='mobilenumber']").val();
       $("#id_number_error").text("");
       $("#sendotp").removeClass("sendotp");
       timerId = setInterval(countdown, 1000);
       $.ajax({
-        url: "database/registration/otp.php",
+        url: "../database/registration/otp.php",
         method: "post",
         data: { number: number },
         success: function (data) {
@@ -178,16 +179,16 @@ $(document).ready(function () {
 
   $(document).on("click", ".resendotp", function (e) {
     e.preventDefault();
-    var inputValue = $("#mobilenum").val().trim();
+    var inputValue = $("#editAccountInfo [name='mobilenumber']").val().trim();
     if (inputValue.length != 10) {
-      $("#mobilenum").addClass("errorClass");
+      $("#editAccountInfo [name='mobilenumber']").addClass("errorClass");
     } else {
-      number = $("#mobilenum").val();
+      number = $("#editAccountInfo [name='mobilenumber']").val();
       timeLeft = 60;
       clearTimeout(timerId);
       timerId = setInterval(countdown, 1000);
       $.ajax({
-        url: "database/registration/otp.php",
+        url: "../database/registration/otp.php",
         method: "post",
         data: { number: number },
         success: function (data) {

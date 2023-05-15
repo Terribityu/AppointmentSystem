@@ -4,7 +4,7 @@ $(document).ready(function () {
     // Perform AJAX request to check the database
     $.ajax({
       type: "POST",
-      url: "database/check_database.php", // Replace with the actual PHP file to handle the database check
+      url: "database/smsnotification/check_database.php", // Replace with the actual PHP file to handle the database check
       success: function (response) {
         // Handle the response from the server
         console.log("Database check successful");

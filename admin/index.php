@@ -23,14 +23,31 @@ include("template/header.php");
                 <h3>Destiny Driving School</h3>
                 <strong>DDS</strong>
             </div>
-
+            
             <ul class="list-unstyled components">
+                <li>
+                    <a id="user__name" href="#homeSubmenu" data-bs-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+                        <img src="<?php echo $_SESSION['avatar'];?>" alt="" id="nav__avatar">
+                        <span id='link-label'><?php echo $_SESSION['username'];?></span>
+                    </a>
+                    <ul class="collapse list-unstyled" id="homeSubmenu">
+                        <li>
+                            <a href="profile.php"> My Profile </a>
+                        </li>
+                        <li>
+                            <a href="myappointments.php">My Appointments </a>
+                        </li>
+                    </ul>
+                </li>
                 <li class="active">
                     <a href="index.php">
                         <i class="fas fa-home"></i>
                         <span id='link-label'>Dashboard</span>
                     </a>
                 </li>
+                <?php
+                    if($_SESSION['userType'] == "admin"){
+                ?>
                 <li>
                     <a href="students.php">
                         <i class="fa-solid fa-users"></i>
@@ -43,6 +60,9 @@ include("template/header.php");
                         <span id='link-label'>Instructor</span>
                     </a>
                 </li>
+                <?php
+                    }
+                ?>
                 <li>
                     <a href="schedules.php">
                         <i class="fas fa-clipboard-user"></i>
@@ -62,7 +82,7 @@ include("template/header.php");
                     </a>
                 </li>
                 <li>
-                    <a href="enrollment.php">
+                    <a href="feedback.php">
                         <i class="fa-solid fa-comments"></i>
                         <span id='link-label'>Feedbacks</span>
                     </a>
@@ -71,6 +91,9 @@ include("template/header.php");
 
             <ul class="list-unstyled CTAs">
             </ul>
+
+
+
         </nav>
 
         <!-- Page Content  -->
@@ -99,25 +122,108 @@ include("template/header.php");
                 </div>
             </nav>
 
-            <h2>Dashboard</h2>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+            <div class="row">
+                <?php
+                    if($_SESSION['userType'] == "admin"){
+                ?>
+                     <div class="col-lg-4 col-6 animated bounceInLeft">
+                        <!-- small box -->
+                        <div class="small-box bg-1">
+                           <div class="inner">
+                              <h3 id="destinationcount">8</h3>
+                              <p>Instructors</p>
+                           </div>
+                           <div class="icon">
+                              <i class="la la-map la-2x"></i>
+                           </div>
+                           <a href="destinations.php" class="small-box-footer">More info <i class="las la-arrow-circle-right"></i></a>
+                        </div>
+                     </div>
+                     <!-- ./col -->
+                     <div class="col-lg-4 col-6 animated rubberBand">
+                        <!-- small box -->
+                        <div class="small-box bg-2">
+                           <div class="inner">
+                              <h3 id="clientcount">20</h3>
+                              <p>Students</p>
+                           </div>
+                           <div class="icon">
+                              <i class="la la-users la-2x"></i>
+                           </div>
+                           <a href="clients.php" class="small-box-footer">More info <i class="las la-arrow-circle-right"></i></a>
+                        </div>
+                     </div>
+                     <!-- ./col -->
+                     <div class="col-lg-4 col-6 animated bounceInRight">
+                        <!-- small box -->
+                        <div class="small-box bg-3">
+                           <div class="inner">
+                              <h3 id="incometotal">20,000</h3>
+                              <p>Income</p>
+                           </div>
+                           <div class="icon">
+                              <i class="la la-money-bill la-2x"></i>
+                           </div>
+                           <a href="#" class="small-box-footer">More info <i class="las la-arrow-circle-right"></i></a>
+                        </div>
+                     </div>
+                <?php
+                    }
+                ?>  
+                    <div class="col-lg-4 col-6 animated bounceInLeft">
+                        <!-- small box -->
+                        <div class="small-box bg-4">
+                           <div class="inner">
+                              <h3 id="myappointmentstotal">8</h3>
+                              <p>My Appointments</p>
+                           </div>
+                           <div class="icon">
+                              <i class="la la-ticket-alt la-2x"></i>
+                           </div>
+                           <a href="tickets.php" class="small-box-footer">More info <i class="las la-arrow-circle-right"></i></a>
+                        </div>
+                     </div>
 
-            <div class="line"></div>
+                     <div class="col-lg-4 col-6 animated bounceInLeft">
+                        <!-- small box -->
+                        <div class="small-box bg-5">
+                           <div class="inner">
+                              <h3 id="appointmentstotal">8</h3>
+                              <p>Appointments</p>
+                           </div>
+                           <div class="icon">
+                              <i class="la la-ticket-alt la-2x"></i>
+                           </div>
+                           <a href="tickets.php" class="small-box-footer">More info <i class="las la-arrow-circle-right"></i></a>
+                        </div>
+                     </div>
+                     <!-- ./col -->
+                     <div class="col-lg-4 col-6 animated rubberBand">
+                        <!-- small box -->
+                        <div class="small-box bg-6">
+                           <div class="inner">
+                              <h3 id="enrolledtotal">8</h3>
+                              <p>Enrolled</p>
+                           </div>
+                           <div class="icon">
+                              <i class="la la-blog la-2x"></i>
+                           </div>
+                           <a href="blogs.php" class="small-box-footer">More info <i class="las la-arrow-circle-right"></i></a>
+                        </div>
+                     </div>
+                     <!-- ./col -->
+                  </div>
 
-            <h2>Lorem Ipsum Dolor</h2>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                    <div class="row">
 
-            <div class="line"></div>
-
-            <h2>Lorem Ipsum Dolor</h2>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-
-            <div class="line"></div>
-
-            <h3>Lorem Ipsum Dolor</h3>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-        </div>
+                                <div class="col-lg-12 col-12">
+                                    <div class="small-box">
+                                    <div class="inner" style="background-color: #fff">
+                                        <div id="chartContainer" style="height: 370px; max-width: 920px; margin: 0px auto;"></div>
+                                    </div>
+                                    </div>
+                                </div>
+            </div>
     </div>
 
     <script type="text/javascript">

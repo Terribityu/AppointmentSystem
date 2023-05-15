@@ -4,7 +4,7 @@ require ('../connect.php');
     if(isset($search))
     {
         $search = mysqli_real_escape_string($conn, $_POST["search"]);
-        $query = "SELECT * FROM `appointments` JOIN users ON appointments.usersID = users.userID JOIN user_details ON user_details.username = users.username JOIN schedules ON appointments.scheduleID = schedules.id
+        $query = "SELECT * FROM `appointments` JOIN users ON appointments.studentID = users.userID JOIN user_details ON user_details.username = users.username JOIN schedules ON appointments.scheduleID = schedules.id
         where (appointmentID like '%$search%'
         or firstname like '%$search%'
         or middlename like '%$search%'
@@ -15,13 +15,13 @@ require ('../connect.php');
         or email like '%$search%') and status_a = '$stats'";
         
     }else {
-        $query = "SELECT * FROM `appointments` JOIN users ON appointments.usersID = users.userID JOIN user_details ON user_details.username = users.username JOIN schedules ON appointments.scheduleID = schedules.id where users.username = '".$_SESSION['username']."' and appointments.status_a = 'accepted'";
+        $query = "SELECT * FROM `appointments` JOIN users ON appointments.studentID = users.userID JOIN user_details ON user_details.username = users.username JOIN schedules ON appointments.scheduleID = schedules.id where users.username = '".$_SESSION['username']."' and appointments.status_a = 'approved'";
     }
 
     $result = mysqli_query($conn,$query);
     if(mysqli_num_rows($result) > 0){
         while($row = mysqli_fetch_array($result)){
-            $query1 = "SELECT * FROM users JOIN user_details ON users.username = user_details.username JOIN schedules ON schedules.userID = users.userID WHERE schedules.userID = ".$row['userID'];
+            $query1 = "SELECT * FROM users JOIN user_details ON users.username = user_details.username JOIN schedules ON schedules.instructorID = users.userID WHERE schedules.instructorID = ".$row['instructorID'];
             $result1 = mysqli_query($conn, $query1);
             $row1 = mysqli_fetch_array($result1); 
             echo "

@@ -1,17 +1,32 @@
 <?php
-require ('../connect.php');
-                extract($_POST);
-                $result = mysqli_query($conn, "SELECT * FROM user_details where detail_ID = $userID");
+require('../connect.php');
+extract($_POST);
 
-                $row = mysqli_fetch_array($result);
+$mobilenumber = mysqli_real_escape_string($conn, $mobilenumber);
+$email = mysqli_real_escape_string($conn, $email);
+$firstname = mysqli_real_escape_string($conn, $firstname);
+$middlename = mysqli_real_escape_string($conn, $middlename);
+$lastname = mysqli_real_escape_string($conn, $lastname);
+$suffix = mysqli_real_escape_string($conn, $suffix);
+$address = mysqli_real_escape_string($conn, $address);
+$dateofbirth = mysqli_real_escape_string($conn, $dateofbirth);
+$age = mysqli_real_escape_string($conn, $age);
 
-                $query = "UPDATE users SET number = '$mobilenumber', email = '$email' where username = '".$row['username']."'";
-                $query2 = "UPDATE user_details SET firstname = '$firstname', middlename = '$middlename', lastname = '$lastname', suffix = '$suffix', address = '$address', dateofbirth = '$dateofbirth',
-                age = $age, gender = '$gender', civilstatus = '$civilstatus' where detail_ID = ".$userID;
-                if(mysqli_query($conn, $query)){
-                        echo mysqli_query($conn , $query2);
-                        addSystemLogs($userID, "editstudent");
-                }else{
-                        echo "Error On Query";
-                }
+$query2 = "UPDATE user_details JOIN users ON user_details.username = users.username SET firstname = ?, middlename = ?, lastname = ?, suffix = ?, address = ?, dateofbirth = ?,
+                age = ?, gender = ?, civilstatus = ?, number = ?, email = ? WHERE userID = ?";
+
+$stmt2 = mysqli_prepare($conn, $query2);
+
+if ($stmt2) {
+    mysqli_stmt_bind_param($stmt2, "sssssssssssi", $firstname, $middlename, $lastname, $suffix, $address, $dateofbirth,
+        $age, $gender, $civilstatus, $mobilenumber, $email, $userID);
+
+    if (mysqli_stmt_execute($stmt2)) {
+        addSystemLogs($userID, "editstudent");
+    } else {
+        echo "Error executing query.";
+    }
+} else {
+    echo "Error preparing statement.";
+}
 ?>

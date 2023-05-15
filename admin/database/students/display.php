@@ -39,7 +39,7 @@ require ('../connect.php');
                     <td>$civilstatus</td>
                     <td>$number</td>
                     <td>$email</td>
-                    <td><button id='editStud' title='Edit Student' value='$detail_ID' data-value='$firstname $lastname' class='btn btn-success'><i class='fa-solid fas fa-user-pen'></i></button>&nbsp
+                    <td><button id='editStud' title='Edit Student' value='$userID' data-value='$firstname $lastname' class='btn btn-success'><i class='fa-solid fas fa-user-pen'></i></button>&nbsp
                     <button id='deleteStud' title='Delete Student' value='$userID' data-value='$firstname $lastname' class='btn btn-danger'><i class='fa-solid fa-trash'></i></button></td>
                 </tr>
             ";

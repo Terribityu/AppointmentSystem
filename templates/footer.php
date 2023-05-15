@@ -5,6 +5,7 @@
                     <div class="footer-single-box">
                         <img src="assets/logo/logo_100x100.png" alt="">
                     <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quam repellendus sunt praesentium aspernatur iure molestias.</p>
+                    <i class="fa-solid fa-location-dot"></i>
                     <!-- <h3>We Accept</h3>
                     <div class="card-area">
                             <i class="fa-brands fa-cc-visa"></i>
@@ -64,12 +65,12 @@
     </footer>
 
 <!-- Popper and Bootstrap 5.3 -->
-<script src="./assets/bootstrap/js/popper.min.js"></script>
-<script src="./assets/bootstrap/js/bootstrap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js" integrity="sha384-mQ93GR66B00ZXjt0YO5KlohRA5SY2XofN4zfuZxLkoj1gXtW8ANNCe9d5Y3eG5eD" crossorigin="anonymous"></script>
 <!-- Alertify JS -->
-<script src="./assets/alertify/js/alertify.min.js" ></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/AlertifyJS/1.13.1/alertify.min.js" integrity="sha512-JnjG+Wt53GspUQXQhc+c4j8SBERsgJAoHeehagKHlxQN+MtCCmFDghX9/AcbkkNRZptyZU4zC8utK59M5L45Iw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <!-- Owl Carousel -->
-<script src="./assets/owlcarousel/js/owl.carousel.min.js"></script> 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script> 
 <!-- <script src="./assets/owlcarousel/js/bootstrap.min.js"></script>  -->
 <!-- Main Script -->
 <script src="assets/js/script.js"></script>

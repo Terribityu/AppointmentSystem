@@ -22,7 +22,7 @@ if ($jsonObj->request_type == 'addEvent'){
 
     if(!empty($eventTitle)){
         // Insert event data into database
-        $sqlQ = "INSERT INTO schedules (title, start, end, time, price, slots, userID) VALUES(?,?,?,?,?,?,?)";
+        $sqlQ = "INSERT INTO schedules (title, start, end, time, price, slots, instructorID) VALUES(?,?,?,?,?,?,?)";
         $stmt = $db->prepare($sqlQ);
         $stmt->bind_param("ssssiii", $eventTitle, $start, $end, $eventTime, $eventPrice, $eventSlots, $eventInstructor);
         $insert = $stmt->execute();

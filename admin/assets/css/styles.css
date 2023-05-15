@@ -13,7 +13,7 @@ p {
     font-size: 1.1em;
     font-weight: 300;
     line-height: 1.7em;
-    color: #999;
+    /* color: #999; */
 }
 
 a,
@@ -296,4 +296,12 @@ a.article:hover {
     backdrop-filter: blur(50px);
     border: solid 1px #3b3d49;
     border-radius: 25px; 
+}
+
+#user__name img{
+    width: 100%;
+	height: 100%;
+	max-width: 20px;
+	max-height: 20px;
+	border-radius: 50px;
 }

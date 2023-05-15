@@ -20,7 +20,7 @@
       ->create("+63".$number, // to
         array(
                 'from' => '+14344425970',
-                "body" => "Dear user, Your OTP verification code is $otp http://readysetgala.epizy.com"
+                "body" => "Dear user, Your OTP verification code is $otp"
         )
       );
 

@@ -138,7 +138,7 @@
                         </div>
                         <div class="col-md-3 mb-2">
                             <label id="formlabel" for="emailotp">OTP <span id="form_required">*</span></label>
-                            <input type="number" id="otp" disabled class="form-control" name="emailotp" required></input>
+                            <input type="number" id="otp" readonly class="form-control" name="emailotp" required></input>
                         </div>
                         <div class="col-md-5 mb-2">
                             <label for="email">Email <span id="form_required">*</span></label>

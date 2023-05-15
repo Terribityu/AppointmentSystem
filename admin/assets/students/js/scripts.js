@@ -59,7 +59,7 @@ $(document).ready(function () {
       url: "database/students/check.php?&id=" + id,
       dataType: "json",
       success: function (data) {
-        $("#editStudentForm [name='userID']").val(data["detail_ID"]);
+        $("#editStudentForm [name='userID']").val(data["userID"]);
         $("#editStudentForm [name='firstname']").val(data["firstname"]);
         $("#editStudentForm [name='middlename']").val(data["middlename"]);
         $("#editStudentForm [name='lastname']").val(data["lastname"]);
@@ -80,6 +80,17 @@ $(document).ready(function () {
     });
   });
 
+  function mySuccess(text) {
+    Swal.fire({
+      position: "center",
+      icon: "success",
+      title: "Success",
+      text: text,
+      showConfirmButton: false,
+      timer: 2000,
+    });
+  }
+
   $("#editStudentForm").on("submit", function (e) {
     e.preventDefault();
     var data = $(this).serialize();
@@ -90,6 +101,7 @@ $(document).ready(function () {
       success: function (data) {
         console.log(data);
         $("#editStudentModal").modal("hide");
+        mySuccess("User successfully updated.");
         load_data();
       },
       error: function (xhr, status, error) {

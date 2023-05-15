@@ -54,14 +54,27 @@ $(document).ready(function () {
       success: function (data) {
         console.log(data);
         $("#addInstructorModal").modal("hide");
-        mySuccess(name + " successfully added.");
+        mySuccess("Instructor successfully added.");
         load_data();
+        sendEmail(data);
       },
       error: function (xhr, status, error) {
         $("body").html("<h1>" + xhr["status"] + " " + error + "</h1>");
       },
     });
   });
+
+  function sendEmail(data) {
+    var data = JSON.parse(data);
+    $.ajax({
+      type: "POST",
+      url: "database/instructors/email.php",
+      data: data,
+      success: function (data) {
+        console.log(data);
+      },
+    });
+  }
 
   $(document).on("click", "#editStud", function () {
     $("#editInstructorForm")[0].reset();
@@ -71,7 +84,7 @@ $(document).ready(function () {
       url: "database/instructors/check.php?&id=" + id,
       dataType: "json",
       success: function (data) {
-        $("#editInstructorForm [name='userID']").val(data["detail_ID"]);
+        $("#editInstructorForm [name='userID']").val(data["userID"]);
         $("#editInstructorForm [name='firstname']").val(data["firstname"]);
         $("#editInstructorForm [name='middlename']").val(data["middlename"]);
         $("#editInstructorForm [name='lastname']").val(data["lastname"]);
@@ -102,7 +115,7 @@ $(document).ready(function () {
       success: function (data) {
         console.log(data);
         $("#editInstructorModal").modal("hide");
-        mySuccess(name + " successfully updated.");
+        mySuccess("User successfully updated.");
         load_data();
       },
       error: function (xhr, status, error) {

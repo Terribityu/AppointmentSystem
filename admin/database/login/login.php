@@ -14,6 +14,7 @@ if (isset($_POST['btn_login'])) {
             $_SESSION['username'] = $row['username'];
             $_SESSION['userType'] = $row['userType'];
             $_SESSION['userID'] = $row['userID'];
+            $_SESSION['avatar'] = $row['avatar'];
             // echo "<script type='text/javascript'>myAlertAdmin()</script>";
             // header("Location: ../index.php");
         }
