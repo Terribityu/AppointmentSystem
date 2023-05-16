@@ -124,7 +124,7 @@ include("template/my-modal.php");
                 </div>
             </nav>
             
-            <div class="container">
+            <div class="container-fluid">
             <h2 class="text-center">My Appointments</h2>
             <table id="displayAppointments" class="table table-hover">
                 <thead>

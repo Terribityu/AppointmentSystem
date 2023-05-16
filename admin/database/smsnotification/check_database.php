@@ -2,7 +2,7 @@
     require("../connect.php");
     // Update the path below to your autoload.php,
     // see https://getcomposer.org/doc/01-basic-usage.md
-
+    $startt = microtime(true);
     $query = "SELECT *
     FROM schedules
     JOIN appointments ON schedules.id = appointments.scheduleID
@@ -54,5 +54,7 @@
             require("sendnotif.php");
         }
     }
-    
+    $end = microtime(true);
+    $executionTime = $end - $startt;
+    echo "<br><br>".$executionTime;
 ?>

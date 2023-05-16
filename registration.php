@@ -4,7 +4,7 @@
         if(isset($_SESSION['username'])){
             header('location:index.php');
         }else{
-            if($_SESSION['userType'] == "admin"){
+            if($_SESSION['userType'] == "admin" || $_SESSION['userType'] == "instructor"){
                 header('location:admin/index.php');
             }
         }

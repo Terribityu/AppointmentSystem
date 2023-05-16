@@ -1,7 +1,7 @@
 <?php
     session_start();
     if(isset($_SESSION['userType'])){  
-        if($_SESSION['userType'] == "admin"){
+        if($_SESSION['userType'] == "admin" || $_SESSION['userType'] == "instructor"){
             header('location:admin/index.php');
         }
     }
