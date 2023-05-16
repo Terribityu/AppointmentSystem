@@ -162,13 +162,23 @@
     <!-- About Section Start-->
     <section id="about">
         <div class="container">
+        <h1 class="testimonial-header">About Us </h1>
             <div class="row">
-                <div class="col-lg-3 col-md-12 col-12">
+                <div class="col-lg-3 col-md-12 col-12 d-flex align-items-center">
                     <img src="assets/logo/logo_250x250.png" alt="">
                 </div>
                 <div class="col-lg-9 col-md-12 col-12 ps-lg-5 mt-md-5">
-                    <h2>About Us</h2>
-                    <p>This is Photoshop's version  of Lorem Ipsum. Proin gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auctor, nisi elit consequat ipsum, nec sagittis sem nibh id elit. Duis sed odio sit amet nibh vulputate cursus</p>
+                    <!-- <h2>About Us</h2> -->
+                    <br>
+                    <p>Destiny Driving School, which began operations on February 1, 2021, has made a name for itself as the only LTO-accredited driving institution in the San Miguel municipality. 
+                        Despite initially having only two training vehicles and one office, the team was determined to succeed, and they opened their first office at 2F M. De Castro Bldg., 
+                        Cagayan Valley Road, Salangan, San Miguel, Bulacan, Philippines. <br><br> 
+                        Over time, Destiny Driving School has continued to cater to the needs of an increasing number of student drivers. Their professional and experienced teachers are accredited 
+                        by the government as professional driving instructors and lecturers. <br><br>
+                        Destiny Driving School offers both a Theoretical Driving Course (TDC) for Student Permit (SP) and a Practical Driving Course (PDC) for Driver's License applicants. 
+                        Aspiring drivers can take advantage of the opportunity to be trained by LTO-accredited Driving Instructors. Enrolling in one of Destiny Driving School's courses can help 
+                        ensure that students drive safely and confidently on the road.
+                    </p>
                 </div>
             </div>
         </div>
