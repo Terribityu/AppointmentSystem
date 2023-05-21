@@ -13,7 +13,7 @@
 ?>
 <link rel="stylesheet" href="./assets/instructors/css/styles.css">
 <script src="./assets/instructors/js/scripts.js"></script>
-<title>Students</title>
+<title>Instructors - Destiny Driving School</title>
 </head>
 
 <body>
@@ -40,7 +40,7 @@
                         </li>
                     </ul>
                 </li>
-                <li class="active">
+                <li >
                     <a href="index.php">
                         <i class="fas fa-home"></i>
                         <span id='link-label'>Dashboard</span>
@@ -55,7 +55,7 @@
                         <span id='link-label'>Students</span>
                     </a>
                 </li>
-                <li>
+                <li class="active">
                     <a href="instructor.php">
                         <i class="fa-solid fa-chalkboard-user"></i>
                         <span id='link-label'>Instructor</span>

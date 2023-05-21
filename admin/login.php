@@ -7,7 +7,10 @@ if(isset($_SESSION['username'])){
 
 include("template/header.php");
 ?>
+<title>Administrator Login - Destiny Driving School</title>
+</head>
 
+<body>
   <section id="main_div_login" class="d-flex align-items-center">
         <div class="col-lg-7 d-flex justify-content-center">
             <img src="./assets/logo/logo-white-orig.png" alt="">
@@ -32,7 +35,6 @@ include("template/header.php");
   </section>
     
 
-      <script type="text/javascript" src="./assets/js/login.js"></script>
 <?php
 include("template/footer.php");
 ?>

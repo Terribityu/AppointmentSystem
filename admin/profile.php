@@ -14,7 +14,7 @@ include("template/my-modal.php");
 
 <link rel="stylesheet" href="assets/profile/css/styles.css"></style>
 <script src="assets/index/js/script.js"></script>
-<title>Students</title>
+<title><?php echo $_SESSION['username']?> - Destiny Driving School</title>
 </head>
 <body>
 <input type="hidden" name="userID" id="user__id" value="<?php echo $_SESSION['userID'];?>">
@@ -27,7 +27,7 @@ include("template/my-modal.php");
             </div>
             
             <ul class="list-unstyled components">
-                <li>
+                <li class="active">
                     <a id="user__name" href="#homeSubmenu" data-bs-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
                         <img src="<?php echo $_SESSION['avatar'];?>" alt="" id="nav__avatar">
                         <span id='link-label'><?php echo $_SESSION['username'];?></span>
@@ -41,7 +41,7 @@ include("template/my-modal.php");
                         </li>
                     </ul>
                 </li>
-                <li class="active">
+                <li >
                     <a href="index.php">
                         <i class="fas fa-home"></i>
                         <span id='link-label'>Dashboard</span>
@@ -152,13 +152,6 @@ include("template/my-modal.php");
             $('#sidebarCollapse').on('click', function () {
                 $('#sidebar').toggleClass('active');
             });
-
-            changetitle();
-
-            function changetitle(){
-                var data = "Attendance System";
-                document.title = data;
-            }
         };
     </script>
 <script src="./assets/profile/js/scripts.js"></script>

@@ -12,10 +12,10 @@ require ('../connect.php');
         or suffix like '%$search%'
         or address like '%$search%'
         or number like '%$search%'
-        or email like '%$search%') and status_a = '$stats'";
+        or email like '%$search%') and users.username = '".$_SESSION['username']."' and appointments.status_a = 'approved' and start >= CURDATE() ORDER BY start ASC, status_a ASC";
         
     }else {
-        $query = "SELECT * FROM `appointments` JOIN users ON appointments.studentID = users.userID JOIN user_details ON user_details.username = users.username JOIN schedules ON appointments.scheduleID = schedules.id where users.username = '".$_SESSION['username']."' and appointments.status_a = 'approved'";
+        $query = "SELECT * FROM `appointments` JOIN users ON appointments.studentID = users.userID JOIN user_details ON user_details.username = users.username JOIN schedules ON appointments.scheduleID = schedules.id where users.username = '".$_SESSION['username']."' and appointments.status_a = 'approved' and start >= CURDATE() ORDER BY start ASC, status_a ASC";
     }
 
     $result = mysqli_query($conn,$query);
@@ -25,7 +25,7 @@ require ('../connect.php');
             $result1 = mysqli_query($conn, $query1);
             $row1 = mysqli_fetch_array($result1); 
             echo "
-                <tr class='clickable-row' data-value='".$row['appointmentID']."' data-bs-toggle='modal' data-bs-target='#appointInfoModal'>
+                <tr class='clickable-row' data-value='".$row['appointmentID']."'>
                     <th scope='row'>".$row1['firstname']." ".$row1['lastname']."</th>
                     <td>".$row['title']."</td>
                     <td>".$row['start']."</td>

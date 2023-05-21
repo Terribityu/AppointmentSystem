@@ -12,7 +12,7 @@
 ?>
 <link rel="stylesheet" href="./assets/students/css/styles.css">
 <script src="./assets/students/js/scripts.js"></script>
-<title>Students</title>
+<title>Students - Destiny Driving School</title>
 </head>
 
 <body>
@@ -42,7 +42,7 @@
                 <?php
                     if($_SESSION['userType'] == "admin"){
                 ?>
-                <li class="active">
+                <li >
                     <a href="index.php">
                         <i class="fas fa-home"></i>
                         <span id='link-label'>Dashboard</span>
@@ -63,7 +63,7 @@
                 <?php
                     }
                 ?>
-                <li>
+                <li class="active">
                     <a href="schedules.php">
                         <i class="fas fa-clipboard-user"></i>
                         <span id='link-label'>Schedules</span>

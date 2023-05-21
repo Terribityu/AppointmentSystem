@@ -153,7 +153,7 @@ INSERT INTO `schedules` (`id`, `title`, `start`, `end`, `time`, `price`, `slots`
 
 CREATE TABLE `system_reports` (
   `reportsID` int NOT NULL,
-  `username` varchar(255) NOT NULL,
+  `username` varchar(100) NOT NULL,
   `transactID` int NOT NULL,
   `reportType` varchar(255) NOT NULL,
   `reportDate` varchar(255) NOT NULL,
@@ -281,7 +281,7 @@ INSERT INTO `system_reports` (`reportsID`, `username`, `transactID`, `reportType
 
 CREATE TABLE `users` (
   `userID` int NOT NULL,
-  `username` varchar(255) NOT NULL,
+  `username` varchar(100) NOT NULL,
   `email` varchar(255) NOT NULL,
   `number` bigint NOT NULL,
   `password` varchar(255) NOT NULL,
@@ -319,7 +319,7 @@ CREATE TABLE `user_details` (
   `age` int NOT NULL,
   `gender` varchar(255) NOT NULL,
   `civilstatus` varchar(255) NOT NULL,
-  `username` varchar(255) NOT NULL
+  `username` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --

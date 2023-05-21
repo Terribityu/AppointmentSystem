@@ -4,7 +4,7 @@ require ('../connect.php');
     if(isset($search))
     {
         $search = mysqli_real_escape_string($conn, $_POST["search"]);
-        $query = "SELECT * FROM `schedules` JOIN `users` ON schedules.userID = users.userID JOIN `user_details` ON users.username = user_details.username
+        $query = "SELECT * FROM `schedules` JOIN `users` ON schedules.instructorID = users.userID JOIN `user_details` ON users.username = user_details.username
         where (schedID like '%$search%'
         or firstname like '%$search%'
         or middlename like '%$search%'
@@ -15,7 +15,7 @@ require ('../connect.php');
         or email like '%$search%') and slots > 0 and start > CURDATE() and title = 'TDC'";
         
     }else {
-        $query = "SELECT * FROM `schedules` JOIN `users` ON schedules.userID = users.userID JOIN `user_details` ON users.username = user_details.username where slots > 0 and start > CURDATE() and title = 'TDC'";
+        $query = "SELECT * FROM `schedules` JOIN `users` ON schedules.instructorID = users.userID JOIN `user_details` ON users.username = user_details.username where slots > 0 and start > CURDATE() and title = 'TDC'";
     }
     $q1 = "SELECT * FROM users
     JOIN user_details ON users.username = user_details.username
@@ -43,7 +43,7 @@ if (mysqli_num_rows($r1) > 0) {
 
         if ($hasSchedules) {
             echo "<li class='list-group-item d-flex align-items-center'>
-                <img src='assets/img/" . $row1['avatar'] . "' alt=''>
+                <img src='". $row1['avatar']. "' alt=''>
                 &nbsp;
                 <div>
                     <div class='instruct_name'>

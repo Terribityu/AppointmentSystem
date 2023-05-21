@@ -4,7 +4,7 @@ require ('../connect.php');
     if(isset($search))
     {
         $search = mysqli_real_escape_string($conn, $_POST["search"]);
-        $query = "SELECT * FROM `appointments` JOIN users ON appointments.usersID = users.userID JOIN user_details ON user_details.username = users.username JOIN schedules ON appointments.scheduleID = schedules.id
+        $query = "SELECT * FROM `appointments` JOIN schedules ON schedules.id = appointments.scheduleID JOIN users ON appointments.studentID = users.userID JOIN user_details ON user_details.username = users.username
         where (appointmentID like '%$search%'
         or firstname like '%$search%'
         or middlename like '%$search%'
@@ -12,27 +12,35 @@ require ('../connect.php');
         or suffix like '%$search%'
         or address like '%$search%'
         or number like '%$search%'
-        or email like '%$search%') and status_a = 'accepted' and start > CURDATE()";
+        or email like '%$search%') and appointments.status_a = '$stats' and start > CURDATE() ORDER BY start ASC, status_a ASC";
         
     }else {
-        $query = "SELECT * FROM `appointments` JOIN schedules ON schedules.id = appointments.scheduleID JOIN users ON schedules.instructorID = users.userID JOIN user_details ON user_details.username = users.username where users.username = '".$_SESSION['username']."' and appointments.status_a = 'approved' and start > CURDATE()";
+        $query = "SELECT * FROM `appointments` JOIN schedules ON schedules.id = appointments.scheduleID JOIN users ON appointments.studentID = users.userID JOIN user_details ON user_details.username = users.username where schedules.instructorID = '".$_SESSION['userID']."' and appointments.status_a = '$stats' and start >= CURDATE() ORDER BY start ASC, status_a ASC";
     }
 
     $result = mysqli_query($conn,$query);
     if(mysqli_num_rows($result) > 0){
         while($row = mysqli_fetch_array($result)){
-            $query1 = "SELECT * FROM users JOIN user_details ON users.username = user_details.username JOIN appointments ON appointments.studentID = users.userID WHERE appointments.studentID = ".$row['studentID'];
-            $result1 = mysqli_query($conn, $query1);
-            $row1 = mysqli_fetch_array($result1); 
-            echo "
-                <tr class='clickable-row' data-value='".$row['appointmentID']."'>
-                    <th scope='row'>".$row1['firstname']." ".$row1['lastname']."</th>
+            if($stats == 'approved'){
+                echo "<tr class='clickable-row' data-value='".$row['appointmentID']."'>";
+            }else{
+                echo "<tr'>";
+            }
+            echo "  <th scope='row'>".$row['firstname']." ".$row['lastname']."</th>
                     <td>".$row['title']."</td>
                     <td>".$row['start']."</td>
                     <td>".$row['time']."</td>
-                    <td>".$row['remarks']."</td>
-                    <td>".$row['status']."</td>
-                </tr>";
+                    <td>".$row['remarks']."</td>";
+
+            if($stats == 'approved'){
+                echo "<td>".$row['status']."</td>";
+            }else{
+                extract($row);
+                echo "<td><button id='acceptRequest' title='Accept Request' value='$appointmentID' data-value='$firstname $lastname' class='btn btn-success'><i class='fa-solid fas fa-check'></i></button>&nbsp
+                <button id='denyRequest' title='Deny Request' value='$appointmentID' data-value='$firstname $lastname' class='btn btn-danger'><i class='fa-solid fa-close'></i></button></td>";
+            }
+
+            echo "</tr>";
         }
     }else{
         echo "<h5 style='text-align:center'><i class='fa-regular fas fa-magnifying-glass'></i>No Results Found.</h5>";

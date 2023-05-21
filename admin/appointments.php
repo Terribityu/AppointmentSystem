@@ -12,7 +12,7 @@
 ?>
 <link rel="stylesheet" href="./assets/appointments/css/styles.css">
 <script src="./assets/appointments/js/scripts.js"></script>
-<title>Students</title>
+<title>Appointments - Destiny Driving School</title>
 </head>
 
 <body>
@@ -39,7 +39,7 @@
                         </li>
                     </ul>
                 </li>
-                <li class="active">
+                <li >
                     <a href="index.php">
                         <i class="fas fa-home"></i>
                         <span id='link-label'>Dashboard</span>
@@ -69,7 +69,7 @@
                         <span id='link-label'>Schedules</span>
                     </a>
                 </li>
-                <li>
+                <li class="active">
                     <a href="appointments.php">
                         <i class="fa-solid fa-calendar-check"></i>
                         <span id='link-label'>Appointments</span>

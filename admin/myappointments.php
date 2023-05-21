@@ -14,7 +14,7 @@ include("template/my-modal.php");
 
 <link rel="stylesheet" href="assets/myappointments/css/styles.css"></style>
 <script src="./assets/myappointments/js/scripts.js"></script>
-<title>Students</title>
+<title>My Appointments - Destiny Driving School</title>
 </head>
 <body>
 <input type="hidden" name="userID" id="user__id" value="<?php echo $_SESSION['userID'];?>">
@@ -27,7 +27,7 @@ include("template/my-modal.php");
             </div>
             
             <ul class="list-unstyled components">
-                <li>
+                <li class="active">
                     <a id="user__name" href="#homeSubmenu" data-bs-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
                         <img src="<?php echo $_SESSION['avatar'];?>" alt="" id="nav__avatar">
                         <span id='link-label'><?php echo $_SESSION['username'];?></span>
@@ -41,7 +41,7 @@ include("template/my-modal.php");
                         </li>
                     </ul>
                 </li>
-                <li class="active">
+                <li >
                     <a href="index.php">
                         <i class="fas fa-home"></i>
                         <span id='link-label'>Dashboard</span>
@@ -125,7 +125,21 @@ include("template/my-modal.php");
             </nav>
             
             <div class="container-fluid">
-            <h2 class="text-center">My Appointments</h2>
+            <div class="d-flex justify-content-between mb-2">
+                <div class="d-flex">
+                <button id="currentapp" type="button" class="ml-3 btn btn-primary" title="Current Appointments" data-placement="right" value="active">
+		        Current
+                </button>&nbsp
+                <button id="cancelapp" type="button" class="ml-3 btn btn-outline-primary" title="Cancel Request" data-placement="right">
+                Cancel Request
+                </button>
+                </div>
+                <h2>My Appointments</h2>&nbsp
+                <div>
+                    <i class='fa-regular fas fa-magnifying-glass'></i>
+                    <input type="text" id="search_text" placeholder="Search..."></input>
+                </div>
+            </div>
             <table id="displayAppointments" class="table table-hover">
                 <thead>
                     <tr>
@@ -173,13 +187,6 @@ include("template/my-modal.php");
             $('#sidebarCollapse').on('click', function () {
                 $('#sidebar').toggleClass('active');
             });
-
-            changetitle();
-
-            function changetitle(){
-                var data = "Attendance System";
-                document.title = data;
-            }
         };
     </script>
 <script src="./assets/profile/js/scripts.js"></script>

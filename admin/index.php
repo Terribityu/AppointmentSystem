@@ -13,7 +13,7 @@ include("template/header.php");
 
 <link rel="stylesheet" href="assets/index/css/styles.css">
 <script src="assets/index/js/script.js"></script>
-<title>Students</title>
+<title>Dashboard - Destiny Driving School</title>
 </head>
 
 <div class="wrapper">
@@ -219,7 +219,7 @@ include("template/header.php");
                                 <div class="col-lg-12 col-12">
                                     <div class="small-box">
                                     <div class="inner" style="background-color: #fff">
-                                        <div id="chartContainer" style="height: 370px; max-width: 920px; margin: 0px auto;"></div>
+                                        <div id="chartContainer" willReadFrequently="true" style="height: 370px; max-width: 920px; margin: 0px auto;"></div>
                                     </div>
                                     </div>
                                 </div>
@@ -232,11 +232,44 @@ include("template/header.php");
                 $('#sidebar').toggleClass('active');
             });
 
-            changetitle();
+            getSalesData();
 
-            function changetitle(){
-                var data = "Attendance System";
-                document.title = data;
+            function getSalesData(){
+                console.log("wala");
+                $.ajax({
+                    url: "database/sales/checksales.php",
+                    method: "post",
+                    success: function(data) {
+                        chartData(JSON.parse(data));
+                    }
+                })
+            }
+
+            function chartData(data) {
+            // Convert the y values to integers and remove the quotes
+            data.forEach(function(point) {
+                point.y = parseInt(point.y);
+            });
+
+            var chart = new CanvasJS.Chart("chartContainer", {
+                animationEnabled: true,
+                theme: "light2",
+                title: {
+                text: "Monthly Sales"
+                },
+                axisY: {
+                title: "Income"
+                },
+                data: [{
+                type: "column",
+                showInLegend: true,
+                legendMarkerColor: "grey",
+                legendText: "MMbbl = one million barrels",
+                dataPoints: data
+                }]
+            });
+
+            chart.render();
             }
         };
     </script>

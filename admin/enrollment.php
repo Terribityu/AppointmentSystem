@@ -12,7 +12,7 @@
 ?>
 <link rel="stylesheet" href="./assets/enrollment/css/styles.css">
 <script src="./assets/enrollment/js/scripts.js"></script>
-<title>Students</title>
+<title>Enrollment - Destiny Driving School</title>
 </head>
 
 <body>
@@ -39,7 +39,7 @@
                         </li>
                     </ul>
                 </li>
-                <li class="active">
+                <li >
                     <a href="index.php">
                         <i class="fas fa-home"></i>
                         <span id='link-label'>Dashboard</span>
@@ -75,7 +75,7 @@
                         <span id='link-label'>Appointments</span>
                     </a>
                 </li>
-                <li>
+                <li class="active">
                     <a href="enrollment.php">
                         <i class="fa-solid fa-pen"></i>
                         <span id='link-label'>Enrollment</span>

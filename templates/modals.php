@@ -62,7 +62,9 @@
             <p>Price: <span id="status__text">5000</span></p>            
         </div>
         <div class="modal-footer">
+            <button class="btn btn-success" id="viewRemarks">Remarks</button>
             <button type="button" class="btn btn-primary" value="1" id="cancelAppoint">Cancel Appointment</button>
+            <button type="button" class="btn btn-primary" value="1" id="closePreview" data-bs-dismiss="modal">Close</button>
       </div>
       </div>
     </div>

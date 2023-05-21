@@ -43,7 +43,7 @@ if (mysqli_num_rows($r1) > 0) {
 
         if ($hasSchedules) {
             echo "<li class='list-group-item d-flex align-items-center'>
-                <img src='assets/img/" . $row1['avatar'] . "' alt=''>
+            <img src='". $row1['avatar']. "' alt=''>
                 &nbsp;
                 <div>
                     <div class='instruct_name'>
