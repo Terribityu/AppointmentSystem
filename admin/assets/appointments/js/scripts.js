@@ -26,10 +26,13 @@ $(document).ready(function () {
   function load_data(search) {
     // Function to get the list of appointments and print it on the table
     var pend = $("#pendingapp").val();
+    var appr = $("#approvedapp").val();
     // var appr = $('#approvedblogs').val();
     if (pend == "active") {
       // Select the status of what list the user wants to view (Pending, Rejected)
       stats = "pending";
+    } else if (appr == "active") {
+      stats = "approved";
     } else {
       stats = "rejected";
     }
@@ -214,27 +217,51 @@ $(document).ready(function () {
         '<i class="fas fa-times-circle"></i> Reject',
         "Reject " + name + " ?",
         function () {
-          $.ajax({
-            type: "GET",
-            url:
-              "database/appointments/status_up.php?id=" +
-              id +
-              "&stats=rejected&schedID=" +
-              sched,
-            success: function (data) {
-              pend.removeClass("btn-primary");
-              pend.addClass("btn-outline-primary");
-              appr.removeClass("btn-outline-primary");
-              appr.addClass("btn-primary");
-              pend.val("");
-              appr.val("active");
-              console.log(data);
-              load_data();
-            },
-            error: function (xhr, status, error) {
-              $("body").html("<h1>" + xhr["status"] + " " + error + "</h1>");
-            },
-          });
+          (async () => {
+            const { value: text } = await Swal.fire({
+              input: "textarea",
+              inputLabel: "Reason for rejecting appointment.",
+              inputPlaceholder: "Type your message here...",
+              inputAttributes: {
+                "aria-label": "Type your message here",
+              },
+              showCancelButton: true,
+            });
+
+            if (text) {
+              $.ajax({
+                type: "GET",
+                url:
+                  "database/appointments/status_up.php?id=" +
+                  id +
+                  "&stats=rejected&schedID=" +
+                  sched +
+                  "&reason=" +
+                  text,
+                success: function (data) {
+                  pend.removeClass("btn-primary");
+                  pend.addClass("btn-outline-primary");
+                  appr.removeClass("btn-outline-primary");
+                  appr.addClass("btn-primary");
+                  pend.val("");
+                  appr.val("active");
+                  console.log(data);
+                  load_data();
+                },
+                error: function (xhr, status, error) {
+                  $("body").html(
+                    "<h1>" + xhr["status"] + " " + error + "</h1>"
+                  );
+                },
+              });
+            } else {
+              Swal.fire({
+                icon: "info",
+                title: "Oops...",
+                text: "Rejection has been Cancelled",
+              });
+            }
+          })();
         },
         function () {}
       )
@@ -244,26 +271,51 @@ $(document).ready(function () {
 
   $(document).on("click", "#pendingapp", function () {
     var pend = $(this);
-    var appr = $("#rejectapp");
+    var rej = $("#rejectapp");
+    var appr = $("#approvedapp");
 
     appr.removeClass("btn-primary");
     appr.addClass("btn-outline-primary");
+    rej.removeClass("btn-primary");
+    rej.addClass("btn-outline-primary");
     pend.removeClass("btn-outline-primary");
     pend.addClass("btn-primary");
     appr.val("");
+    rej.val("");
     pend.val("active");
     load_data();
   });
 
   $(document).on("click", "#rejectapp", function () {
     var pend = $("#pendingapp");
+    var appr = $("#approvedapp");
+    var rej = $(this);
+
+    pend.removeClass("btn-primary");
+    pend.addClass("btn-outline-primary");
+    appr.removeClass("btn-primary");
+    appr.addClass("btn-outline-primary");
+    rej.removeClass("btn-outline-primary");
+    rej.addClass("btn-primary");
+    pend.val("");
+    appr.val("");
+    rej.val("active");
+    load_data();
+  });
+
+  $(document).on("click", "#approvedapp", function () {
+    var pend = $("#pendingapp");
+    var rej = $("#rejectapp");
     var appr = $(this);
 
     pend.removeClass("btn-primary");
     pend.addClass("btn-outline-primary");
+    rej.removeClass("btn-primary");
+    rej.addClass("btn-outline-primary");
     appr.removeClass("btn-outline-primary");
     appr.addClass("btn-primary");
     pend.val("");
+    rej.val("");
     appr.val("active");
     load_data();
   });

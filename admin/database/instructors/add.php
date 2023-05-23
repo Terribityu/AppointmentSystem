@@ -12,7 +12,7 @@ for ($i = 0; $i < 8; $i++) {
 $hashpass = password_hash($password, PASSWORD_DEFAULT);
 // Prepare the statements
 $query = "INSERT INTO users VALUES(NULL, ?, ?, ?, ?, 'https://res.cloudinary.com/ddf34uiqq/image/upload/v1682772503/m5voiqwbccmzooxvi8wa.jpg', 'instructor')";
-$query1 = "INSERT INTO user_details VALUES(NULL, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+$query1 = "INSERT INTO user_details VALUES(NULL, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
 $stmt1 = mysqli_prepare($conn, $query);
 $stmt2 = mysqli_prepare($conn, $query1);
@@ -27,7 +27,7 @@ if ($stmt1 && $stmt2) {
     $last_id = mysqli_insert_id($conn);
 
     // Bind parameters for the second statement
-    mysqli_stmt_bind_param($stmt2, "sssssisisss", $firstname, $middlename, $lastname, $suffix, $address, $zipcode, $dateofbirth, $age, $gender, $civilstatus, $username);
+    mysqli_stmt_bind_param($stmt2, "sssssissss", $firstname, $middlename, $lastname, $suffix, $address, $zipcode, $dateofbirth, $gender, $civilstatus, $username);
     // Execute the second statement
     mysqli_stmt_execute($stmt2);
 

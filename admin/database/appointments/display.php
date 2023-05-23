@@ -1,6 +1,7 @@
 <?php
 require ('../connect.php');
     extract($_POST);
+    $inst_name = $_SESSION['username'];
     if(isset($search))
     {
         $search = mysqli_real_escape_string($conn, $_POST["search"]);
@@ -15,7 +16,11 @@ require ('../connect.php');
         or email like '%$search%') and status_a = '$stats'";
         
     }else {
-        $query = "SELECT * FROM `appointments` JOIN users ON appointments.studentID = users.userID JOIN user_details ON user_details.username = users.username JOIN schedules ON appointments.scheduleID = schedules.id where status_a = '$stats'";
+        if($_SESSION['userType'] == "admin"){
+            $query = "SELECT * FROM `appointments` JOIN users ON appointments.studentID = users.userID JOIN user_details ON user_details.username = users.username JOIN schedules ON appointments.scheduleID = schedules.id where status_a = '$stats'";
+        }else {
+            $query = "SELECT * FROM `appointments` JOIN users ON appointments.studentID = users.userID JOIN user_details ON user_details.username = users.username JOIN schedules ON appointments.scheduleID = schedules.id where status_a = '$stats' and users.username = '$inst_name'";
+        }
     }
 
     $result = mysqli_query($conn,$query);
@@ -24,10 +29,7 @@ require ('../connect.php');
             extract($row);
             echo "
                 <tr>
-                    <th scope='row'>$appointmentID</th>
-                    <td>$firstname</td>
-                    <td>$middlename</td>
-                    <td>$lastname</td>
+                    <td>$firstname $middlename $lastname $suffix</td>
                     <td>$address</td>
                     <td>$number</td>
                     <td>$email</td>";
@@ -36,14 +38,17 @@ require ('../connect.php');
                     echo "
                     <td><button id='approveAppointment' title='Approve Appointment' value='$appointmentID' data-value='$firstname $lastname' class='btn btn-success'><i class='fa-solid fas fa-check'></i></button>&nbsp
                     <button id='rejectAppointment' title='Reject Appointment' value='$appointmentID' old-value='$scheduleID' data-value='$firstname $lastname' class='btn btn-danger'><i class='fa-solid fa-xmark'></i></button></td>";
-                }else{
-                    echo "<td>$status_a</td>";
-                }
-
-                echo "
+                    echo "
                     <td><button id='editAppointment' title='Edit Appointment' value='$appointmentID' data-value='$firstname $lastname' class='btn btn-success'><i class='fa-solid fas fa-user-pen'></i></button>&nbsp
                     <button id='deleteAppointment' title='Delete Appointment' value='$appointmentID' old-value='$scheduleID' data-value='$firstname $lastname' class='btn btn-danger'><i class='fa-solid fa-trash'></i></button></td>
                 </tr>";
+                }else{
+                    echo "<td>$status_a</td>";
+                    echo "
+                    <td>
+                    <button id='deleteAppointment' title='Delete Appointment' value='$appointmentID' old-value='$scheduleID' data-value='$firstname $lastname' class='btn btn-danger'><i class='fa-solid fa-trash'></i></button></td>
+                </tr>";
+                }
         }
     }else{
         echo "<h5 style='text-align:center'><i class='fa-regular fas fa-magnifying-glass'></i>No Results Found.</h5>";

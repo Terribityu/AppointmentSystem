@@ -16,7 +16,6 @@ $(document).ready(function () {
   $(document).on("click", ".clickable-row", function (e) {
     e.preventDefault();
     var id = $(this).attr("data-value");
-    $("#appointInfoModal").modal("show");
     $.ajax({
       url: "database/appointments/check.php",
       method: "post",
@@ -27,9 +26,10 @@ $(document).ready(function () {
         $("#instructor__text").html(data["firstname"] + " " + data["lastname"]);
         $("#date__text").html(data["start"]);
         $("#time__text").html(data["time"]);
-        $("#status__text").html(data["status_a"]);
+        $("#status__text").html(data["status_a"] + ": " + data["reason_rej"]);
         $("#price__text").html(data["price"]);
         $("#cancelAppoint").val(data["appointmentID"]);
+        $("#appointInfoModal").modal("show");
 
         changeButton(data);
       },

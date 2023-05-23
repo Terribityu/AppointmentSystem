@@ -1,7 +1,11 @@
 <?php
 require ('../connect.php');
                 extract($_GET);
-                $query = "UPDATE appointments SET status_a = '$stats' where appointmentID = '".$id."'";
+                if($stats == "approved"){
+                        $query = "UPDATE appointments SET status_a = '$stats' where appointmentID = '".$id."'";
+                }else{
+                        $query = "UPDATE appointments SET status_a = '$stats', reason_rej = '$reason' where appointmentID = '".$id."'";
+                }
                 if(mysqli_query($conn, $query)){
                         if($stats == "approved"){
                                 addSystemLogs($id, "approveappointment");

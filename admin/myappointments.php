@@ -31,14 +31,22 @@ include("template/my-modal.php");
                     <a id="user__name" href="#homeSubmenu" data-bs-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
                         <img src="<?php echo $_SESSION['avatar'];?>" alt="" id="nav__avatar">
                         <span id='link-label'><?php echo $_SESSION['username'];?></span>
+                        <span id="notifIcon" class="badge bg-danger rounded-pill"></span>
                     </a>
                     <ul class="collapse list-unstyled" id="homeSubmenu">
                         <li>
                             <a href="profile.php"> My Profile </a>
                         </li>
+                        <?php
+                            if($_SESSION['userType'] == "instructor"){
+                        ?>
                         <li>
-                            <a href="myappointments.php">My Appointments </a>
+                            <a href="myappointments.php">My Appointments
+                        <span id="notifIcon1" class="badge bg-danger rounded-pill"></span> </a>
                         </li>
+                        <?php
+                            }
+                        ?>
                     </ul>
                 </li>
                 <li >
@@ -75,12 +83,6 @@ include("template/my-modal.php");
                     <a href="appointments.php">
                         <i class="fa-solid fa-calendar-check"></i>
                         <span id='link-label'>Appointments</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="enrollment.php">
-                        <i class="fa-solid fa-pen"></i>
-                        <span id='link-label'>Enrollment</span>
                     </a>
                 </li>
                 <li>

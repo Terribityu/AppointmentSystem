@@ -26,15 +26,11 @@ require ('../connect.php');
         while($row = mysqli_fetch_array($result)){
             extract($row);
             echo "
-                <tr>
-                    <th scope='row'>$detail_ID</th>
-                    <td>$firstname</td>
-                    <td>$middlename</td>
-                    <td>$lastname</td>
+                <tr> 
+                    <td>$firstname $middlename $lastname</td>
                     <td>$suffix</td>
                     <td>$address</td>
-                    <td>$dateofbirth</td>
-                    <td>$age</td>
+                    <td>$dateofbirth</td> 
                     <td>$gender</td>
                     <td>$civilstatus</td>
                     <td>$number</td>

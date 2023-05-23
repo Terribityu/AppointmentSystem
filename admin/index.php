@@ -29,14 +29,22 @@ include("template/header.php");
                     <a id="user__name" href="#homeSubmenu" data-bs-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
                         <img src="<?php echo $_SESSION['avatar'];?>" alt="" id="nav__avatar">
                         <span id='link-label'><?php echo $_SESSION['username'];?></span>
+                        <span id="notifIcon" class="badge bg-danger rounded-pill"></span>
                     </a>
                     <ul class="collapse list-unstyled" id="homeSubmenu">
                         <li>
                             <a href="profile.php"> My Profile </a>
                         </li>
+                        <?php
+                            if($_SESSION['userType'] == "instructor"){
+                        ?>
                         <li>
-                            <a href="myappointments.php">My Appointments </a>
+                            <a href="myappointments.php">My Appointments
+                        <span id="notifIcon1" class="badge bg-danger rounded-pill"></span> </a>
                         </li>
+                        <?php
+                            }
+                        ?>
                     </ul>
                 </li>
                 <li class="active">
@@ -73,12 +81,6 @@ include("template/header.php");
                     <a href="appointments.php">
                         <i class="fa-solid fa-calendar-check"></i>
                         <span id='link-label'>Appointments</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="enrollment.php">
-                        <i class="fa-solid fa-pen"></i>
-                        <span id='link-label'>Enrollment</span>
                     </a>
                 </li>
                 <li>
@@ -180,7 +182,7 @@ include("template/header.php");
                            <div class="icon">
                               <i class="la la-ticket-alt la-2x"></i>
                            </div>
-                           <a href="tickets.php" class="small-box-footer">More info <i class="las la-arrow-circle-right"></i></a>
+                           <a href="myappointments.php" class="small-box-footer">More info <i class="las la-arrow-circle-right"></i></a>
                         </div>
                      </div>
 
@@ -194,26 +196,13 @@ include("template/header.php");
                            <div class="icon">
                               <i class="la la-ticket-alt la-2x"></i>
                            </div>
-                           <a href="tickets.php" class="small-box-footer">More info <i class="las la-arrow-circle-right"></i></a>
+                           <a href="appointments.php" class="small-box-footer">More info <i class="las la-arrow-circle-right"></i></a>
                         </div>
                      </div>
-                     <!-- ./col -->
-                     <div class="col-lg-4 col-6 animated rubberBand">
-                        <!-- small box -->
-                        <div class="small-box bg-6">
-                           <div class="inner">
-                              <h3 id="enrolledtotal">8</h3>
-                              <p>Enrolled</p>
-                           </div>
-                           <div class="icon">
-                              <i class="la la-blog la-2x"></i>
-                           </div>
-                           <a href="blogs.php" class="small-box-footer">More info <i class="las la-arrow-circle-right"></i></a>
-                        </div>
-                     </div>
-                     <!-- ./col -->
                   </div>
-
+                    <?php
+                        if($_SESSION['userType'] == "admin"){
+                    ?>
                     <div class="row">
 
                                 <div class="col-lg-12 col-12">
@@ -223,6 +212,9 @@ include("template/header.php");
                                     </div>
                                     </div>
                                 </div>
+                                <?php
+                    }
+                ?>  
             </div>
     </div>
 
@@ -231,11 +223,14 @@ include("template/header.php");
             $('#sidebarCollapse').on('click', function () {
                 $('#sidebar').toggleClass('active');
             });
-
+            <?php
+                        if($_SESSION['userType'] == "admin"){
+            ?>
             getSalesData();
-
+            <?php
+                    }
+                ?>  
             function getSalesData(){
-                console.log("wala");
                 $.ajax({
                     url: "database/sales/checksales.php",
                     method: "post",

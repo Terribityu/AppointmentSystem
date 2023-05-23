@@ -13,7 +13,7 @@ for ($i = 0; $i < 8; $i++) {
 $hashpass = password_hash($password, PASSWORD_DEFAULT);
 
 $query = "INSERT INTO users VALUES(NULL, ?, ?, ?, ?, 'avatar.jpg', 'student')";
-$query1 = "INSERT INTO user_details VALUES(NULL, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+$query1 = "INSERT INTO user_details VALUES(NULL, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
 $stmt = mysqli_prepare($conn, $query);
 mysqli_stmt_bind_param($stmt, 'ssis', $username, $email, $mobilenumber, $hashpass);
@@ -23,7 +23,7 @@ if ($result) {
     $last_id = mysqli_insert_id($conn);
 
     $stmt1 = mysqli_prepare($conn, $query1);
-    mysqli_stmt_bind_param($stmt1, 'sssssisisss', $firstname, $middlename, $lastname, $suffix, $address, $zipcode, $dateofbirth, $age, $gender, $civilstatus, $username);
+    mysqli_stmt_bind_param($stmt1, 'sssssissss', $firstname, $middlename, $lastname, $suffix, $address, $zipcode, $dateofbirth, $gender, $civilstatus, $username);
     $result1 = mysqli_stmt_execute($stmt1);
 
     if ($result1) {

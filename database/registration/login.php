@@ -3,7 +3,7 @@ include("../connect.php");
     $username = $_POST['username'];
     $password = $_POST['password'];
     
-    $query = "SELECT * FROM users WHERE username = '$username'";
+    $query = "SELECT * FROM users JOIN user_details ON users.username = user_details.username WHERE users.username = '$username'";
     $result = mysqli_query($conn, $query);
     if (mysqli_num_rows($result) == 1) {
         $row = mysqli_fetch_array($result);
@@ -14,6 +14,7 @@ include("../connect.php");
             $_SESSION['userType'] = $row['userType'];
             $_SESSION['userID'] = $row['userID'];
             $_SESSION['avatar'] = $row['avatar'];
+            $_SESSION['firstname'] = $row['firstname'];
             // echo "<script type='text/javascript'>myAlertAdmin()</script>";
             // header("Location: ../index.php");
         }

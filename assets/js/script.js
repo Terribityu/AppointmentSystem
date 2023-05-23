@@ -1,29 +1,3 @@
-$(".team-slider").owlCarousel({
-  loop: true,
-  nav: false,
-  autoplay: true,
-  autoplayTimeout: 5000,
-  smartSpeed: 450,
-  margin: 20,
-  responsive: {
-    0: {
-      items: 1,
-    },
-    768: {
-      items: 2,
-    },
-    991: {
-      items: 3,
-    },
-    1200: {
-      items: 3,
-    },
-    1920: {
-      items: 3,
-    },
-  },
-});
-
 $(".service-tdc").click(function (e) {
   window.location.href = "./tdc.php";
 });
@@ -105,5 +79,24 @@ $(document).ready(function () {
 
   function logout() {
     window.location.href = "database/registration/logout.php";
+  }
+
+  load_notif();
+
+  function load_notif() {
+    $.ajax({
+      url: "database/webnotif.php",
+      method: "post",
+      success: function (data) {
+        data = JSON.parse(data);
+        if (data["key"]) {
+          $("#notifIcon").html(data.total);
+          $("#notifIcon1").html(data.total);
+          if (data.notifcounter == 0) {
+            alertify.success("You Have " + data["total"] + " Notification");
+          }
+        }
+      },
+    });
   }
 });

@@ -46,9 +46,9 @@
 	mysqli_stmt_bind_param($stmt, 'sssss', $username, $email, $mobilenumber, $hashpass, $imageUrl);
 
 	// Prepare the statement for the user_details query
-	$query1 = "INSERT INTO user_details VALUES (NULL, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+	$query1 = "INSERT INTO user_details VALUES (NULL, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 	$stmt1 = mysqli_prepare($conn, $query1);
-	mysqli_stmt_bind_param($stmt1, 'sssssssssss', $firstname, $middlename, $lastname, $suffix, $address, $zipcode, $dateofbirth, $age, $gender, $civilstatus, $username);
+	mysqli_stmt_bind_param($stmt1, 'sssssssssss', $firstname, $middlename, $lastname, $suffix, $address, $zipcode, $dateofbirth, $gender, $civilstatus, $username);
 	if(mysqli_stmt_execute($stmt)){
 		mysqli_stmt_execute($stmt1);
         $last_id = mysqli_insert_id($conn);

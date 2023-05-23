@@ -11,14 +11,13 @@ require ('../connect.php');
         or suffix like '%$search%'
         or address like '%$search%'
         or dateofbirth like '%$search%'
-        or age like '%$search%'
         or gender like '%$search%'
         or civilstatus like '%$search%'
         or number like '%$search%'
-        or email like '%$search%') and (userType = 'admin' o userType = 'instructor')";
+        or email like '%$search%') and (userType = 'instructor')";
         
     }else {
-        $query = "SELECT * FROM user_details JOIN users ON user_details.username = users.username where userType = 'admin' or userType = 'instructor'";
+        $query = "SELECT * FROM user_details JOIN users ON user_details.username = users.username where userType = 'instructor'";
     }
 
     $result = mysqli_query($conn,$query);
@@ -27,21 +26,16 @@ require ('../connect.php');
             extract($row);
             echo "
                 <tr>
-                    <th scope='row'>$detail_ID</th>
-                    <td>$firstname</td>
-                    <td>$middlename</td>
-                    <td>$lastname</td>
-                    <td>$suffix</td>
+                    <td>$firstname $middlename $lastname $suffix</td>
                     <td>$address</td>
                     <td>$dateofbirth</td>
-                    <td>$age</td>
                     <td>$gender</td>
                     <td>$civilstatus</td>
                     <td>$number</td>
                     <td>$userType</td>
                     <td>$email</td>
-                    <td><button id='editStud' title='Edit Student' value='$userID' data-value='$firstname $lastname' class='btn btn-success'><i class='fa-solid fas fa-user-pen'></i></button>&nbsp
-                    <button id='deleteStud' title='Delete Student' value='$userID' data-value='$firstname $lastname' class='btn btn-danger'><i class='fa-solid fa-trash'></i></button></td>
+                    <td><button id='editStud' title='Edit Instructor' value='$userID' data-value='$firstname $lastname' class='btn btn-success'><i class='fa-solid fas fa-user-pen'></i></button>&nbsp
+                    <button id='deleteStud' title='Archive Instructor' value='$userID' data-value='$firstname $lastname' class='btn btn-danger'><i class='fa-solid fa-box-archive'></i></button></td>
                 </tr>
             ";
         }

@@ -29,14 +29,22 @@
                     <a id="user__name" href="#homeSubmenu" data-bs-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
                         <img src="<?php echo $_SESSION['avatar'];?>" alt="" id="nav__avatar">
                         <span id='link-label'><?php echo $_SESSION['username'];?></span>
+                        <span id="notifIcon" class="badge bg-danger rounded-pill"></span>
                     </a>
                     <ul class="collapse list-unstyled" id="homeSubmenu">
                         <li>
                             <a href="profile.php"> My Profile </a>
                         </li>
+                        <?php
+                            if($_SESSION['userType'] == "instructor"){
+                        ?>
                         <li>
-                            <a href="myappointments.php">My Appointments </a>
+                            <a href="myappointments.php">My Appointments
+                        <span id="notifIcon1" class="badge bg-danger rounded-pill"></span> </a>
                         </li>
+                        <?php
+                            }
+                        ?>
                     </ul>
                 </li>
                 <li >
@@ -73,12 +81,6 @@
                     <a href="appointments.php">
                         <i class="fa-solid fa-calendar-check"></i>
                         <span id='link-label'>Appointments</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="enrollment.php">
-                        <i class="fa-solid fa-pen"></i>
-                        <span id='link-label'>Enrollment</span>
                     </a>
                 </li>
                 <li>
@@ -135,6 +137,9 @@
                 </button>&nbsp
                 <button id="rejectapp" type="button" class="ml-3 btn btn-outline-primary" title="Rejected" data-placement="right">
                 Rejected
+                </button>&nbsp
+                <button id="approvedapp" type="button" class="ml-3 btn btn-outline-primary" title="Approved" data-placement="right">
+                Approved
                 </button>
                 </div>
                 <div>
@@ -147,10 +152,7 @@
                 <table class="table table-hover table-striped">
                     <thead class="table-dark">
                         <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">First Name</th>
-                        <th scope="col">Middle Name</th>
-                        <th scope="col">Last Name</th>
+                        <th scope="col">Full Name</th>
                         <th scope="col">Address</th>
                         <th scope="col">Number</th>
                         <th scope="col">Email</th>

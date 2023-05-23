@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: May 11, 2023 at 07:52 AM
+-- Generation Time: May 23, 2023 at 09:43 PM
 -- Server version: 8.0.30
 -- PHP Version: 8.2.5
 
@@ -30,30 +30,35 @@ SET time_zone = "+00:00";
 CREATE TABLE `appointments` (
   `appointmentID` int NOT NULL,
   `scheduleID` int NOT NULL,
-  `usersID` int NOT NULL,
+  `studentID` int NOT NULL,
   `remarks` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL DEFAULT 'TBA',
   `status_a` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL DEFAULT 'pending',
-  `payment_s` varchar(255) NOT NULL DEFAULT 'unpaid'
+  `payment_s` varchar(255) NOT NULL DEFAULT 'unpaid',
+  `remarks_details` varchar(150) NOT NULL,
+  `reason_rej` varchar(155) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `appointments`
 --
 
-INSERT INTO `appointments` (`appointmentID`, `scheduleID`, `usersID`, `remarks`, `status_a`, `payment_s`) VALUES
-(6, 15, 8, 'passed', 'rejected', 'paid'),
-(8, 27, 27, 'TBA', 'rejected', 'unpaid'),
-(9, 27, 27, 'TBA', 'rejected', 'unpaid'),
-(11, 28, 27, 'TBA', 'rejected', 'unpaid'),
-(12, 28, 27, 'TBA', 'rejected', 'unpaid'),
-(13, 27, 27, 'TBA', 'rejected', 'unpaid'),
-(14, 27, 27, 'TBA', 'rejected', 'unpaid'),
-(18, 28, 27, 'TBA', 'rejected', 'unpaid'),
-(19, 28, 27, 'TBA', 'Accepted', 'unpaid'),
-(20, 29, 27, 'TBA', 'rejected', 'unpaid'),
-(21, 29, 27, 'TBA', 'rejected', 'unpaid'),
-(22, 29, 27, 'TBA', 'rejected', 'unpaid'),
-(23, 29, 27, 'TBA', 'rejected', 'unpaid');
+INSERT INTO `appointments` (`appointmentID`, `scheduleID`, `studentID`, `remarks`, `status_a`, `payment_s`, `remarks_details`, `reason_rej`) VALUES
+(8, 27, 27, 'TBA', 'rejected', 'unpaid', '', ''),
+(9, 27, 27, 'TBA', 'rejected', 'unpaid', '', ''),
+(11, 28, 27, 'TBA', 'rejected', 'unpaid', '', ''),
+(12, 28, 27, 'TBA', 'rejected', 'unpaid', '', ''),
+(13, 27, 27, 'TBA', 'rejected', 'unpaid', '', ''),
+(14, 27, 27, 'TBA', 'rejected', 'unpaid', '', ''),
+(18, 28, 27, 'TBA', 'rejected', 'unpaid', '', ''),
+(19, 28, 27, 'TBA', 'approved', 'paid', '', ''),
+(20, 29, 27, 'TBA', 'rejected', 'unpaid', '', ''),
+(21, 29, 27, 'TBA', 'rejected', 'unpaid', '', ''),
+(22, 29, 27, 'TBA', 'rejected', 'unpaid', '', ''),
+(23, 29, 27, 'TBA', 'rejected', 'unpaid', '', ''),
+(25, 31, 27, 'TBA', 'approved', 'paid', '', ''),
+(26, 32, 27, 'TBA', 'request', 'unpaid', '', ''),
+(27, 34, 27, 'TBA', 'approved', 'paid', '', ''),
+(28, 32, 27, 'TBA', 'pending', 'unpaid', '', '');
 
 -- --------------------------------------------------------
 
@@ -87,7 +92,7 @@ CREATE TABLE `feedbacks` (
   `feedbackID` int NOT NULL,
   `description` longtext NOT NULL,
   `status` varchar(255) NOT NULL DEFAULT 'pending',
-  `userID` int NOT NULL
+  `studentID` int NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -109,7 +114,11 @@ CREATE TABLE `sales` (
 
 INSERT INTO `sales` (`salesID`, `date`, `price_s`, `appointmentID`) VALUES
 (2, '2023-04-11 03:42:43', 4500, 2),
-(3, '2023-04-30 04:08:43', 123, 6);
+(3, '2023-04-30 04:08:43', 123, 6),
+(4, '2023-05-14 14:00:28', 5000, 19),
+(5, '2023-05-14 18:22:55', 5555, 25),
+(6, '2023-05-18 15:09:01', 5555, 25),
+(7, '2023-05-18 15:09:12', 12123, 27);
 
 -- --------------------------------------------------------
 
@@ -126,14 +135,14 @@ CREATE TABLE `schedules` (
   `price` int NOT NULL,
   `slots` int NOT NULL,
   `status` varchar(255) NOT NULL DEFAULT 'upcoming',
-  `userID` int NOT NULL
+  `instructorID` int NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `schedules`
 --
 
-INSERT INTO `schedules` (`id`, `title`, `start`, `end`, `time`, `price`, `slots`, `status`, `userID`) VALUES
+INSERT INTO `schedules` (`id`, `title`, `start`, `end`, `time`, `price`, `slots`, `status`, `instructorID`) VALUES
 (15, 'PDC', '2023-04-14', '2023-04-15', '20:15', 123, 1, 'upcoming', 9),
 (17, 'PDC', '2023-04-19', '2023-04-20', '20:18', 3123, 1, 'upcoming', 9),
 (22, 'PDC', '2023-04-12', '2023-04-13', '11:56', 4434, 1, 'upcoming', 9),
@@ -143,7 +152,10 @@ INSERT INTO `schedules` (`id`, `title`, `start`, `end`, `time`, `price`, `slots`
 (27, 'PDC', '2023-05-02', '2023-05-03', '08:07', 5000, 1, 'upcoming', 10),
 (28, 'PDC', '2023-05-02', '2023-05-03', '05:07', 5000, 1, 'upcoming', 9),
 (29, 'TDC', '2023-05-05', '2023-05-06', '08:04', 3555, 30, 'upcoming', 9),
-(30, 'TDC', '2023-05-06', '2023-05-07', '06:02', 3555, 30, 'upcoming', 10);
+(30, 'TDC', '2023-05-06', '2023-05-07', '06:02', 3555, 30, 'upcoming', 10),
+(31, 'PDC', '2023-05-17', '2023-05-18', '20:42', 5555, 0, 'upcoming', 9),
+(32, 'PDC', '2023-05-18', '2023-05-19', '21:22', 3123, 4, 'upcoming', 9),
+(34, 'PDC', '2023-05-19', '2023-05-20', '14:55', 12123, 1, 'upcoming', 9);
 
 -- --------------------------------------------------------
 
@@ -271,7 +283,70 @@ INSERT INTO `system_reports` (`reportsID`, `username`, `transactID`, `reportType
 (104, 'destinyadmin', 20, 'rejectappointment', '05-01-2023', '17:46:24'),
 (105, 'destinyadmin', 21, 'rejectappointment', '05-01-2023', '17:46:26'),
 (106, 'destinyadmin', 22, 'rejectappointment', '05-01-2023', '17:46:30'),
-(107, 'destinyadmin', 23, 'rejectappointment', '05-01-2023', '17:46:32');
+(107, 'destinyadmin', 23, 'rejectappointment', '05-01-2023', '17:46:32'),
+(108, 'destinyadmin', 10, 'deleteinstructor', '05-13-2023', '13:49:53'),
+(109, 'destinyadmin', 4, 'deleteinstructor', '05-13-2023', '13:50:04'),
+(110, 'destinyadmin', 10, 'deleteinstructor', '05-13-2023', '13:50:09'),
+(111, 'destinyadmin', 10, 'deleteinstructor', '05-13-2023', '13:50:30'),
+(112, 'destinyadmin', 30, 'editinstructor', '05-13-2023', '16:41:42'),
+(113, 'destinyadmin', 30, 'editinstructor', '05-13-2023', '16:41:46'),
+(114, 'destinyadmin', 25, 'editstudent', '05-13-2023', '16:44:30'),
+(115, 'destinyadmin', 25, 'editstudent', '05-13-2023', '16:44:35'),
+(116, 'destinyadmin', 30, 'editinstructor', '05-13-2023', '16:48:22'),
+(117, 'destinyadmin', 30, 'editinstructor', '05-13-2023', '16:48:25'),
+(118, 'destinyadmin', 27, 'editstudent', '05-13-2023', '16:50:44'),
+(119, 'destinyadmin', 27, 'editstudent', '05-13-2023', '16:50:48'),
+(120, 'destinyadmin', 4, 'updateProfile', '05-13-2023', '16:59:06'),
+(121, 'destinyadmin', 4, 'updateProfile', '05-13-2023', '16:59:12'),
+(122, 'destinyadmin', 4, 'updateProfile', '05-13-2023', '17:01:55'),
+(123, 'destinyadmin', 4, 'updateProfile', '05-13-2023', '17:02:00'),
+(124, 'destinyadmin', 4, 'updateAccount', '05-13-2023', '18:15:58'),
+(125, 'destinyadmin', 4, 'updateAccount', '05-13-2023', '18:18:47'),
+(126, 'destinyadmin', 4, 'updateAccount', '05-13-2023', '18:21:14'),
+(127, 'destinyadmin', 4, 'updateAccount', '05-13-2023', '18:22:28'),
+(128, 'destinyadmin', 4, 'updateAccount', '05-13-2023', '18:22:30'),
+(129, 'destinyadmin', 4, 'updateAccount', '05-13-2023', '18:22:49'),
+(130, 'destinyadmin', 31, 'addSchedule', '05-14-2023', '05:42:54'),
+(131, 'destinyadmin', 25, 'createappointment', '05-14-2023', '05:46:51'),
+(132, 'destinyadmin', 25, 'approveappointment', '05-14-2023', '05:46:54'),
+(133, 'mizzymanigque19', 19, 'paidappointment', '05-14-2023', '06:00:28'),
+(134, 'mizzymanigque19', 31, 'addinstructor', '05-14-2023', '06:22:40'),
+(135, 'mizzymanigque19', 31, 'deleteinstructor', '05-14-2023', '06:31:30'),
+(136, 'mizzymanigque19', 32, 'addinstructor', '05-14-2023', '06:31:44'),
+(137, 'mizzymanigque19', 32, 'deleteinstructor', '05-14-2023', '06:32:09'),
+(138, 'mizzymanigque19', 33, 'addinstructor', '05-14-2023', '06:32:19'),
+(139, 'mizzymanigque19', 33, 'deleteinstructor', '05-14-2023', '06:32:28'),
+(140, 'mizzymanigque19', 34, 'addinstructor', '05-14-2023', '06:32:59'),
+(141, 'mizzymanigque19', 34, 'deleteinstructor', '05-14-2023', '06:35:16'),
+(142, 'mizzymanigque19', 35, 'addinstructor', '05-14-2023', '06:35:36'),
+(143, 'mizzymanigque19', 35, 'deleteinstructor', '05-14-2023', '06:36:17'),
+(144, 'mizzymanigque19', 36, 'addinstructor', '05-14-2023', '06:36:28'),
+(145, 'mizzymanigque19', 36, 'deleteinstructor', '05-14-2023', '06:37:02'),
+(146, 'mizzymanigque19', 37, 'addinstructor', '05-14-2023', '06:37:11'),
+(147, 'mizzymanigque19', 37, 'deleteinstructor', '05-14-2023', '06:38:26'),
+(148, 'mizzymanigque19', 38, 'addinstructor', '05-14-2023', '06:38:38'),
+(149, 'mizzymanigque19', 38, 'deleteinstructor', '05-14-2023', '06:39:28'),
+(150, 'mizzymanigque19', 39, 'addinstructor', '05-14-2023', '06:39:37'),
+(151, 'mizzymanigque19', 39, 'deleteinstructor', '05-14-2023', '06:40:35'),
+(152, 'mizzymanigque19', 40, 'addinstructor', '05-14-2023', '06:40:47'),
+(153, 'cavoyo7720', 40, 'updateAccount', '05-14-2023', '06:42:30'),
+(154, 'cavoyo7720', 40, 'updateAccount', '05-14-2023', '06:43:09'),
+(155, 'cavoyo7720', 40, 'updateProfile', '05-14-2023', '06:49:23'),
+(156, 'mizzymanigque19', 32, 'addSchedule', '05-14-2023', '10:22:39'),
+(157, 'mizzymanigque19', 25, 'paidappointment', '05-14-2023', '10:22:55'),
+(158, 'mizzymanigque19', 33, 'addSchedule', '05-14-2023', '13:54:37'),
+(159, 'mizzymanigque19', 34, 'addSchedule', '05-15-2023', '15:55:51'),
+(160, 'destinyadmin', 26, 'createappointment', '05-15-2023', '15:57:51'),
+(161, 'destinyadmin', 27, 'createappointment', '05-15-2023', '15:57:57'),
+(162, 'destinyadmin', 26, 'approveappointment', '05-15-2023', '15:58:08'),
+(163, 'destinyadmin', 27, 'approveappointment', '05-15-2023', '15:58:16'),
+(164, 'student', 28, 'enrollstudent', '05-17-2023', '10:01:26'),
+(165, 'mizzymanigque19', 26, 'cancelappointment', '05-17-2023', '19:09:56'),
+(166, 'mizzymanigque19', 26, 'cancelappointment', '05-17-2023', '19:11:36'),
+(167, 'student', 26, 'requestcancellation', '05-17-2023', '19:47:51'),
+(168, 'student', 26, 'requestcancellation', '05-17-2023', '19:49:43'),
+(169, 'destinyadmin', 25, 'paidappointment', '05-18-2023', '07:09:01'),
+(170, 'destinyadmin', 27, 'paidappointment', '05-18-2023', '07:09:12');
 
 -- --------------------------------------------------------
 
@@ -294,12 +369,11 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`userID`, `username`, `email`, `number`, `password`, `avatar`, `userType`) VALUES
-(4, 'destinyadmin', 'destinydrivingschool@gmail.com', 9351723271, '$2y$10$9D5kYRTQ.H8n/ONnJ23CQO1HNj./ny94p3ZtBlFdPhuqbMIWbuiai', 'avatar.jpg', 'admin'),
-(8, 'dasdsadsa', 'dasdsadsa@gmail.com', 3123133123, '9zIPG$$S', 'avatar.jpg', 'student'),
-(9, 'mizzymanigque19', 'mizzymanigque19@gmail.com', 956172323, 'izxsuurL', 'avatar.jpg', 'instructor'),
-(10, 'maryalisson', 'maryalisson@gmail.com', 9123456789, 'cQrCz0BK', 'avatar.jpg', 'instructor'),
+(4, 'destinyadmin', 'destinydrivingschool@gmail.com', 9763140537, '$2y$10$MkZtXAtg/ERI8KAnqX9Lq.PBnFtCxvR0U2lhcIjKOu8NXKVU4Jw9y', 'https://res.cloudinary.com/ddf34uiqq/image/upload/v1684002151/q2x5j7tzr4lrqbvmheqj.png', 'admin'),
+(9, 'mizzymanigque19', 'mizzymanigque19@gmail.com', 9763140537, '$2y$10$7WwfQEeWGhfw8NVhSJOtgu8IBAc0ES9.yCyqBDL6cgXR2yGfTWHNW', 'https://res.cloudinary.com/ddf34uiqq/image/upload/v1682772503/m5voiqwbccmzooxvi8wa.jpg', 'instructor'),
 (27, 'fascinating', 'fascinatingact@gmail.com', 9763140537, '$2y$10$7WwfQEeWGhfw8NVhSJOtgu8IBAc0ES9.yCyqBDL6cgXR2yGfTWHNW', 'https://res.cloudinary.com/ddf34uiqq/image/upload/v1682772503/m5voiqwbccmzooxvi8wa.jpg', 'student'),
-(30, 'rstodomingo.o2', 'rstodomingo.o2@gmail.com', 9261342441, '$2y$10$5onDrnK4y20ForHbxYU/RuE7Yuo3KlqeqRzvVGeR9Xtn0jKVihIdK', 'https://res.cloudinary.com/ddf34uiqq/image/upload/v1682772503/m5voiqwbccmzooxvi8wa.jpg', 'instructor');
+(30, 'rstodomingo.o2', 'rstodomingo.o2@gmail.com', 9763140537, '$2y$10$5onDrnK4y20ForHbxYU/RuE7Yuo3KlqeqRzvVGeR9Xtn0jKVihIdK', 'https://res.cloudinary.com/ddf34uiqq/image/upload/v1682772503/m5voiqwbccmzooxvi8wa.jpg', 'instructor'),
+(40, 'cavoyo7720', 'cavoyo7720@glumark.com', 9763140537, '$2y$10$A6QC64ORXNw3slePNkYEdO.7qiY4t.upafmeu2oFGvArlwMvs0UYm', 'https://res.cloudinary.com/ddf34uiqq/image/upload/v1684046589/ptjuuh3jmukui9jbpt7q.png', 'instructor');
 
 -- --------------------------------------------------------
 
@@ -316,7 +390,6 @@ CREATE TABLE `user_details` (
   `address` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `zipcode` int NOT NULL,
   `dateofbirth` varchar(255) NOT NULL,
-  `age` int NOT NULL,
   `gender` varchar(255) NOT NULL,
   `civilstatus` varchar(255) NOT NULL,
   `username` varchar(100) NOT NULL
@@ -326,12 +399,12 @@ CREATE TABLE `user_details` (
 -- Dumping data for table `user_details`
 --
 
-INSERT INTO `user_details` (`detail_ID`, `firstname`, `middlename`, `lastname`, `suffix`, `address`, `zipcode`, `dateofbirth`, `age`, `gender`, `civilstatus`, `username`) VALUES
-(8, 'dasdas', 'dasdas', 'asdasdsa', '', 'Bulacan', 313, '2023-04-05', 23, 'Male', 'Single', 'dasdsadsa'),
-(9, 'Mizzy Jenvy', 'Fernandez', 'Manigque', '', 'Bulacann', 3011, '2023-04-06', 23, 'Female', 'Single', 'mizzymanigque19'),
-(10, 'Mary Alisson', 'Fernandez', 'Manigque', '', 'Bulacan', 3011, '2006-12-21', 16, 'Female', 'Single', 'maryalisson'),
-(25, 'John Rey', 'Daano', 'Sto Domingo', '', 'Bulacan', 3011, '2006-11-27', 23, 'Male', 'Single', 'fascinating'),
-(28, 'Roel', 'Daano', 'Sto Domingo', '', 'Bulacan', 3011, '1996-03-02', 27, 'Male', 'Single', 'rstodomingo.o2');
+INSERT INTO `user_details` (`detail_ID`, `firstname`, `middlename`, `lastname`, `suffix`, `address`, `zipcode`, `dateofbirth`, `gender`, `civilstatus`, `username`) VALUES
+(4, 'Destiny', 'Driving', 'School', '', 'San Miguel Bulacan', 3011, '2023-04-05', 'Male', 'Single', 'destinyadmin'),
+(9, 'Mizzy Jenvy', 'Fernandez', 'Manigque', '', 'Bulacann', 3011, '2023-04-06', 'Female', 'Single', 'mizzymanigque19'),
+(25, 'John Rey', 'Daano', 'Sto Domingo', '', 'Bulacan', 3011, '2006-11-27', 'Male', 'Single', 'fascinating'),
+(28, 'Roel', 'Daano', 'Sto Domingo', '', 'Bulacan', 3011, '1996-03-02', 'Male', 'Single', 'rstodomingo.o2'),
+(39, 'Cavoyo', 'Gor', 'Deguz', '', 'A108 Adam Street, New York, NY 535022', 3123, '2023-05-15', 'Male', 'Single', 'cavoyo7720');
 
 --
 -- Indexes for dumped tables
@@ -342,7 +415,7 @@ INSERT INTO `user_details` (`detail_ID`, `firstname`, `middlename`, `lastname`, 
 --
 ALTER TABLE `appointments`
   ADD PRIMARY KEY (`appointmentID`),
-  ADD KEY `usersID` (`usersID`);
+  ADD KEY `usersID` (`studentID`);
 
 --
 -- Indexes for table `events`
@@ -355,7 +428,7 @@ ALTER TABLE `events`
 --
 ALTER TABLE `feedbacks`
   ADD PRIMARY KEY (`feedbackID`),
-  ADD KEY `userID` (`userID`);
+  ADD KEY `studentID` (`studentID`);
 
 --
 -- Indexes for table `sales`
@@ -368,7 +441,7 @@ ALTER TABLE `sales`
 --
 ALTER TABLE `schedules`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `userID` (`userID`);
+  ADD KEY `schedules_ibfk_1` (`instructorID`);
 
 --
 -- Indexes for table `system_reports`
@@ -398,7 +471,7 @@ ALTER TABLE `user_details`
 -- AUTO_INCREMENT for table `appointments`
 --
 ALTER TABLE `appointments`
-  MODIFY `appointmentID` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `appointmentID` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 
 --
 -- AUTO_INCREMENT for table `events`
@@ -416,31 +489,31 @@ ALTER TABLE `feedbacks`
 -- AUTO_INCREMENT for table `sales`
 --
 ALTER TABLE `sales`
-  MODIFY `salesID` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `salesID` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `schedules`
 --
 ALTER TABLE `schedules`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
 
 --
 -- AUTO_INCREMENT for table `system_reports`
 --
 ALTER TABLE `system_reports`
-  MODIFY `reportsID` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=108;
+  MODIFY `reportsID` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=171;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `userID` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
+  MODIFY `userID` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
 
 --
 -- AUTO_INCREMENT for table `user_details`
 --
 ALTER TABLE `user_details`
-  MODIFY `detail_ID` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
+  MODIFY `detail_ID` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
 
 --
 -- Constraints for dumped tables
@@ -450,19 +523,13 @@ ALTER TABLE `user_details`
 -- Constraints for table `appointments`
 --
 ALTER TABLE `appointments`
-  ADD CONSTRAINT `appointments_ibfk_2` FOREIGN KEY (`usersID`) REFERENCES `users` (`userID`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `appointments_ibfk_2` FOREIGN KEY (`studentID`) REFERENCES `users` (`userID`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `feedbacks`
 --
 ALTER TABLE `feedbacks`
-  ADD CONSTRAINT `feedbacks_ibfk_1` FOREIGN KEY (`userID`) REFERENCES `users` (`userID`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Constraints for table `schedules`
---
-ALTER TABLE `schedules`
-  ADD CONSTRAINT `schedules_ibfk_1` FOREIGN KEY (`userID`) REFERENCES `users` (`userID`);
+  ADD CONSTRAINT `feedbacks_ibfk_1` FOREIGN KEY (`studentID`) REFERENCES `users` (`userID`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `user_details`

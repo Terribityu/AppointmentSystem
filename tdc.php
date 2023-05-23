@@ -48,15 +48,15 @@
                                     <a class="nav-link" href="./index.php#contact">Contact</a>
                                     </li>     
                                     <?php 
-                                        if(isset($_SESSION['username'])){
+                                        if(isset($_SESSION['firstname'])){
                                     ?>
                                         <li class="nav-item dropdown">
                                         <a class="nav-link dropdown-toggle" href="#" id="servicesDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                            <img src="<?php echo $_SESSION['avatar'];?>" alt="" id="nav__avatar">
+                                            <img src="<?php echo $_SESSION['avatar'];?>" alt="" id="nav__avatar"> Hi, <?php echo $_SESSION['firstname'];?>! <span id="notifIcon" class="badge bg-danger rounded-pill"></span>
                                         </a>
                                         <ul class="dropdown-menu" aria-labelledby="servicesDropdown">
-                                            <li><a class="dropdown-item" href="./profile.php"><?php echo $_SESSION['username'];?></a></li>
-                                            <li><a class="dropdown-item" href="./myappointments.php">My Appointments</a></li>
+                                            <li><a class="dropdown-item" href="./profile.php"><?php echo $_SESSION['firstname'];?></a></li>
+                                            <li><a class="dropdown-item" href="./myappointments.php">My Appointments <span id="notifIcon1" class="badge bg-danger rounded-pill"></span></a></li> 
                                             <li><a class="dropdown-item" href="./database/registration/logout.php">Logout</a></li>
                                         </ul>
                                     </li>  

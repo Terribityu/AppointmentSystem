@@ -19,7 +19,7 @@ $stmt2 = mysqli_prepare($conn, $query2);
 
 if ($stmt2) {
     mysqli_stmt_bind_param($stmt2, "sssssssssssi", $firstname, $middlename, $lastname, $suffix, $address, $dateofbirth,
-        $age, $gender, $civilstatus, $mobilenumber, $email, $userID);
+        $gender, $civilstatus, $mobilenumber, $email, $userID);
 
     if (mysqli_stmt_execute($stmt2)) {
         addSystemLogs($userID, "editstudent");
