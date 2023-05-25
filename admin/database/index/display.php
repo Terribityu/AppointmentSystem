@@ -14,10 +14,12 @@ $query2 = "SELECT SUM(price_s) AS total FROM sales";
 $result2 = mysqli_query($conn, $query2);
 $totalPrice = 0;
 // Check if the query was successful
-if ($result) {
+if ($result2) {
     // Fetch the total value from the result
     $row = mysqli_fetch_assoc($result2);
-    $totalPrice = $row['total'];
+    if($row['total'] != ''){
+        $totalPrice = $row['total'];
+    }
 }
 
 if($_SESSION['userType'] == "admin"){

@@ -99,10 +99,10 @@ $(document).ready(function () {
         success: function (data) {
           mySuccess("Successfully Registered");
           console.log(data);
-          // setTimeout(function () {
-          //   // Redirect to the desired location
-          //   window.location.href = "index.php?openModal=true";
-          // }, 2000); // 2000 milliseconds = 2 seconds
+          setTimeout(function () {
+            // Redirect to the desired location
+            window.location.href = "index.php?openModal=true";
+          }, 2000); // 2000 milliseconds = 2 seconds
         },
         error: function (xhr, status, error) {
           $("body").html("<h1>" + xhr["status"] + " " + error + "</h1>");

@@ -3,11 +3,11 @@
     extract($_POST);
 
     $sql = "UPDATE schedules SET slots = slots - 1 WHERE id = $schedID";
-    $query = "INSERT INTO appointments VALUES(NULL, $schedID, $userID, 'TBA', 'pending', 'unpaid')";
+    $query = "INSERT INTO appointments VALUES(NULL, $schedID, $userID, 'TBA', 'pending', 'unpaid', '', '', 0)";
     if($result = mysqli_query($conn , $query)){
         $last_id = mysqli_insert_id($conn);
-        addSystemLogs($last_id, "enrollstudent");
         mysqli_query($conn , $sql);
+        addSystemLogs($last_id, "enrollstudent");
     }else{
         echo mysqli_error($conn);
     }

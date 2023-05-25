@@ -34,10 +34,6 @@
                             <input type="date" class="form-control" name="dateofbirth" required></input>
                         </div>
                         <div class="col-md-4 mb-2">
-                            <label for="age">Age <span id="form_required">*</span></label>
-                            <input type="number" class="form-control" name="age" required></input>
-                        </div>
-                        <div class="col-md-4 mb-2">
                             <label for="gender">Gender <span id="form_required">*</span></label>
                             <select class="form-select" name="gender" aria-label="Default select example">
                               <option selected value="Male">Male</option>
@@ -112,10 +108,6 @@
                         <div class="col-md-4 mb-2">
                             <label for="dateofbirth">Date of Birth <span id="form_required">*</span></label>
                             <input type="date" class="form-control" name="dateofbirth" required></input>
-                        </div>
-                        <div class="col-md-4 mb-2">
-                            <label for="age">Age <span id="form_required">*</span></label>
-                            <input type="number" class="form-control" name="age" required></input>
                         </div>
                         <div class="col-md-4 mb-2">
                             <label for="gender">Gender <span id="form_required">*</span></label>
@@ -197,10 +189,6 @@
                             <input type="date" class="form-control" name="dateofbirth" required></input>
                         </div>
                         <div class="col-md-4 mb-2">
-                            <label for="age">Age <span id="form_required">*</span></label>
-                            <input type="number" class="form-control" name="age" required></input>
-                        </div>
-                        <div class="col-md-4 mb-2">
                             <label for="gender">Gender <span id="form_required">*</span></label>
                             <select class="form-select" name="gender" required aria-label="Default select example">
                               <option selected value="Male">Male</option>
@@ -275,10 +263,6 @@
                         <div class="col-md-4 mb-2">
                             <label for="dateofbirth">Date of Birth <span id="form_required">*</span></label>
                             <input type="date" class="form-control" name="dateofbirth" required></input>
-                        </div>
-                        <div class="col-md-4 mb-2">
-                            <label for="age">Age <span id="form_required">*</span></label>
-                            <input type="number" class="form-control" name="age" required></input>
                         </div>
                         <div class="col-md-4 mb-2">
                             <label for="gender">Gender <span id="form_required">*</span></label>

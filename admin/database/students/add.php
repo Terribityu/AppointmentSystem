@@ -12,7 +12,7 @@ for ($i = 0; $i < 8; $i++) {
 
 $hashpass = password_hash($password, PASSWORD_DEFAULT);
 
-$query = "INSERT INTO users VALUES(NULL, ?, ?, ?, ?, 'avatar.jpg', 'student', 0)";
+$query = "INSERT INTO users VALUES(NULL, ?, ?, ?, ?, 'https://res.cloudinary.com/ddf34uiqq/image/upload/v1682772503/m5voiqwbccmzooxvi8wa.jpg', 'student', 0)";
 $query1 = "INSERT INTO user_details VALUES(NULL, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
 $stmt = mysqli_prepare($conn, $query);

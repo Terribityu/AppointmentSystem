@@ -45,7 +45,8 @@ $(document).ready(function () {
           myError(data);
         } else {
           if (currentPageURL && currentPageURL !== "registration.php") {
-            window.location.href = currentPageURL;
+            var cleanUrl = currentPageURL.split("?")[0];
+            window.location.href = cleanUrl;
           } else {
             window.location.href = "index.php"; // Default redirect page
           }

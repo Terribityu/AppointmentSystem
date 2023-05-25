@@ -10,15 +10,14 @@ $lastname = mysqli_real_escape_string($conn, $lastname);
 $suffix = mysqli_real_escape_string($conn, $suffix);
 $address = mysqli_real_escape_string($conn, $address);
 $dateofbirth = mysqli_real_escape_string($conn, $dateofbirth);
-$age = mysqli_real_escape_string($conn, $age);
 
 $query2 = "UPDATE user_details JOIN users ON user_details.username = users.username SET firstname = ?, middlename = ?, lastname = ?, suffix = ?, address = ?, dateofbirth = ?,
-                age = ?, gender = ?, civilstatus = ?, number = ?, email = ? WHERE userID = ?";
+                gender = ?, civilstatus = ?, number = ?, email = ? WHERE userID = ?";
 
 $stmt2 = mysqli_prepare($conn, $query2);
 
 if ($stmt2) {
-    mysqli_stmt_bind_param($stmt2, "sssssssssssi", $firstname, $middlename, $lastname, $suffix, $address, $dateofbirth,
+    mysqli_stmt_bind_param($stmt2, "ssssssssssi", $firstname, $middlename, $lastname, $suffix, $address, $dateofbirth,
         $gender, $civilstatus, $mobilenumber, $email, $userID);
 
     if (mysqli_stmt_execute($stmt2)) {
