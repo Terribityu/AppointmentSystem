@@ -46,57 +46,41 @@ $(document).ready(function () {
     });
   }
 
-  $("#feedbacksModal").on("hidden.bs.modal", function () {
+  $("#feedbackModal").on("hidden.bs.modal", function () {
     // Reset the form everytime the modal Close. So data won't stay after reopening the modal
     $("#tinyform")[0].reset();
   });
 
   $("#tinyform").on("submit", function (e) {
-    // Form Submit event listener, to process the data that the user input.
-    e.preventDefault(); // Stop the Default form submission so the page wont reload.
+    e.preventDefault();
     var data = $(this).serialize();
+    var pend = $("#pendingfeed");
+    var rej = $("#rejectfeed");
+    var appr = $("#approvedfeed");
+
     $.ajax({
       type: "POST",
       url: "database/feedbacks/add.php",
       data: data,
-      success: function () {
-        $("#addAppointmentModal").modal("hide");
-        mySuccess(data.firstname + " successfully added."); // Call Sweetalert
-        load_data(); // Call the function to update the table after adding new data.
-      },
-      error: function (xhr, status, error) {
-        $("body").html("<h1>" + xhr["status"] + " " + error + "</h1>");
+      success: function (data) {
+        mySuccess("Feedback Created.");
+        pend.removeClass("btn-primary");
+        pend.addClass("btn-outline-primary");
+        rej.removeClass("btn-primary");
+        rej.addClass("btn-outline-primary");
+        appr.removeClass("btn-outline-primary");
+        appr.addClass("btn-primary");
+        pend.val("");
+        rej.val("");
+        appr.val("active");
+        load_data();
+        $("#feedbackModal").modal("hide");
       },
     });
   });
 
-  $(document).on("click", "#deleteAppointment", function () {
-    var id = $(this).attr("value");
-    var name = $(this).attr("data-value");
-    var sched = $(this).attr("old-value");
-    console.log(sched);
-    alertify
-      .confirm(
-        '<i class="fas fa-trash-alt"></i> Archive',
-        "Confirm Add to Archive " + name + " ?",
-        function () {
-          $.ajax({
-            type: "GET",
-            url:
-              "database/feedbacks/archive.php?schedID=" + sched + "&id=" + id,
-            success: function () {
-              mySuccess(name + " Archived Success!.");
-              load_data();
-            },
-            error: function (xhr, status, error) {
-              $("body").html("<h1>" + xhr["status"] + " " + error + "</h1>");
-            },
-          });
-        },
-        function () {}
-      )
-      .set({ transition: "zoom" })
-      .show();
+  $("#addFeedback").on("click", function () {
+    $("#feedbackModal").modal("show");
   });
 
   // Nav Button -- Accept | Reject | Pending
@@ -104,7 +88,6 @@ $(document).ready(function () {
     var id = $(this).attr("value");
     var name = $(this).attr("data-value");
     var pend = $("#pendingfeed");
-    var rej = $("#rejectfeed");
     var appr = $("#approvedfeed");
     alertify
       .confirm(
@@ -118,8 +101,6 @@ $(document).ready(function () {
             success: function () {
               pend.removeClass("btn-primary");
               pend.addClass("btn-outline-primary");
-              rej.removeClass("btn-primary");
-              rej.addClass("btn-outline-primary");
               appr.removeClass("btn-outline-primary");
               appr.addClass("btn-primary");
               pend.val("");

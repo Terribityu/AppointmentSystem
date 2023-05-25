@@ -1,13 +1,17 @@
 <?php
-require ('../connect.php');
-	extract($_POST);
-        $sql = "UPDATE schedules SET slots = slots - 1 WHERE id = $schedules";
-        $query = "INSERT INTO appointments VALUES(NULL, $schedules, $studentDataList, 'TBA', 'pending', 'unpaid', ' ', ' ', 0)";
-        if($result = mysqli_query($conn , $query)){
-            $last_id = mysqli_insert_id($conn);
-            addSystemLogs($last_id, "createappointment");
-            mysqli_query($conn , $sql);
-        }else{
-            echo mysqli_error($conn);
-        }
+    require('../connect.php');
+
+    extract($_POST);
+
+    $query = "INSERT INTO feedbacks VALUES(NULL, ?, 'approved', ?)";
+    $stmt = mysqli_prepare($conn, $query);
+
+    if($stmt){
+        mysqli_stmt_bind_param($stmt, 'si', $blogbody, $_SESSION['userID']);
+        mysqli_stmt_execute($stmt);
+
+        $lastid = mysqli_insert_id($conn);
+
+        addSystemLogs($lastid, "addfeedback");
+    }
 ?>

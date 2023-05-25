@@ -10,8 +10,29 @@
     include("template/header.php");
     include("template/modal.php");
 ?>
+<script src="https://cdn.tiny.cloud/1/l6zbrue1t5otwmh45fyvnjclf2djbk4xypmzoo3ahl8ny4lh/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
 <link rel="stylesheet" href="./assets/feedbacks/css/styles.css">
 <script src="./assets/feedbacks/js/scripts.js"></script>
+<script>
+    tinymce.init({
+        selector: '#blogbody',
+        resize: false,
+        plugins: 'autoresize',
+        max_height: 500,
+        min_height: 400,
+        menubar: "edit format",
+        setup: function(ed) {
+            ed.on("keyup", function() {
+                let blog = tinymce.activeEditor.getContent();
+                if (blog == '') {
+                    $('#btn_post').addClass('disabled');
+                } else {
+                    $('#btn_post').removeClass('disabled')
+                }
+            });
+        },
+    });
+</script>
 <title>Appointments - Destiny Driving School</title>
 </head>
 
@@ -77,13 +98,13 @@
                         <span id='link-label'>Schedules</span>
                     </a>
                 </li>
-                <li class="active">
+                <li >
                     <a href="appointments.php">
                         <i class="fa-solid fa-calendar-check"></i>
                         <span id='link-label'>Appointments</span>
                     </a>
                 </li>
-                <li>
+                <li class="active">
                     <a href="feedback.php">
                         <i class="fa-solid fa-comments"></i>
                         <span id='link-label'>Feedbacks</span>
@@ -108,7 +129,7 @@
                         <i class="fa-solid fa-bars"></i>
                     </button>
                         
-                    &nbsp;<button type="button" class="btn btn-success" id="addAppointment" data-bs-toggle="modal" data-bs-target="#addAppointmentModal" title="Add Students"><i class="fa-regular fas fa-circle-plus"></i></button>
+                    &nbsp;<button type="button" class="btn btn-success" id="addFeedback" title="Add Feedback"><i class="fa-regular fas fa-circle-plus"></i></button>
                     
                     
                     <button class="btn btn-dark d-inline-block d-lg-none ms-auto" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -131,7 +152,7 @@
 
             <div class="d-flex justify-content-between mb-2">
                 <div class="d-flex">
-                <h2>Appointments</h2>&nbsp
+                <h2>Feedbacks</h2>&nbsp
                 <button id="pendingfeed" type="button" class="ml-3 btn btn-primary" title="Pending" data-placement="right" value="active">
 		        Pending
                 </button>&nbsp
@@ -152,7 +173,7 @@
                 <table class="table table-hover table-striped">
                     <thead class="table-dark">
                         <tr>
-                        <th scope="col">Full Name</th>
+                        <th scope="col" width="250">Full Name</th>
                         <th scope="col">Description</th>
                         <th scope="col" width="250">Action</th>
                         </tr>
@@ -163,6 +184,32 @@
             </div>
         </div>
     </div>
+
+      <!-- Feedbacks -->
+        <!-- Modal -->
+        <div class="modal fade" id="feedbackModal" tabindex="-1" aria-labelledby="feedbackModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg ">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title fw-bold" id="feedbackModalLabel"><i class="fa-solid fa-comments"></i> Create Post</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="tinyform">
+                            <!-- <label for="blogtitle" class="form-label">Title:</label>
+                            <input type="text" class="form-control" id="blogtitle" name="blogtitle" placeholder="Title" autocomplete="off" required> -->
+                            <label for="blogbody" class="form-label">Body:</label>
+                            <textarea id="blogbody" class="form-control" name="blogbody" placeholder="Type Here . . .">
+                            </textarea>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" id="btn_post" name="btn_post" style="height: auto;" class="btn btn-secondary disabled w-100">Post</button>
+                        </form>
+                    </div>
+                    <div id="lp-message"></div>
+                </div>
+            </div>
+        </div>
 
     <script type="text/javascript">
         window.onload = function () {
