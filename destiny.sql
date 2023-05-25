@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: May 23, 2023 at 09:43 PM
+-- Generation Time: May 25, 2023 at 07:20 PM
 -- Server version: 8.0.30
 -- PHP Version: 8.2.5
 
@@ -33,32 +33,29 @@ CREATE TABLE `appointments` (
   `studentID` int NOT NULL,
   `remarks` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL DEFAULT 'TBA',
   `status_a` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL DEFAULT 'pending',
-  `payment_s` varchar(255) NOT NULL DEFAULT 'unpaid',
-  `remarks_details` varchar(150) NOT NULL,
-  `reason_rej` varchar(155) NOT NULL
+  `payment_s` varchar(255) COLLATE utf8mb4_general_ci NOT NULL DEFAULT 'unpaid',
+  `remarks_details` varchar(150) COLLATE utf8mb4_general_ci NOT NULL,
+  `reason_rej` varchar(155) COLLATE utf8mb4_general_ci NOT NULL,
+  `appointmentArchive` int NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `appointments`
 --
 
-INSERT INTO `appointments` (`appointmentID`, `scheduleID`, `studentID`, `remarks`, `status_a`, `payment_s`, `remarks_details`, `reason_rej`) VALUES
-(8, 27, 27, 'TBA', 'rejected', 'unpaid', '', ''),
-(9, 27, 27, 'TBA', 'rejected', 'unpaid', '', ''),
-(11, 28, 27, 'TBA', 'rejected', 'unpaid', '', ''),
-(12, 28, 27, 'TBA', 'rejected', 'unpaid', '', ''),
-(13, 27, 27, 'TBA', 'rejected', 'unpaid', '', ''),
-(14, 27, 27, 'TBA', 'rejected', 'unpaid', '', ''),
-(18, 28, 27, 'TBA', 'rejected', 'unpaid', '', ''),
-(19, 28, 27, 'TBA', 'approved', 'paid', '', ''),
-(20, 29, 27, 'TBA', 'rejected', 'unpaid', '', ''),
-(21, 29, 27, 'TBA', 'rejected', 'unpaid', '', ''),
-(22, 29, 27, 'TBA', 'rejected', 'unpaid', '', ''),
-(23, 29, 27, 'TBA', 'rejected', 'unpaid', '', ''),
-(25, 31, 27, 'TBA', 'approved', 'paid', '', ''),
-(26, 32, 27, 'TBA', 'request', 'unpaid', '', ''),
-(27, 34, 27, 'TBA', 'approved', 'paid', '', ''),
-(28, 32, 27, 'TBA', 'pending', 'unpaid', '', '');
+INSERT INTO `appointments` (`appointmentID`, `scheduleID`, `studentID`, `remarks`, `status_a`, `payment_s`, `remarks_details`, `reason_rej`, `appointmentArchive`) VALUES
+(11, 28, 27, 'TBA', 'rejected', 'unpaid', '', '', 1),
+(12, 28, 27, 'TBA', 'rejected', 'unpaid', '', '', 1),
+(18, 28, 27, 'TBA', 'rejected', 'unpaid', '', '', 1),
+(19, 28, 27, 'TBA', 'request', 'paid', '', '', 0),
+(20, 29, 27, 'TBA', 'rejected', 'unpaid', '', '', 0),
+(21, 29, 27, 'TBA', 'rejected', 'unpaid', '', '', 0),
+(22, 29, 27, 'TBA', 'rejected', 'unpaid', '', '', 0),
+(23, 29, 27, 'TBA', 'rejected', 'unpaid', '', '', 0),
+(25, 31, 27, 'TBA', 'approved', 'paid', '', '', 0),
+(26, 32, 27, 'TBA', 'request', 'unpaid', '', '', 0),
+(27, 34, 27, 'TBA', 'approved', 'paid', '', '', 0),
+(28, 32, 27, 'TBA', 'pending', 'unpaid', '', '', 0);
 
 -- --------------------------------------------------------
 
@@ -68,9 +65,9 @@ INSERT INTO `appointments` (`appointmentID`, `scheduleID`, `studentID`, `remarks
 
 CREATE TABLE `events` (
   `id` int NOT NULL,
-  `title` varchar(255) NOT NULL,
-  `description` varchar(255) NOT NULL,
-  `url` varchar(255) NOT NULL,
+  `title` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `description` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `url` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
   `start` date NOT NULL,
   `end` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -90,10 +87,17 @@ INSERT INTO `events` (`id`, `title`, `description`, `url`, `start`, `end`) VALUE
 
 CREATE TABLE `feedbacks` (
   `feedbackID` int NOT NULL,
-  `description` longtext NOT NULL,
-  `status` varchar(255) NOT NULL DEFAULT 'pending',
+  `description` longtext COLLATE utf8mb4_general_ci NOT NULL,
+  `status` varchar(255) COLLATE utf8mb4_general_ci NOT NULL DEFAULT 'pending',
   `studentID` int NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `feedbacks`
+--
+
+INSERT INTO `feedbacks` (`feedbackID`, `description`, `status`, `studentID`) VALUES
+(1, '<p><strong>Lorem Ipsum</strong>&nbsp;is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>', 'approved', 27);
 
 -- --------------------------------------------------------
 
@@ -103,7 +107,7 @@ CREATE TABLE `feedbacks` (
 
 CREATE TABLE `sales` (
   `salesID` int NOT NULL,
-  `date` varchar(255) NOT NULL,
+  `date` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
   `price_s` int NOT NULL,
   `appointmentID` int NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -128,13 +132,13 @@ INSERT INTO `sales` (`salesID`, `date`, `price_s`, `appointmentID`) VALUES
 
 CREATE TABLE `schedules` (
   `id` int NOT NULL,
-  `title` varchar(255) NOT NULL,
+  `title` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
   `start` date NOT NULL,
   `end` date NOT NULL,
-  `time` varchar(255) NOT NULL,
+  `time` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
   `price` int NOT NULL,
   `slots` int NOT NULL,
-  `status` varchar(255) NOT NULL DEFAULT 'upcoming',
+  `status` varchar(255) COLLATE utf8mb4_general_ci NOT NULL DEFAULT 'upcoming',
   `instructorID` int NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -146,13 +150,9 @@ INSERT INTO `schedules` (`id`, `title`, `start`, `end`, `time`, `price`, `slots`
 (15, 'PDC', '2023-04-14', '2023-04-15', '20:15', 123, 1, 'upcoming', 9),
 (17, 'PDC', '2023-04-19', '2023-04-20', '20:18', 3123, 1, 'upcoming', 9),
 (22, 'PDC', '2023-04-12', '2023-04-13', '11:56', 4434, 1, 'upcoming', 9),
-(24, 'PDC', '2023-04-13', '2023-04-14', '07:35', 4500, 1, 'upcoming', 10),
 (25, 'PDC', '2023-04-20', '2023-04-21', '20:40', 43432, 1, 'upcoming', 9),
-(26, 'PDC', '2023-04-27', '2023-04-28', '22:36', 2555, 1, 'upcoming', 10),
-(27, 'PDC', '2023-05-02', '2023-05-03', '08:07', 5000, 1, 'upcoming', 10),
-(28, 'PDC', '2023-05-02', '2023-05-03', '05:07', 5000, 1, 'upcoming', 9),
+(28, 'PDC', '2023-05-02', '2023-05-03', '05:07', 5000, 6, 'upcoming', 9),
 (29, 'TDC', '2023-05-05', '2023-05-06', '08:04', 3555, 30, 'upcoming', 9),
-(30, 'TDC', '2023-05-06', '2023-05-07', '06:02', 3555, 30, 'upcoming', 10),
 (31, 'PDC', '2023-05-17', '2023-05-18', '20:42', 5555, 0, 'upcoming', 9),
 (32, 'PDC', '2023-05-18', '2023-05-19', '21:22', 3123, 4, 'upcoming', 9),
 (34, 'PDC', '2023-05-19', '2023-05-20', '14:55', 12123, 1, 'upcoming', 9);
@@ -165,11 +165,11 @@ INSERT INTO `schedules` (`id`, `title`, `start`, `end`, `time`, `price`, `slots`
 
 CREATE TABLE `system_reports` (
   `reportsID` int NOT NULL,
-  `username` varchar(100) NOT NULL,
+  `username` varchar(100) COLLATE utf8mb4_general_ci NOT NULL,
   `transactID` int NOT NULL,
-  `reportType` varchar(255) NOT NULL,
-  `reportDate` varchar(255) NOT NULL,
-  `reportTime` varchar(255) NOT NULL
+  `reportType` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `reportDate` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `reportTime` varchar(255) COLLATE utf8mb4_general_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -346,7 +346,21 @@ INSERT INTO `system_reports` (`reportsID`, `username`, `transactID`, `reportType
 (167, 'student', 26, 'requestcancellation', '05-17-2023', '19:47:51'),
 (168, 'student', 26, 'requestcancellation', '05-17-2023', '19:49:43'),
 (169, 'destinyadmin', 25, 'paidappointment', '05-18-2023', '07:09:01'),
-(170, 'destinyadmin', 27, 'paidappointment', '05-18-2023', '07:09:12');
+(170, 'destinyadmin', 27, 'paidappointment', '05-18-2023', '07:09:12'),
+(171, 'student', 3, 'addfeedback', '05-25-2023', '09:50:28'),
+(172, 'student', 4, 'addfeedback', '05-25-2023', '09:51:03'),
+(173, 'student', 1, 'addfeedback', '05-25-2023', '10:56:33'),
+(174, 'student', 1, 'addfeedback', '05-25-2023', '10:57:34'),
+(175, 'student', 19, 'requestcancellation', '05-25-2023', '18:15:43'),
+(176, 'destinyadmin', 11, 'archiveappointment', '05-25-2023', '18:27:27'),
+(177, 'destinyadmin', 11, 'archiveappointment', '05-25-2023', '18:27:34'),
+(178, 'destinyadmin', 12, 'archiveappointment', '05-25-2023', '18:29:12'),
+(179, 'destinyadmin', 18, 'archiveappointment', '05-25-2023', '18:29:19'),
+(180, 'destinyadmin', 1, 'approvefeedback', '05-25-2023', '19:00:41'),
+(181, 'destinyadmin', 1, 'approvefeedback', '05-25-2023', '19:04:55'),
+(182, 'destinyadmin', 1, 'approvefeedback', '05-25-2023', '19:11:28'),
+(183, 'destinyadmin', 1, 'rejectfeedback', '05-25-2023', '19:11:45'),
+(184, 'destinyadmin', 1, 'approvefeedback', '05-25-2023', '19:16:17');
 
 -- --------------------------------------------------------
 
@@ -356,24 +370,25 @@ INSERT INTO `system_reports` (`reportsID`, `username`, `transactID`, `reportType
 
 CREATE TABLE `users` (
   `userID` int NOT NULL,
-  `username` varchar(100) NOT NULL,
-  `email` varchar(255) NOT NULL,
+  `username` varchar(100) COLLATE utf8mb4_general_ci NOT NULL,
+  `email` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
   `number` bigint NOT NULL,
-  `password` varchar(255) NOT NULL,
+  `password` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
   `avatar` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL DEFAULT 'avatar.jpg',
-  `userType` varchar(255) NOT NULL
+  `userType` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `userArchive` int NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`userID`, `username`, `email`, `number`, `password`, `avatar`, `userType`) VALUES
-(4, 'destinyadmin', 'destinydrivingschool@gmail.com', 9763140537, '$2y$10$MkZtXAtg/ERI8KAnqX9Lq.PBnFtCxvR0U2lhcIjKOu8NXKVU4Jw9y', 'https://res.cloudinary.com/ddf34uiqq/image/upload/v1684002151/q2x5j7tzr4lrqbvmheqj.png', 'admin'),
-(9, 'mizzymanigque19', 'mizzymanigque19@gmail.com', 9763140537, '$2y$10$7WwfQEeWGhfw8NVhSJOtgu8IBAc0ES9.yCyqBDL6cgXR2yGfTWHNW', 'https://res.cloudinary.com/ddf34uiqq/image/upload/v1682772503/m5voiqwbccmzooxvi8wa.jpg', 'instructor'),
-(27, 'fascinating', 'fascinatingact@gmail.com', 9763140537, '$2y$10$7WwfQEeWGhfw8NVhSJOtgu8IBAc0ES9.yCyqBDL6cgXR2yGfTWHNW', 'https://res.cloudinary.com/ddf34uiqq/image/upload/v1682772503/m5voiqwbccmzooxvi8wa.jpg', 'student'),
-(30, 'rstodomingo.o2', 'rstodomingo.o2@gmail.com', 9763140537, '$2y$10$5onDrnK4y20ForHbxYU/RuE7Yuo3KlqeqRzvVGeR9Xtn0jKVihIdK', 'https://res.cloudinary.com/ddf34uiqq/image/upload/v1682772503/m5voiqwbccmzooxvi8wa.jpg', 'instructor'),
-(40, 'cavoyo7720', 'cavoyo7720@glumark.com', 9763140537, '$2y$10$A6QC64ORXNw3slePNkYEdO.7qiY4t.upafmeu2oFGvArlwMvs0UYm', 'https://res.cloudinary.com/ddf34uiqq/image/upload/v1684046589/ptjuuh3jmukui9jbpt7q.png', 'instructor');
+INSERT INTO `users` (`userID`, `username`, `email`, `number`, `password`, `avatar`, `userType`, `userArchive`) VALUES
+(4, 'destinyadmin', 'destinydrivingschool@gmail.com', 9763140537, '$2y$10$MkZtXAtg/ERI8KAnqX9Lq.PBnFtCxvR0U2lhcIjKOu8NXKVU4Jw9y', 'https://res.cloudinary.com/ddf34uiqq/image/upload/v1684002151/q2x5j7tzr4lrqbvmheqj.png', 'admin', 0),
+(9, 'mizzymanigque19', 'mizzymanigque19@gmail.com', 9763140537, '$2y$10$7WwfQEeWGhfw8NVhSJOtgu8IBAc0ES9.yCyqBDL6cgXR2yGfTWHNW', 'https://res.cloudinary.com/ddf34uiqq/image/upload/v1682772503/m5voiqwbccmzooxvi8wa.jpg', 'instructor', 0),
+(27, 'fascinating', 'fascinatingact@gmail.com', 9763140537, '$2y$10$7WwfQEeWGhfw8NVhSJOtgu8IBAc0ES9.yCyqBDL6cgXR2yGfTWHNW', 'https://res.cloudinary.com/ddf34uiqq/image/upload/v1682772503/m5voiqwbccmzooxvi8wa.jpg', 'student', 0),
+(30, 'rstodomingo.o2', 'rstodomingo.o2@gmail.com', 9763140537, '$2y$10$5onDrnK4y20ForHbxYU/RuE7Yuo3KlqeqRzvVGeR9Xtn0jKVihIdK', 'https://res.cloudinary.com/ddf34uiqq/image/upload/v1682772503/m5voiqwbccmzooxvi8wa.jpg', 'instructor', 0),
+(40, 'cavoyo7720', 'cavoyo7720@glumark.com', 9763140537, '$2y$10$A6QC64ORXNw3slePNkYEdO.7qiY4t.upafmeu2oFGvArlwMvs0UYm', 'https://res.cloudinary.com/ddf34uiqq/image/upload/v1684046589/ptjuuh3jmukui9jbpt7q.png', 'instructor', 0);
 
 -- --------------------------------------------------------
 
@@ -383,16 +398,16 @@ INSERT INTO `users` (`userID`, `username`, `email`, `number`, `password`, `avata
 
 CREATE TABLE `user_details` (
   `detail_ID` int NOT NULL,
-  `firstname` varchar(255) NOT NULL,
-  `middlename` varchar(255) NOT NULL,
-  `lastname` varchar(255) NOT NULL,
+  `firstname` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `middlename` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `lastname` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
   `suffix` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
   `address` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `zipcode` int NOT NULL,
-  `dateofbirth` varchar(255) NOT NULL,
-  `gender` varchar(255) NOT NULL,
-  `civilstatus` varchar(255) NOT NULL,
-  `username` varchar(100) NOT NULL
+  `dateofbirth` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `gender` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `civilstatus` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `username` varchar(100) COLLATE utf8mb4_general_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -483,7 +498,7 @@ ALTER TABLE `events`
 -- AUTO_INCREMENT for table `feedbacks`
 --
 ALTER TABLE `feedbacks`
-  MODIFY `feedbackID` int NOT NULL AUTO_INCREMENT;
+  MODIFY `feedbackID` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `sales`
@@ -501,7 +516,7 @@ ALTER TABLE `schedules`
 -- AUTO_INCREMENT for table `system_reports`
 --
 ALTER TABLE `system_reports`
-  MODIFY `reportsID` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=171;
+  MODIFY `reportsID` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=185;
 
 --
 -- AUTO_INCREMENT for table `users`
