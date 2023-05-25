@@ -1,5 +1,5 @@
 <?php
-    session_start();
+    require('database/connect.php');
     if(isset($_SESSION['userType'])){  
         if($_SESSION['userType'] == "admin" || $_SESSION['userType'] == "instructor"){
             header('location:admin/index.php');
@@ -7,6 +7,9 @@
     }
 
     include("templates/header.php");
+
+    $query = "SELECT * FROM users JOIN user_details ON users.username = user_details.username WHERE users.userType = 'instructor'";
+    $result = mysqli_query($conn, $query);
 ?>
 <style>
  
@@ -41,7 +44,7 @@
                             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                             <span class="navbar-toggler-icon"></span>
                             </button>
-                            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                            <div class="collapse navbar-collapse text-center" id="navbarSupportedContent">
                                 <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                                     <li class="nav-item">
                                     <a class="nav-link" href="./index.php#banner">Home</a>
@@ -101,62 +104,48 @@
     </header>
 
     <section id="banner">
-            <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
-                <div class="carousel-indicators">
-                    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-                    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
-                    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
-                </div>
-                <div class="carousel-inner">
-                    <div class="carousel-item carousel-nav-item active">
-                    <img src="assets/index/banner/destiny_bg.jpg" class="d-block w-100" alt="...">
-                    <div class="carousel-caption carousel-nav-caption d-none d-md-block">
-                        <h5>Destiny Driving School</h5>
-                        <p>Some representative placeholder content for the first slide.</p>
-
-                        <div class="slider-btn slider-nav-btn">
-                            <button class="btn btn-1">Our Services</button>
-                            <button class="btn btn-2">Get a Life</button>
-                        </div>
-
-                    </div>
-                    </div>
-                    <div class="carousel-item carousel-nav-item">
-                    <img src="assets/index/banner/banner_bg.png" class="d-block w-100" alt="...">
-                    <div class="carousel-caption carousel-nav-caption d-none d-md-block">
-                        <h5>Destiny Driving School</h5>
-                        <p>Some representative placeholder content for the second slide.</p>
-
-                        <div class="slider-btn slider-nav-btn">
-                            <button class="btn btn-1">Our Services</button>
-                            <button class="btn btn-2">Get a Life</button>
-                        </div>
-
-                    </div>
-                    </div>
-                    <div class="carousel-item carousel-nav-item">
-                    <img src="assets/index/banner/banner_bg.png" class="d-block w-100" alt="...">
-                    <div class="carousel-caption carousel-nav-caption d-none d-md-block">
-                        <h5>Destiny Driving School</h5>
-                        <p>Some representative placeholder content for the third slide.</p>
-
-                        <div class="slider-btn slider-nav-btn">
-                            <button class="btn btn-1">Our Services</button>
-                            <button class="btn btn-2">Get a Life</button>
-                        </div>
-                            
-                    </div>
-                    </div>
-                </div>
-                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
-                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Previous</span>
-                </button>
-                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
-                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Next</span>
-                </button>
+        <div id="hero-carousel" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-indicators">
+            <button type="button" data-bs-target="#hero-carousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+            <button type="button" data-bs-target="#hero-carousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
+            <button type="button" data-bs-target="#hero-carousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
             </div>
+
+            <div class="carousel-inner">
+            <div class="carousel-item active c-item">
+                <img src="assets/index/banner/destiny_bg.jpg" class="d-block w-100 c-img" alt="Slide 1">
+                <div class="carousel-caption mt-5">
+                <p class="mt-5 fs-3 text-uppercase">Enroll Now!</p>
+                <h1 class="display-1 fw-bolder text-capitalize">Destiny Driving School</h1>
+                <a href="#services" class="btn btn-primary px-4 py-2 fs-5 mt-5">Services</a>
+                </div>
+            </div>
+            <div class="carousel-item c-item">
+                <img src="assets/index/banner/banner_bg.png" class="d-block w-100 c-img" alt="Slide 2">
+                <div class="carousel-caption mt-5">
+                <p class="text-uppercase fs-3 mt-5">The season has arrived</p>
+                <h1 class="display-1 fw-bolder text-capitalize">Destiny Driving School</p>
+                <a href="registration.php" class="btn btn-primary px-4 py-2 fs-5 mt-5">Register</a>
+                </div>
+            </div>
+            <div class="carousel-item c-item">
+                <img src="assets/index/banner/banner_bg.png" class="d-block w-100 c-img" alt="Slide 3">
+                <div class="carousel-caption mt-5">
+                <p class="text-uppercase fs-3 mt-5">Destination activities</p>
+                <h1 class="display-1 fw-bolder text-capitalize">Destiny Driving School</p>
+                <a href="#contact" class="btn btn-primary px-4 py-2 fs-5 mt-5">Contact Us</a>
+                </div>
+            </div>
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#hero-carousel" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#hero-carousel" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+            </button>
+        </div>
     </section>
 
     <!-- About Section Start-->
@@ -164,7 +153,7 @@
         <div class="container">
         <h1 class="testimonial-header">About Us </h1>
             <div class="row">
-                <div class="col-lg-3 col-md-12 col-12 d-flex align-items-center">
+                <div class="col-lg-3 col-md-12 col-12 d-flex justify-content-center align-items-center">
                     <img src="assets/logo/logo_250x250.png" alt="">
                 </div>
                 <div class="col-lg-9 col-md-12 col-12 ps-lg-5 mt-md-5">
@@ -188,12 +177,12 @@
     <section id="routes">
         <div class="container">
             <div class="row">
-                <div class="col-lg-9 col-md-12 col-12 ps-lg-5 mt-md-5">
+                <div class="col-lg-6 col-md-12 col-12 ps-lg-5 mt-md-5">
                     <h2>Routes</h2>
                     <p>This is Photoshop's version  of Lorem Ipsum. Proin gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auctor, nisi elit consequat ipsum, nec sagittis sem nibh id elit. Duis sed odio sit amet nibh vulputate cursus</p>
                 </div>
-                <div class="col-lg-3 col-md-12 col-12">
-                    <img src="assets/logo/logo-white_250x250.png" alt="">
+                <div class="col-lg-6 col-md-12 col-12 d-flex justify-content-center align-items-center">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m20!1m8!1m3!1d87159.90552388459!2d121.01685339904044!3d15.105532268086442!3m2!1i1024!2i768!4f13.1!4m9!3e0!4m3!3m2!1d15.1316209!2d120.9612528!4m3!3m2!1d15.062586699999999!2d121.0822098!5e0!3m2!1sen!2sph!4v1685031635389!5m2!1sen!2sph" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>       
                 </div>
             </div>
         </div>
@@ -201,11 +190,11 @@
     <!-- End of Routes Section -->
     <!-- Start of Testimonials -->
     <section id="testimonials-section">
-        <div class="container">
-            <h1 class="testimonial-header">Client Review <span>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</span></h1>
+        <div class="">
+            <h1 class="testimonial-header">Client Review</h1>
             <div class="testimonials">
                 
-                <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+                <div id="carouselExampleControls" class="feedback-slider carousel slide" data-bs-ride="carousel">
                   <div class="carousel-inner">
                     <div class="carousel-item active">
                       <div class="single-item">
@@ -224,13 +213,6 @@
                               <div class="col-md-6">
                                   <div class="testimonial-content">
                                       <p><span><i class="fa fa-quote-left"></i></span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vel a eius excepturi molestias commodi aliquam error magnam consectetur laboriosam numquam, minima eveniet nostrum sequi saepe ipsam non ea, inventore tenetur! Corporis commodi consequatur molestiae voluptatum!</p>
-                                      <p class="socials">
-                                          <i class="fa-brands fas fa-twitter"></i>
-                                          <i class="fa-brands fas fa-behance"></i>
-                                          <i class="fa-brands fas fa-pinterest"></i>
-                                          <i class="fa-brands fas fa-dribbble"></i>
-                                          <i class="fa-brands fas fa-vimeo"></i>
-                                      </p>
                                   </div>
                               </div>
                           </div>
@@ -314,9 +296,7 @@
         <div class="container">
 			<div class="row">
 				<div class="col-lg-8 offset-lg-2 col-md-10 offset-md-1">
-					<div class="sec-heading text-center">
-						<h6>Team Members</h6>
-					</div>
+						<h1 class="teams-header">Instructors<span>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</span></h1>
 				</div>
 			</div>
 		</div>
@@ -325,41 +305,24 @@
 				<div class="row">
 					<div class="col-lg-12">
 						<div class="team-slider owl-carousel">
-							<div class="single-box text-center">
-								<div class="img-area"><img alt="" class="img-fluid move-animation" src="https://i.postimg.cc/65VQDfjs/1.png"></div>
-								<div class="info-area">
-									<h4>Person's Name</h4>
-									<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nemo, ullam.</p><a href="#">Learn More</a>
-								</div>
-							</div>
-							<div class="single-box text-center">
-								<div class="img-area"><img alt="" class="img-fluid move-animation" src="https://i.postimg.cc/vmCM14qL/2.png"></div>
-								<div class="info-area">
-									<h4>Person's Name</h4>
-									<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nemo, ullam.</p><a href="#">Learn More</a>
-								</div>
-							</div>
-							<div class="single-box text-center">
-								<div class="img-area"><img alt="" class="img-fluid move-animation" src="https://i.postimg.cc/TYTxWM9S/3.png"></div>
-								<div class="info-area">
-									<h4>Person's Name</h4>
-									<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nemo, ullam.</p><a href="#">Learn More</a>
-								</div>
-							</div>
-							<div class="single-box text-center">
-								<div class="img-area"><img alt="" class="img-fluid move-animation" src="https://i.postimg.cc/593GTHB7/4.png"></div>
-								<div class="info-area">
-									<h4>Person's Name</h4>
-									<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nemo, ullam.</p><a href="#">Learn More</a>
-								</div>
-							</div>
-							<div class="single-box text-center">
-								<div class="img-area"><img alt="" class="img-fluid move-animation" src="https://i.postimg.cc/tJCrp53r/5.png"></div>
-								<div class="info-area">
-									<h4>Person's Name</h4>
-									<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nemo, ullam.</p><a href="#">Learn More</a>
-								</div>
-							</div>
+							<?php
+                                if(mysqli_num_rows($result)>0){
+                                    while($row = mysqli_fetch_array($result)){
+                                        extract($row);
+                                        echo "
+                                        <div class='single-box text-center'>
+                                            <div class='mt-3 img-area'><img alt='' class='img-fluid move-animation' src='$avatar'></div>
+                                                <div class='info-area'>
+                                                    <h4>$firstname $lastname</h4>
+                                                    <p>Destiny Driving School Instructor</p><a href='#'>Learn More</a>
+                                                </div>
+                                        </div>\n																														
+                                        ";
+                                    }
+                                }else{
+                                    echo "<h5 style='text-align:center'><i class='fa-regular fas fa-magnifying-glass'></i>No Results Found.</h5>";
+                                }
+                            ?>
 						</div>
 					</div>
 				</div>
@@ -369,9 +332,6 @@
     <!-- End of Teams -->
     <!-- Start of Services -->
     <section id="services">
-        <div class="row">
-
-        </div>
         <div class="row">
             <h1 class="testimonial-header">Services <span>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</span></h1>
             <div class="services-wrapper">
@@ -411,6 +371,7 @@
             });
         }
     </script>
+    <script src="./assets/index/js/scripts.js"></script>
 <?php
     include("templates/footer.php")
 ?>

@@ -132,13 +132,13 @@ include("template/header.php");
                         <!-- small box -->
                         <div class="small-box bg-1">
                            <div class="inner">
-                              <h3 id="destinationcount">8</h3>
+                              <h3 id="instructorcount">8</h3>
                               <p>Instructors</p>
                            </div>
                            <div class="icon">
                               <i class="la la-map la-2x"></i>
                            </div>
-                           <a href="destinations.php" class="small-box-footer">More info <i class="las la-arrow-circle-right"></i></a>
+                           <a href="instructor.php" class="small-box-footer">More info <i class="las la-arrow-circle-right"></i></a>
                         </div>
                      </div>
                      <!-- ./col -->
@@ -146,13 +146,13 @@ include("template/header.php");
                         <!-- small box -->
                         <div class="small-box bg-2">
                            <div class="inner">
-                              <h3 id="clientcount">20</h3>
+                              <h3 id="studentcount">20</h3>
                               <p>Students</p>
                            </div>
                            <div class="icon">
                               <i class="la la-users la-2x"></i>
                            </div>
-                           <a href="clients.php" class="small-box-footer">More info <i class="las la-arrow-circle-right"></i></a>
+                           <a href="students.php" class="small-box-footer">More info <i class="las la-arrow-circle-right"></i></a>
                         </div>
                      </div>
                      <!-- ./col -->
@@ -166,11 +166,11 @@ include("template/header.php");
                            <div class="icon">
                               <i class="la la-money-bill la-2x"></i>
                            </div>
-                           <a href="#" class="small-box-footer">More info <i class="las la-arrow-circle-right"></i></a>
+                           <a href="sales.php" class="small-box-footer">More info <i class="las la-arrow-circle-right"></i></a>
                         </div>
                      </div>
                 <?php
-                    }
+                    }else{
                 ?>  
                     <div class="col-lg-4 col-6 animated bounceInLeft">
                         <!-- small box -->
@@ -185,7 +185,9 @@ include("template/header.php");
                            <a href="myappointments.php" class="small-box-footer">More info <i class="las la-arrow-circle-right"></i></a>
                         </div>
                      </div>
-
+                <?php
+                    }
+                ?>  
                      <div class="col-lg-4 col-6 animated bounceInLeft">
                         <!-- small box -->
                         <div class="small-box bg-5">

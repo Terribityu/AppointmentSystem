@@ -13,13 +13,13 @@ require ('../connect.php');
         or suffix like '%$search%'
         or address like '%$search%'
         or number like '%$search%'
-        or email like '%$search%') and status_a = '$stats'";
+        or email like '%$search%') and appointmentArchive = 0 and status_a = '$stats'";
         
     }else {
         if($_SESSION['userType'] == "admin"){
-            $query = "SELECT * FROM `appointments` JOIN users ON appointments.studentID = users.userID JOIN user_details ON user_details.username = users.username JOIN schedules ON appointments.scheduleID = schedules.id where status_a = '$stats'";
+            $query = "SELECT * FROM `appointments` JOIN users ON appointments.studentID = users.userID JOIN user_details ON user_details.username = users.username JOIN schedules ON appointments.scheduleID = schedules.id where appointmentArchive = 0 and status_a = '$stats'";
         }else {
-            $query = "SELECT * FROM `appointments` JOIN users ON appointments.studentID = users.userID JOIN user_details ON user_details.username = users.username JOIN schedules ON appointments.scheduleID = schedules.id where status_a = '$stats' and users.username = '$inst_name'";
+            $query = "SELECT * FROM `appointments` JOIN users ON appointments.studentID = users.userID JOIN user_details ON user_details.username = users.username JOIN schedules ON appointments.scheduleID = schedules.id where appointmentArchive = 0 and status_a = '$stats' and users.username = '$inst_name'";
         }
     }
 
@@ -40,13 +40,13 @@ require ('../connect.php');
                     <button id='rejectAppointment' title='Reject Appointment' value='$appointmentID' old-value='$scheduleID' data-value='$firstname $lastname' class='btn btn-danger'><i class='fa-solid fa-xmark'></i></button></td>";
                     echo "
                     <td><button id='editAppointment' title='Edit Appointment' value='$appointmentID' data-value='$firstname $lastname' class='btn btn-success'><i class='fa-solid fas fa-user-pen'></i></button>&nbsp
-                    <button id='deleteAppointment' title='Delete Appointment' value='$appointmentID' old-value='$scheduleID' data-value='$firstname $lastname' class='btn btn-danger'><i class='fa-solid fa-trash'></i></button></td>
+                    <button id='deleteAppointment' title='Archive Appointment' value='$appointmentID' old-value='$scheduleID' data-value='$firstname $lastname' class='btn btn-danger'><i class='fa-solid fa-box-archive'></i></button></td>
                 </tr>";
                 }else{
                     echo "<td>$status_a</td>";
                     echo "
                     <td>
-                    <button id='deleteAppointment' title='Delete Appointment' value='$appointmentID' old-value='$scheduleID' data-value='$firstname $lastname' class='btn btn-danger'><i class='fa-solid fa-trash'></i></button></td>
+                    <button id='deleteAppointment' title='Archive Appointment' value='$appointmentID' old-value='$scheduleID' data-value='$firstname $lastname' class='btn btn-danger'><i class='fa-solid fa-box-archive'></i></button></td>
                 </tr>";
                 }
         }

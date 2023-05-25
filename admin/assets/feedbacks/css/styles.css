@@ -1,0 +1,13 @@
+
+#form_required {
+    color: red;
+}
+
+.form_details_body {
+    background-color: #cecfd6;
+    padding: 40px 20px 40px 20px;
+}
+
+#registrationForm label{
+    font-weight: 700;
+}

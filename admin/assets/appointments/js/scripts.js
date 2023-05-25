@@ -154,15 +154,18 @@ $(document).ready(function () {
     console.log(sched);
     alertify
       .confirm(
-        '<i class="fas fa-trash-alt"></i> Delete',
-        "Confirm Deleting " + name + " ?",
+        '<i class="fas fa-trash-alt"></i> Archive',
+        "Confirm Add to Archive " + name + " ?",
         function () {
           $.ajax({
             type: "GET",
             url:
-              "database/appointments/delete.php?schedID=" + sched + "&id=" + id,
+              "database/appointments/archive.php?schedID=" +
+              sched +
+              "&id=" +
+              id,
             success: function () {
-              mySuccess(name + " successfully deleted.");
+              mySuccess(name + " Archived Success!.");
               load_data();
             },
             error: function (xhr, status, error) {
@@ -180,6 +183,8 @@ $(document).ready(function () {
   $(document).on("click", "#approveAppointment", function () {
     var id = $(this).attr("value");
     var name = $(this).attr("data-value");
+    var pend = $("#pendingapp");
+    var appr = $("#approvedapp");
     alertify
       .confirm(
         '<i class="fas fa-check-circle"></i> Approve',
@@ -193,7 +198,14 @@ $(document).ready(function () {
               "&stats=approved",
             success: function () {
               //
-              window.location.href = "./enrollment.php";
+              pend.removeClass("btn-primary");
+              pend.addClass("btn-outline-primary");
+              appr.removeClass("btn-outline-primary");
+              appr.addClass("btn-primary");
+              pend.val("");
+              appr.val("active");
+              mySuccess("Appointment Approved!");
+              load_data();
             },
             error: function (xhr, status, error) {
               $("body").html("<h1>" + xhr["status"] + " " + error + "</h1>");
@@ -211,7 +223,7 @@ $(document).ready(function () {
     var name = $(this).attr("data-value");
     var sched = $(this).attr("old-value");
     var pend = $("#pendingapp");
-    var appr = $("#rejectapp");
+    var rej = $("#rejectapp");
     alertify
       .confirm(
         '<i class="fas fa-times-circle"></i> Reject',
@@ -241,10 +253,10 @@ $(document).ready(function () {
                 success: function (data) {
                   pend.removeClass("btn-primary");
                   pend.addClass("btn-outline-primary");
-                  appr.removeClass("btn-outline-primary");
-                  appr.addClass("btn-primary");
+                  rej.removeClass("btn-outline-primary");
+                  rej.addClass("btn-primary");
                   pend.val("");
-                  appr.val("active");
+                  rej.val("active");
                   console.log(data);
                   load_data();
                 },

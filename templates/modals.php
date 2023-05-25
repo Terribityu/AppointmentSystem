@@ -29,8 +29,6 @@
     </div>
   </div>
 
-  <!-- Edit Info Modal -->
-
   <div class="modal fade" id="editProfileModal" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg modal-dialog-centered">
       <div class="modal-content">
@@ -42,7 +40,7 @@
                 <span class="ion-ios-person"></span>
             </div>
             <h3 class="text-center mb-4">Edit Profile Information</h3>
-            <form action="#" id="editForm" class="login-form">
+            <form action="#" id="editProfileInfo" class="login-form">
             <div class="form_details mb-4">
                     <div class="row form_details_body">
                         <div class="col-md-4 mb-2">
@@ -90,10 +88,44 @@
                         <div class="col-md-5 mb-2">
                             <label for="zipcode">Zip Code <span id="form_required">*</span></label>
                             <input type="number" class="form-control" name="zipcode" required placeholder="Zipcode"></input>
+                        </div>                   
+                        <input type="hidden" class="form-control rounded-left" name="userID">
+                    </div>
+                </div>
+                <div class="form-group mb-4">
+                    <button type="submit" class="form-control btn btn-primary rounded submit px-3">Update Information</button>
+                </div>
+            </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="editAccountModal" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-login-header ms-auto">
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body p-4 p-md-5">
+            <div class="icon d-flex align-items-center justify-content-center">
+                <span class="ion-ios-person"></span>
+            </div>
+            <h3 class="text-center mb-4">Edit Profile Information</h3>
+            <form action="#" id="editAccountInfo" class="login-form">
+            <div class="form_details mb-4">
+                    <div class="row form_details_body">
+                      <div class="col-md-12 d-flex justify-content-center">
+                            <div class="input-group mb-2 mr-sm-2 image-upload d-flex justify-content-center">
+                                <label id="formlabel" for="image">
+                                <img src="" title="Upload Image" alt="Avatar.png" id="preview"/>
+                                </label>
+                                <input type="file" class="form-control" id = "image" name="image">
+                            </div>
                         </div>
                         <div class="col-md-4 mb-2">
                             <label for="mobilenumber">Mobile Number <span id="form_required">*</span></label>
-                            <input type="number" class="form-control" name="mobilenumber" maxlength="10" required placeholder="Mobile Number"></input>
+                            +63 <input type="number" class="form-control" name="mobilenumber" maxlength="10" required placeholder="Mobile Number"></input>
                             <span id="id_number_error" class="error"></span>
                             <a id = "sendotp" class = "sendotp" href>Send OTP verication Code.</a>
                         </div>
@@ -133,3 +165,31 @@
       </div>
     </div>
   </div>
+
+
+
+  <!-- Feedbacks -->
+<!-- Modal -->
+<div class="modal fade" id="feedbackModal" tabindex="-1" aria-labelledby="feedbackModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg ">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title fw-bold" id="feedbackModalLabel"><i class="fa-solid fa-comments"></i> Create Post</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form id="tinyform">
+                    <!-- <label for="blogtitle" class="form-label">Title:</label>
+                    <input type="text" class="form-control" id="blogtitle" name="blogtitle" placeholder="Title" autocomplete="off" required> -->
+                    <label for="blogbody" class="form-label">Body:</label>
+                    <textarea id="blogbody" class="form-control" name="blogbody" placeholder="Type Here . . .">
+                    </textarea>
+            </div>
+            <div class="modal-footer">
+                <button type="submit" id="btn_post" name="btn_post" style="height: auto;" class="btn btn-secondary disabled w-100">Post</button>
+                </form>
+            </div>
+            <div id="lp-message"></div>
+        </div>
+    </div>
+</div>

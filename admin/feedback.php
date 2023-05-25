@@ -10,9 +10,9 @@
     include("template/header.php");
     include("template/modal.php");
 ?>
-<link rel="stylesheet" href="./assets/students/css/styles.css">
-<script src="./assets/students/js/scripts.js"></script>
-<title>Students - Destiny Driving School</title>
+<link rel="stylesheet" href="./assets/feedbacks/css/styles.css">
+<script src="./assets/feedbacks/js/scripts.js"></script>
+<title>Appointments - Destiny Driving School</title>
 </head>
 
 <body>
@@ -47,16 +47,16 @@
                         ?>
                     </ul>
                 </li>
-                <?php
-                    if($_SESSION['userType'] == "admin"){
-                ?>
                 <li >
                     <a href="index.php">
                         <i class="fas fa-home"></i>
                         <span id='link-label'>Dashboard</span>
                     </a>
                 </li>
-                <li class="active">
+                <?php
+                    if($_SESSION['userType'] == "admin"){
+                ?>
+                <li>
                     <a href="students.php">
                         <i class="fa-solid fa-users"></i>
                         <span id='link-label'>Students</span>
@@ -71,13 +71,13 @@
                 <?php
                     }
                 ?>
-                <li >
+                <li>
                     <a href="schedules.php">
                         <i class="fas fa-clipboard-user"></i>
                         <span id='link-label'>Schedules</span>
                     </a>
                 </li>
-                <li>
+                <li class="active">
                     <a href="appointments.php">
                         <i class="fa-solid fa-calendar-check"></i>
                         <span id='link-label'>Appointments</span>
@@ -108,7 +108,7 @@
                         <i class="fa-solid fa-bars"></i>
                     </button>
                         
-                    &nbsp;<button type="button" class="btn btn-success" id="addStud" data-bs-toggle="modal" data-bs-target="#addStudentModal" title="Add Students"><i class="fa-regular fas fa-circle-plus"></i></button>
+                    &nbsp;<button type="button" class="btn btn-success" id="addAppointment" data-bs-toggle="modal" data-bs-target="#addAppointmentModal" title="Add Students"><i class="fa-regular fas fa-circle-plus"></i></button>
                     
                     
                     <button class="btn btn-dark d-inline-block d-lg-none ms-auto" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -130,26 +130,31 @@
             </nav>
 
             <div class="d-flex justify-content-between mb-2">
-                <h2>Students</h2>
+                <div class="d-flex">
+                <h2>Appointments</h2>&nbsp
+                <button id="pendingfeed" type="button" class="ml-3 btn btn-primary" title="Pending" data-placement="right" value="active">
+		        Pending
+                </button>&nbsp
+                <button id="rejectfeed" type="button" class="ml-3 btn btn-outline-primary" title="Rejected" data-placement="right">
+                Rejected
+                </button>&nbsp
+                <button id="approvedfeed" type="button" class="ml-3 btn btn-outline-primary" title="Approved" data-placement="right">
+                Approved
+                </button>
+                </div>
                 <div>
                     <i class='fa-regular fas fa-magnifying-glass'></i>
                     <input type="text" id="search_text" placeholder="Search..."></input>
                 </div>
             </div>
             
-            <div id="displayStudents" class="table-responsive">
+            <div id="displayFeedbacks" class="table-responsive">
                 <table class="table table-hover table-striped">
                     <thead class="table-dark">
-                        <tr> 
-                        <th scope="col">Full Name</th> 
-                        <th scope="col">Suffix</th>
-                        <th scope="col">Address</th>
-                        <th scope="col">Birhtday</th> 
-                        <th scope="col">Gender</th>
-                        <th scope="col">Civil Status</th>
-                        <th scope="col">Number</th>
-                        <th scope="col">Email</th>
-                        <th scope="col">Action</th>
+                        <tr>
+                        <th scope="col">Full Name</th>
+                        <th scope="col">Description</th>
+                        <th scope="col" width="250">Action</th>
                         </tr>
                     </thead>
                     <tbody>

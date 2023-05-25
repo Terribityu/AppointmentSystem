@@ -47,12 +47,12 @@
     padding: 2rem;
   }
 
-#personal__info span, #personal__info p {
+#personal__info span, #personal__info p{
     font-size: 1.2em;
     color: black;
  }
 
- #personal__info p {
+ #user__details, #user__accounts p {
     font-weight: 700;
  }
 

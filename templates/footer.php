@@ -1,9 +1,9 @@
 <footer id="contact">
         <div class="container">
             <div class="row">
-                <div class="col-lg-3 col-sm-6">
+                <div class="col-lg-3 col-sm-3">
                     <div class="footer-single-box">
-                        <img src="assets/logo/logo_100x100.png" alt="">
+                        <img id="footer-logo" src="assets/logo/logo_100x100.png" alt="">
                     <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quam repellendus sunt praesentium aspernatur iure molestias.</p>
                     <i class="fa-solid fa-location-dot"></i>
                     <!-- <h3>We Accept</h3>
@@ -22,7 +22,7 @@
                         </p>
                     </div>
                 </div>
-                <div class="col-lg-3 col-sm-6">
+                <div class="col-lg-3 col-sm-3">
                     <div class="footer-single-box">
                         <h2>Quick Links</h2>
                     <ul>
@@ -34,7 +34,7 @@
                     </ul>
                     </div>                    
                 </div>
-                <div class="col-lg-3 col-sm-6">
+                <div class="col-lg-3 col-sm-3">
                     <div class="footer-single-box">
                         <h2>Pages</h2>
                     <ul>
@@ -44,10 +44,11 @@
                     </ul>
                     </div>                    
                 </div>
-                <div class="col-lg-3 col-sm-6">
+                <div class="col-lg-3 col-sm-3">
                     <div class="footer-single-box">
                         <h2>Contact Us</h2>
                         <div class="input-group mb-3">
+                            <form id="contactform">
                             <div class="col-md-12 mb-3">
                                 <input type="email" class="form-control" placeholder="Email" aria-label="Enter your Email ...">
                             </div>
@@ -57,6 +58,10 @@
                             <div class="col-md-12 mb-3">
                                 <textarea type="text" class="form-control" rows="4" placeholder="Details" aria-label="Details ..."></textarea>
                             </div>
+                            <div class="col-md-12 mb-3">
+                                <input type="submit" class="btn btn-secondary w-100" value="Contact Us" style="height: auto;">
+                            </div>
+                            </form>
                         </div>
                     </div>
                 </div>

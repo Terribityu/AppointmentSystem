@@ -15,10 +15,10 @@ require ('../connect.php');
         or gender like '%$search%'
         or civilstatus like '%$search%'
         or number like '%$search%'
-        or email like '%$search%') and userType = 'student'";
+        or email like '%$search%') and userType = 'student' and userArchive = 0";
         
     }else {
-        $query = "SELECT * FROM user_details JOIN users ON user_details.username = users.username where userType = 'student'";
+        $query = "SELECT * FROM user_details JOIN users ON user_details.username = users.username where userType = 'student' and userArchive = 0";
     }
 
     $result = mysqli_query($conn,$query);
@@ -36,7 +36,7 @@ require ('../connect.php');
                     <td>$number</td>
                     <td>$email</td>
                     <td><button id='editStud' title='Edit Student' value='$userID' data-value='$firstname $lastname' class='btn btn-success'><i class='fa-solid fas fa-user-pen'></i></button>&nbsp
-                    <button id='deleteStud' title='Delete Student' value='$userID' data-value='$firstname $lastname' class='btn btn-danger'><i class='fa-solid fa-trash'></i></button></td>
+                    <button id='deleteStud' title='Archive Student' value='$userID' data-value='$firstname $lastname' class='btn btn-danger'><i class='fa-solid fa-box-archive'></i></button></td>
                 </tr>
             ";
         }

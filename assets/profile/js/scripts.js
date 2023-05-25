@@ -1,14 +1,39 @@
 $(document).ready(function () {
   load_data();
 
-  $("#editForm").validate({
+  $("#editProfileInfo").validate({
+    submitHandler: function (form, event) {
+      event.preventDefault();
+
+      var formData = new FormData(form);
+
+      $.ajax({
+        type: "POST",
+        url: "database/profile/editProfile.php",
+        data: formData,
+        contentType: false,
+        cache: false,
+        processData: false,
+        success: function (data) {
+          mySuccess("Profile Successfuly Updated!");
+          $("#editProfileModal").modal("hide");
+          load_data();
+        },
+        error: function (xhr, status, error) {
+          $("body").html("<h1>" + xhr["status"] + " " + error + "</h1>");
+        },
+      });
+    },
+  });
+
+  $("#editAccountInfo").validate({
     rules: {
       password: {
         required: true,
       },
       password_cnf: {
         required: true,
-        equalTo: "#editForm [name='password']",
+        equalTo: "#editAccountInfo [name='password']",
       },
       emailotp: {
         required: true,
@@ -29,7 +54,7 @@ $(document).ready(function () {
           type: "GET",
           data: {
             verifyoldpass: function () {
-              return $("#editForm [name='oldpassword']").val();
+              return $("#editAccountInfo [name='oldpassword']").val();
             },
           },
         },
@@ -41,7 +66,7 @@ $(document).ready(function () {
           type: "GET",
           data: {
             checkedituser: function () {
-              return $("#editForm [name='username']").val();
+              return $("#editAccountInfo [name='username']").val();
             },
           },
         },
@@ -78,13 +103,15 @@ $(document).ready(function () {
 
       $.ajax({
         type: "POST",
-        url: "database/profile/update.php",
+        url: "database/profile/editAccount.php",
         data: formData,
         contentType: false,
         cache: false,
         processData: false,
         success: function (data) {
           mySuccess("Account Successfuly Updated!");
+          $("#editAccountModal").modal("hide");
+          load_data();
           // console.log(data);
           // setTimeout(function () {
           //   // Redirect to the desired location
@@ -110,6 +137,7 @@ $(document).ready(function () {
         $("#fullname__text").html(data.firstname + " " + data.lastname);
         $("#name__text").html(data.firstname + " " + data.lastname);
         $("#profile__edit").val(data.userID);
+        $("#account__edit").val(data.userID);
         $("#address__text").html(data.address);
         $("#birthday__text").html(data.birthday);
         $("#gender__text").html(data.gender);
@@ -123,33 +151,61 @@ $(document).ready(function () {
 
   $(document).on("click", "#profile__edit", function (e) {
     var id = $(this).val();
-
+    e.preventDefault();
     $.ajax({
       url: "database/profile/getInfo.php",
       method: "POST",
       data: { userID: id },
       success: function (data) {
         data = JSON.parse(data);
-        console.log(data);
-        $("#editForm [name='userID']").val(id);
-        $("#editForm [name='firstname']").val(data["firstname"]);
-        $("#editForm [name='middlename']").val(data["middlename"]);
-        $("#editForm [name='lastname']").val(data["lastname"]);
-        $("#editForm [name='suffix']").val(data["suffix"]);
-        $("#editForm [name='address']").val(data["address"]);
-        $("#editForm [name='dateofbirth']").val(data["dateofbirth"]);
-        $("#editForm [name='age']").val(data["age"]);
-        $("#editForm [name='gender']").val(data["gender"]);
-        $("#editForm [name='civilstatus']").val(data["civilstatus"]);
-        $("#editForm [name='zipcode']").val(data["zipcode"]);
-        $("#editForm [name='mobilenumber']").val(data["number"]);
-        $("#editForm [name='email']").val(data["email"]);
-        $("#editForm [name='username']").val(data["username"]);
+        $("#editProfileInfo [name='userID']").val(id);
+        $("#editProfileInfo [name='firstname']").val(data["firstname"]);
+        $("#editProfileInfo [name='middlename']").val(data["middlename"]);
+        $("#editProfileInfo [name='lastname']").val(data["lastname"]);
+        $("#editProfileInfo [name='suffix']").val(data["suffix"]);
+        $("#editProfileInfo [name='address']").val(data["address"]);
+        $("#editProfileInfo [name='dateofbirth']").val(data["dateofbirth"]);
+        $("#editProfileInfo [name='age']").val(data["age"]);
+        $("#editProfileInfo [name='gender']").val(data["gender"]);
+        $("#editProfileInfo [name='civilstatus']").val(data["civilstatus"]);
+        $("#editProfileInfo [name='zipcode']").val(data["zipcode"]);
         $("#editProfileModal").modal("show");
       },
     });
   });
 
+  $(document).on("click", "#account__edit", function (e) {
+    var id = $(this).val();
+    e.preventDefault();
+    $.ajax({
+      url: "database/profile/getInfo.php",
+      method: "POST",
+      data: { userID: id },
+      success: function (data) {
+        data = JSON.parse(data);
+        $("#preview").attr("src", data["avatar"]);
+        $("#editAccountInfo [name='userID']").val(id);
+        $("#editAccountInfo [name='mobilenumber']").val(data["number"]);
+        $("#editAccountInfo [name='email']").val(data["email"]);
+        $("#editAccountInfo [name='username']").val(data["username"]);
+        $("#editAccountModal").modal("show");
+      },
+    });
+  });
+
+  $("#editAccountModal").on("hidden.bs.modal", function () {
+    $("#editAccountInfo")[0].reset();
+    clearTimeout(timerId);
+    timeLeft = 60;
+    $("#sendotp").html("Send OTP verication Code.");
+    $("#sendotp").attr("href", "");
+    $("#email").removeAttr("readonly");
+    $("#sendotp").addClass("sendotp");
+  });
+
+  $("#editProfileModal").on("hidden.bs.modal", function () {
+    $("#editProfileInfo")[0].reset();
+  });
   var timerId;
 
   $(document).on("click", ".sendotp", function (e) {
@@ -160,13 +216,13 @@ $(document).ready(function () {
       // $("#id_number_error").text("Mobile number should be 10 characters.");
     } else {
       $("#editAccountInfo [name='mobilenumber']").attr("readonly", true);
-      $("#editAccountInfo [name='emailotp']").attr("readonly", false);
+      $("#editAccountInfo [name='emailotp']").removeAttr("readonly");
       number = $("#editAccountInfo [name='mobilenumber']").val();
       $("#id_number_error").text("");
       $("#sendotp").removeClass("sendotp");
       timerId = setInterval(countdown, 1000);
       $.ajax({
-        url: "../database/registration/otp.php",
+        url: "database/registration/otp.php",
         method: "post",
         data: { number: number },
         success: function (data) {
@@ -188,7 +244,7 @@ $(document).ready(function () {
       clearTimeout(timerId);
       timerId = setInterval(countdown, 1000);
       $.ajax({
-        url: "../database/registration/otp.php",
+        url: "database/registration/otp.php",
         method: "post",
         data: { number: number },
         success: function (data) {
@@ -210,16 +266,6 @@ $(document).ready(function () {
       timeLeft--;
     }
   }
-
-  $("#mobilenum").keyup(function () {
-    var inputValue = $("#mobilenum").val().trim();
-    if (inputValue.length == 10) {
-      $("#otp").prop("disabled", false);
-      $(this).removeClass("error");
-    } else {
-      $("#otp").prop("disabled", true);
-    }
-  });
 
   $("#image").change(function () {
     const [file] = this.files;
@@ -247,6 +293,43 @@ $(document).ready(function () {
       text: success,
       showConfirmButton: false,
       timer: 2000,
+    });
+  }
+
+  $("#addFeedback").on("click", function () {
+    $("#feedbackModal").modal("show");
+  });
+
+  $("#tinyform").on("submit", function (e) {
+    e.preventDefault();
+    var data = $(this).serialize();
+
+    $.ajax({
+      type: "POST",
+      url: "database/profile/addfeedback.php",
+      data: data,
+      success: function (data) {
+        mySuccess("Feedback submitted and currently on review.");
+        load_feedbacks();
+        $("#feedbackModal").modal("hide");
+      },
+    });
+  });
+
+  load_feedbacks();
+  function load_feedbacks() {
+    $.ajax({
+      url: "database/profile/displayfeedback.php",
+      method: "POST",
+      success: function (data) {
+        data = JSON.parse(data);
+        $("#feedbacks__content").html(data.feed);
+        if (data.button == true) {
+          $("#addFeedback").removeAttr("hidden");
+        } else {
+          $("#addFeedback").attr("hidden", "true");
+        }
+      },
     });
   }
 });

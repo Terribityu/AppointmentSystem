@@ -28,6 +28,11 @@ $(document).ready(function () {
         $("#time__text").html(data["time"]);
         $("#status__text").html(data["status_a"] + ": " + data["reason_rej"]);
         $("#price__text").html(data["price"]);
+        if (data["status_a"] == "rejected") {
+          $("#cancelAppoint").attr("hidden", "true");
+        } else {
+          $("#cancelAppoint").removeAttr("hidden");
+        }
         $("#cancelAppoint").val(data["appointmentID"]);
         $("#appointInfoModal").modal("show");
 
@@ -73,20 +78,40 @@ $(document).ready(function () {
       confirmButtonText: "Yes, cancel it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        $.ajax({
-          url: "database/appointments/request.php",
-          method: "post",
-          data: { id: id },
-          success: function (data) {
-            console.log(data);
-            load_data();
-            Swal.fire(
-              "Success!",
-              "Your request has been submitted.",
-              "success"
-            );
-          },
-        });
+        (async () => {
+          const { value: text } = await Swal.fire({
+            input: "textarea",
+            inputLabel: "Reason for cancel appointment request.",
+            inputPlaceholder: "Type your message here...",
+            inputAttributes: {
+              "aria-label": "Type your message here",
+            },
+            showCancelButton: true,
+          });
+
+          if (text) {
+            $.ajax({
+              url: "database/appointments/request.php",
+              method: "post",
+              data: { id: id, reason: text },
+              success: function (data) {
+                console.log(data);
+                load_data();
+                Swal.fire(
+                  "Success!",
+                  "Your request has been submitted.",
+                  "success"
+                );
+              },
+            });
+          } else {
+            Swal.fire({
+              icon: "info",
+              title: "Oops...",
+              text: "Cancel request has been cancelled",
+            });
+          }
+        })();
       } else {
         $("#appointInfoModal").modal("show");
       }

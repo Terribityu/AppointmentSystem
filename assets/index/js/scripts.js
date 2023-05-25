@@ -1,5 +1,17 @@
 $(document).ready(function () {
   // Start of index Javascript
+
+  load_feedbacks();
+
+  function load_feedbacks() {
+    $.ajax({
+      url: "database/index/displayFeedbacks.php",
+      success: function (data) {
+        $(".feedback-slider").html(data);
+      },
+    });
+  }
+
   $(".team-slider").owlCarousel({
     loop: true,
     nav: false,

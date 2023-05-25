@@ -14,10 +14,10 @@ require ('../connect.php');
         or gender like '%$search%'
         or civilstatus like '%$search%'
         or number like '%$search%'
-        or email like '%$search%') and (userType = 'instructor')";
+        or email like '%$search%') and (userType = 'instructor' and userArchive = 0)";
         
     }else {
-        $query = "SELECT * FROM user_details JOIN users ON user_details.username = users.username where userType = 'instructor'";
+        $query = "SELECT * FROM user_details JOIN users ON user_details.username = users.username where userType = 'instructor' and userArchive = 0";
     }
 
     $result = mysqli_query($conn,$query);

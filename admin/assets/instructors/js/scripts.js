@@ -130,15 +130,14 @@ $(document).ready(function () {
     var name = $(this).attr("data-value");
     alertify
       .confirm(
-        '<i class="fas fa-trash-alt"></i> Delete',
-        "Confirm Deleting " + name + " ?",
+        '<i class="fas fa-trash-alt"></i> Archive',
+        "Confirm add to Archive " + name + " ?",
         function () {
           $.ajax({
             type: "GET",
-            url:
-              "database/instructors/delete.php?deleteinstructor=true&id=" + id,
+            url: "database/instructors/archive.php?id=" + id,
             success: function () {
-              mySuccess(name + " successfully deleted.");
+              mySuccess(name + " Archive Success.");
               load_data();
             },
             error: function (xhr, status, error) {

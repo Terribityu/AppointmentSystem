@@ -8,7 +8,28 @@
 
     include("templates/header.php");
 ?>
+<script src="https://cdn.tiny.cloud/1/l6zbrue1t5otwmh45fyvnjclf2djbk4xypmzoo3ahl8ny4lh/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
 <link rel="stylesheet" href="assets/profile/css/styles.css"></style>
+<script>
+    tinymce.init({
+        selector: '#blogbody',
+        resize: false,
+        plugins: 'autoresize',
+        max_height: 500,
+        min_height: 400,
+        menubar: "edit format",
+        setup: function(ed) {
+            ed.on("keyup", function() {
+                let blog = tinymce.activeEditor.getContent();
+                if (blog == '') {
+                    $('#btn_post').addClass('disabled');
+                } else {
+                    $('#btn_post').removeClass('disabled')
+                }
+            });
+        },
+    });
+</script>
 <?php
     include("templates/modals.php");
 ?>
@@ -92,13 +113,13 @@
     <section id="profile__content">
         <div class="container mb-5" id="profile__info">
             <img id="profile__img" alt="Profile Picture">
-            <h1 id="fullname__text">John Rey D Sto Domingo</h1><h1><button id="profile__edit" class="fa-sharp fa-regular fa-pen-to-square" title="Edit Profile"></button></h1>
+            <h1 id="fullname__text">John Rey D Sto Domingo</h1><h1></h1>
         </div>
         <div id="personal__info" class="container">
             <div class="row">
                 <div class="col-md-6">
                     <div id="user__details" class="mb-5">
-                        <h2 class="text-center">Personal Info</h2><hr>
+                        <h2 class="text-center">Personal Info&nbsp;<a href id="profile__edit" class="fa-sharp fa-regular fa-pen-to-square" title="Edit Profile"></a></h2><hr>
                         <p>Name: <span id="name__text">John Rey Sto Domingo</span></p>
                         <p>Address: <span id="address__text">Buliran San Miguel Bulacan</span></p>
                         <p>Birthday: <span id="birthday__text">May 05, 2000</span></p>
@@ -106,7 +127,7 @@
                         <p>Civil Status: <span id="civil__text">Single</span></p>
                     </div>
                     <div id="user__accounts" class="mb-5">
-                        <h2 class="text-center">Account Info</h2><hr>
+                        <h2 class="text-center">Account Info&nbsp;<a href id="account__edit" class="fa-sharp fa-regular fa-pen-to-square" title="Edit Account"></a></h2><hr>
                         <p>Username: <span id="username__text">fascinating</span></p>
                         <p>Number: <span id="number__text">09351723271</span></p>
                         <p>Email: <span id="email__text">fascinatingact@gmail.com</span></p>
@@ -114,8 +135,10 @@
                 </div>
                 <div class="col-md-6" class="mb-5">
                     <div id="user__feedbacks">
-                        <h2 class="text-center">Feedbacks</h2><hr>
-                        <h5 style='text-align:center'><i class='fa-regular fas fa-magnifying-glass'></i>No Results Found.</h5>
+                        <h2 class="text-center">Feedbacks&nbsp;<button id='addFeedback' class='btn btn-outline-success rounded-pill'><i class="fa-solid fa-comment-medical"></i></button></h2><hr>
+                        <div id="feedbacks__content">
+                            ...
+                        </div>
                     </div>
                 </div>
             </div>

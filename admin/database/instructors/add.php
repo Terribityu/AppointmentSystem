@@ -11,7 +11,7 @@ for ($i = 0; $i < 8; $i++) {
 
 $hashpass = password_hash($password, PASSWORD_DEFAULT);
 // Prepare the statements
-$query = "INSERT INTO users VALUES(NULL, ?, ?, ?, ?, 'https://res.cloudinary.com/ddf34uiqq/image/upload/v1682772503/m5voiqwbccmzooxvi8wa.jpg', 'instructor')";
+$query = "INSERT INTO users VALUES(NULL, ?, ?, ?, ?, 'https://res.cloudinary.com/ddf34uiqq/image/upload/v1682772503/m5voiqwbccmzooxvi8wa.jpg', 'instructor', 0)";
 $query1 = "INSERT INTO user_details VALUES(NULL, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
 $stmt1 = mysqli_prepare($conn, $query);
