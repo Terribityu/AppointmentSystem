@@ -2,7 +2,6 @@
     require("../connect.php");
     // Update the path below to your autoload.php,
     // see https://getcomposer.org/doc/01-basic-usage.md
-    $startt = microtime(true);
     $query = "SELECT *
     FROM schedules
     JOIN appointments ON schedules.id = appointments.scheduleID
@@ -54,7 +53,34 @@
             require("sendnotif.php");
         }
     }
-    $end = microtime(true);
-    $executionTime = $end - $startt;
-    echo "<br><br>".$executionTime;
+
+    $query2 = "SELECT *
+    FROM schedules
+    JOIN appointments ON schedules.id = appointments.scheduleID
+    JOIN users ON users.userID = appointments.studentID
+    JOIN user_details ON users.username = user_details.username
+    WHERE start = CURDATE() AND status_a = 'approved'";
+
+    $result4 = mysqli_query($conn, $query4);
+    if(mysqli_num_rows($result4)>0){
+        while($row = mysqli_fetch_array($result4)){
+            $dayy = "today";
+            require("sendnotif.php");
+        }
+    }
+
+    $query2 = "SELECT *
+    FROM schedules
+    JOIN appointments ON schedules.id = appointments.scheduleID
+    JOIN users ON users.userID = schedules.instructorID
+    JOIN user_details ON users.username = user_details.username
+    WHERE start = CURDATE() AND status_a = 'approved'";
+
+    $result5 = mysqli_query($conn, $query5);
+    if(mysqli_num_rows($result5)>0){
+        while($row = mysqli_fetch_array($result5)){
+            $dayy = "today";
+            require("sendnotif.php");
+        }
+    }
 ?>

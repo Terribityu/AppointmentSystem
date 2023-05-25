@@ -10,7 +10,7 @@
             <div class='carousel-inner'>
                 <div class='carousel-item $active'>
                 <div class='single-item'>
-                    <div class='row'>
+                    <div class='row mt-5'>
                         <div class='col-md-5'>
                             <div class='profile'>
                                 <div class='testimonial-img-area'>

@@ -3,14 +3,13 @@ $(document).ready(function () {
   checkDatabase();
   function checkDatabase() {
     // Perform AJAX request to check the database
-    console.log("Called Function");
     $.ajax({
       type: "POST",
-      url: "../database/smsnotification/check_database.php", // Replace with the actual PHP file to handle the database check
+      url: "check_database.php", // Replace with the actual PHP file to handle the database check
       success: function (response) {
         // Handle the response from the server
         console.log("Database check successful");
-        console.log(response);
+        // console.log(response);
         // Additional logic or actions based on the response
       },
       error: function (xhr, status, error) {
