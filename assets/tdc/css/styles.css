@@ -31,3 +31,20 @@
     display: flex;
     justify-content: center;
 }
+
+.descrip{
+    margin-top: 50px;
+}
+
+@media (max-width:880px){
+	.list-group-item img{
+        width: 150px;
+    }
+    .list-group-item{
+        font-size: 14px;
+    }
+
+    .descrip{
+        margin-top: 0;
+    }
+}

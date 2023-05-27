@@ -1,7 +1,7 @@
 {
     "require": {
         "phpmailer/phpmailer": "^6.8",
-        "twilio/sdk": "^7.2",
+        "twilio/sdk": "^7.4",
         "cloudinary/cloudinary_php": "^2.10"
     }
 }

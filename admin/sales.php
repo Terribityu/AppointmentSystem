@@ -154,9 +154,19 @@
                         <th scope="col">Payment Date</th> 
                         </tr>
                     </thead>
-                    <tbody>
-                    </tbody>
+                    <tbody id="table-body" class="tbody"></tbody>
                 </table>
+                <div class="d-flex justify-content-center">
+                    <button class="btn btn-primary me-1" id="prev">
+                        <i class="fa-solid fa-chevron-left"></i>
+                    </button>
+                    <button class="btn btn-primary me-1" disabled id="cur__page">
+                        1
+                    </button>
+                    <button class="btn btn-primary" id="next">
+                        <i class="fa-solid fa-chevron-right"></i>
+                    </button>
+                </div>
             </div>
         </div>
     </div>

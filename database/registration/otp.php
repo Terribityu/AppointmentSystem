@@ -12,14 +12,14 @@
     $_SESSION['otp'] = $otp;
     $_SESSION['number'] = $number;
 
-    $sid    = "ACc9007507d88a2a45a6ccfcde4b59eec0";
-    $token  = "a07d120c37559f1f5125d24b81a4b6d8";
+    $sid    = "czx";
+    $token  = "czx";
     $twilio = new Client($sid, $token);
 
     $message = $twilio->messages
       ->create("+63".$number, // to
         array(
-                'from' => '+13194564154',
+                'from' => '+zxc',
                 "body" => "Dear user, Your OTP verification code is $otp"
         )
       );

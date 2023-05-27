@@ -91,7 +91,7 @@
             <h2 class="text-center">Appointments</h2>
             <ul id="schedlist" class="list-group my-3">
                 <li class="list-group-item d-flex align-items-center">
-                <img src="assets/img/avatar.jpg" style="height:250px; width:250px;" alt="">
+                <img src="assets/img/avatar.jpg" alt="">
                 &nbsp;
                 <div>  
                     <div class="instruct_name">
@@ -111,8 +111,7 @@
             </ul>
         </div>
     </section>
-    <script>
-    </script>
+    
     <!-- End of Services -->
     
 <script src="./assets/pdc/js/scripts.js"></script>

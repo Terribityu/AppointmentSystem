@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "d487a685cfd473bd9f09ff664ebbe001",
+    "content-hash": "17bdecbc93e6b71b0f3cf6c6fc9050d6",
     "packages": [
         {
             "name": "cloudinary/cloudinary_php",
@@ -1013,16 +1013,16 @@
         },
         {
             "name": "twilio/sdk",
-            "version": "7.2.0",
+            "version": "7.4.1",
             "source": {
                 "type": "git",
                 "url": "git@github.com:twilio/twilio-php.git",
-                "reference": "11271c602398f7678dc465dcab97601e6e866819"
+                "reference": "427baa8472006bf0ec6aa1bc79be10ae37b2389f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/twilio/twilio-php/zipball/11271c602398f7678dc465dcab97601e6e866819",
-                "reference": "11271c602398f7678dc465dcab97601e6e866819",
+                "url": "https://api.github.com/repos/twilio/twilio-php/zipball/427baa8472006bf0ec6aa1bc79be10ae37b2389f",
+                "reference": "427baa8472006bf0ec6aa1bc79be10ae37b2389f",
                 "shasum": ""
             },
             "require": {
@@ -1058,7 +1058,7 @@
                 "sms",
                 "twilio"
             ],
-            "time": "2023-04-05T22:21:08+00:00"
+            "time": "2023-05-18T07:58:57+00:00"
         }
     ],
     "packages-dev": [],

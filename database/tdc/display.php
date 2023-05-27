@@ -42,10 +42,14 @@ if (mysqli_num_rows($r1) > 0) {
         }
 
         if ($hasSchedules) {
-            echo "<li class='list-group-item d-flex align-items-center'>
-                <img src='". $row1['avatar']. "' alt=''>
-                &nbsp;
-                <div>
+            echo "
+                    <li class='list-group-item'>
+            <div class='row'>
+                <div class='col col-md-3'>
+                    <img src='". $row1['avatar']. "' alt=''>
+                    &nbsp;
+                </div>
+                <div class='col col-md-9 descrip'>
                     <div class='instruct_name'>
                         <h5>" . $row1['firstname'] . " " . $row1['lastname'] . "</h5>
                         <p>View Bio</p>
@@ -69,6 +73,7 @@ if (mysqli_num_rows($r1) > 0) {
 
             echo "</div>
                 </div>
+            </div>
                 </li>";
         }
     }

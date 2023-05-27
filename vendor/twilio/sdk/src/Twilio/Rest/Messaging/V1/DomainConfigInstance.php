@@ -28,12 +28,13 @@ use Twilio\Deserialize;
 /**
  * @property string|null $domainSid
  * @property string|null $configSid
- * @property string[]|null $messagingServiceSids
  * @property string|null $fallbackUrl
  * @property string|null $callbackUrl
+ * @property bool|null $continueOnFailure
  * @property \DateTime|null $dateCreated
  * @property \DateTime|null $dateUpdated
  * @property string|null $url
+ * @property bool|null $disableHttps
  */
 class DomainConfigInstance extends InstanceResource
 {
@@ -52,12 +53,13 @@ class DomainConfigInstance extends InstanceResource
         $this->properties = [
             'domainSid' => Values::array_get($payload, 'domain_sid'),
             'configSid' => Values::array_get($payload, 'config_sid'),
-            'messagingServiceSids' => Values::array_get($payload, 'messaging_service_sids'),
             'fallbackUrl' => Values::array_get($payload, 'fallback_url'),
             'callbackUrl' => Values::array_get($payload, 'callback_url'),
+            'continueOnFailure' => Values::array_get($payload, 'continue_on_failure'),
             'dateCreated' => Deserialize::dateTime(Values::array_get($payload, 'date_created')),
             'dateUpdated' => Deserialize::dateTime(Values::array_get($payload, 'date_updated')),
             'url' => Values::array_get($payload, 'url'),
+            'disableHttps' => Values::array_get($payload, 'disable_https'),
         ];
 
         $this->solution = ['domainSid' => $domainSid ?: $this->properties['domainSid'], ];
@@ -96,15 +98,14 @@ class DomainConfigInstance extends InstanceResource
     /**
      * Update the DomainConfigInstance
      *
-     * @param string[] $messagingServiceSids A list of messagingServiceSids (with prefix MG)
      * @param array|Options $options Optional Arguments
      * @return DomainConfigInstance Updated DomainConfigInstance
      * @throws TwilioException When an HTTP error occurs.
      */
-    public function update(array $messagingServiceSids, array $options = []): DomainConfigInstance
+    public function update(array $options = []): DomainConfigInstance
     {
 
-        return $this->proxy()->update($messagingServiceSids, $options);
+        return $this->proxy()->update($options);
     }
 
     /**

@@ -1,0 +1,1 @@
+php -f C:\laragon\www\Destiny\admin\database\smsnotification\sendnotif.php
