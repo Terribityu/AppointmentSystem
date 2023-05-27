@@ -1,10 +1,5 @@
-
 <?php
-
-    // Update the path below to your autoload.php,
-    // see https://getcomposer.org/doc/01-basic-usage.md
     require_once '../../vendor/autoload.php';
-    use Twilio\Rest\Client;
 
     session_start();
     extract($_POST);
@@ -12,18 +7,26 @@
     $_SESSION['otp'] = $otp;
     $_SESSION['number'] = $number;
 
-    $sid    = "czx";
-    $token  = "czx";
-    $twilio = new Client($sid, $token);
+    $ch = curl_init();
+$parameters = array(
+    'apikey' => 'das', //Your API KEY
+    'number' => $number,
+    'message' => 'Dear user, Your OTP verification code is $otp',
+    'sendername' => 'SEMAPHORE'
+);
+curl_setopt( $ch, CURLOPT_URL,'https://semaphore.co/api/v4/messages' );
+curl_setopt( $ch, CURLOPT_POST, 1 );
 
-    $message = $twilio->messages
-      ->create("+63".$number, // to
-        array(
-                'from' => '+zxc',
-                "body" => "Dear user, Your OTP verification code is $otp"
-        )
-      );
+//Send the parameters set above with the request
+curl_setopt( $ch, CURLOPT_POSTFIELDS, http_build_query( $parameters ) );
 
-print($message->sid);
+// Receive response from server
+curl_setopt( $ch, CURLOPT_RETURNTRANSFER, true );
+$output = curl_exec( $ch );
+curl_close ($ch);
+
+//Show the server response
+echo $output;
 echo $otp;
-?>
+
+    ?>

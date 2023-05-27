@@ -4,11 +4,10 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticIniteaee36b4d66bce040177a634efafad62
+class ComposerStaticInit026a815187457065ff3e9261a7700b83
 {
     public static $files = array (
         '7b11c4dc42b3b3023073cb14e519683c' => __DIR__ . '/..' . '/ralouphie/getallheaders/src/getallheaders.php',
-        'c964ee0ededf28c96ebd9db5099ef910' => __DIR__ . '/..' . '/guzzlehttp/promises/src/functions_include.php',
         '6e3fae29631ef280660b3cdad06f25a8' => __DIR__ . '/..' . '/symfony/deprecation-contracts/function.php',
         '37a3dc5111fe8f707ab4c132ef1dbc62' => __DIR__ . '/..' . '/guzzlehttp/guzzle/src/functions_include.php',
     );
@@ -16,7 +15,6 @@ class ComposerStaticIniteaee36b4d66bce040177a634efafad62
     public static $prefixLengthsPsr4 = array (
         'T' => 
         array (
-            'Twilio\\' => 7,
             'Teapot\\StatusCode\\' => 18,
         ),
         'P' => 
@@ -39,10 +37,6 @@ class ComposerStaticIniteaee36b4d66bce040177a634efafad62
     );
 
     public static $prefixDirsPsr4 = array (
-        'Twilio\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/twilio/sdk/src/Twilio',
-        ),
         'Teapot\\StatusCode\\' => 
         array (
             0 => __DIR__ . '/..' . '/teapot/status-code/src',
@@ -53,8 +47,8 @@ class ComposerStaticIniteaee36b4d66bce040177a634efafad62
         ),
         'Psr\\Http\\Message\\' => 
         array (
-            0 => __DIR__ . '/..' . '/psr/http-factory/src',
-            1 => __DIR__ . '/..' . '/psr/http-message/src',
+            0 => __DIR__ . '/..' . '/psr/http-message/src',
+            1 => __DIR__ . '/..' . '/psr/http-factory/src',
         ),
         'Psr\\Http\\Client\\' => 
         array (
@@ -710,9 +704,9 @@ class ComposerStaticIniteaee36b4d66bce040177a634efafad62
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticIniteaee36b4d66bce040177a634efafad62::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticIniteaee36b4d66bce040177a634efafad62::$prefixDirsPsr4;
-            $loader->classMap = ComposerStaticIniteaee36b4d66bce040177a634efafad62::$classMap;
+            $loader->prefixLengthsPsr4 = ComposerStaticInit026a815187457065ff3e9261a7700b83::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInit026a815187457065ff3e9261a7700b83::$prefixDirsPsr4;
+            $loader->classMap = ComposerStaticInit026a815187457065ff3e9261a7700b83::$classMap;
 
         }, null, ClassLoader::class);
     }

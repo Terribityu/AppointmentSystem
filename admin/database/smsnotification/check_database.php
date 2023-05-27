@@ -23,6 +23,7 @@
     $result = mysqli_query($conn, $query);
     if(mysqli_num_rows($result)>0){
         while($row = mysqli_fetch_array($result)){
+            extract($row);
             $date_text = date("F d, Y", strtotime($start));
             $time_std = date("g:i A", strtotime($time));
             $message_n = "Hi, $firstname $lastname you have an $title appointment due $date_text $time_std for Destiny Driving School";
@@ -39,6 +40,7 @@
     $result1 = mysqli_query($conn, $query1);
     if(mysqli_num_rows($result1)>0){
         while($row = mysqli_fetch_array($result1)){
+            extract($row);
             $date_text = date("F d, Y", strtotime($start));
             $time_std = date("g:i A", strtotime($time));
             $message_n = "Hi, $firstname $lastname you have an $title appointment due $date_text $time_std for Destiny Driving School";
@@ -55,6 +57,7 @@
     $result2 = mysqli_query($conn, $query2);
     if(mysqli_num_rows($result2)>0){
         while($row = mysqli_fetch_array($result2)){
+            extract($row);
             $date_text = date("F d, Y", strtotime($start));
             $time_std = date("g:i A", strtotime($time));
             $message_n = "Hi, $firstname $lastname you have an $title appointment due $date_text $time_std for Destiny Driving School";
@@ -71,6 +74,7 @@
     $result3 = mysqli_query($conn, $query3);
     if(mysqli_num_rows($result3)>0){
         while($row = mysqli_fetch_array($result3)){
+            extract($row);
             $date_text = date("F d, Y", strtotime($start));
             $time_std = date("g:i A", strtotime($time));
             $message_n = "Hi, $firstname $lastname you have an $title appointment due $date_text $time_std for Destiny Driving School";
@@ -88,6 +92,7 @@
     $result4 = mysqli_query($conn, $query4);
     if(mysqli_num_rows($result4)>0){
         while($row = mysqli_fetch_array($result4)){
+            extract($row);
             $date_text = date("F d, Y", strtotime($start));
             $time_std = date("g:i A", strtotime($time));
             $message_n = "Hi, $firstname $lastname you have an $title appointment Today at $time_std for Destiny Driving School";
@@ -106,6 +111,7 @@
     $result5 = mysqli_query($conn, $query5);
     if(mysqli_num_rows($result5)>0){
         while($row = mysqli_fetch_array($result5)){
+            extract($row);
             $date_text = date("F d, Y", strtotime($start));
             $time_std = date("g:i A", strtotime($time));
             $message_n = "Hi, $firstname $lastname you have an $title appointment Today at $time_std for Destiny Driving School";
