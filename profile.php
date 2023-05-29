@@ -120,17 +120,17 @@
                 <div class="col-md-6">
                     <div id="user__details" class="mb-5">
                         <h2 class="text-center">Personal Info&nbsp;<a href id="profile__edit" class="fa-sharp fa-regular fa-pen-to-square" title="Edit Profile"></a></h2><hr>
-                        <p>Name: <span id="name__text">John Rey Sto Domingo</span></p>
-                        <p>Address: <span id="address__text">Buliran San Miguel Bulacan</span></p>
-                        <p>Birthday: <span id="birthday__text">May 05, 2000</span></p>
-                        <p>Gender: <span id="gender__text">Male</span></p>
-                        <p>Civil Status: <span id="civil__text">Single</span></p>
+                        <p>Name: <span id="name__text">...</span></p>
+                        <p>Address: <span id="address__text">...</span></p>
+                        <p>Birthday: <span id="birthday__text">...</span></p>
+                        <p>Gender: <span id="gender__text">...</span></p>
+                        <p>Civil Status: <span id="civil__text">...</span></p>
                     </div>
                     <div id="user__accounts" class="mb-5">
                         <h2 class="text-center">Account Info&nbsp;<a href id="account__edit" class="fa-sharp fa-regular fa-pen-to-square" title="Edit Account"></a></h2><hr>
-                        <p>Username: <span id="username__text">fascinating</span></p>
-                        <p>Number: <span id="number__text">09351723271</span></p>
-                        <p>Email: <span id="email__text">fascinatingact@gmail.com</span></p>
+                        <p>Username: <span id="username__text">...</span></p>
+                        <p>Number: <span id="number__text">...</span></p>
+                        <p>Email: <span id="email__text">...</span></p>
                     </div>
                 </div>
                 <div class="col-md-6" class="mb-5">

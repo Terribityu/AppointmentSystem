@@ -1,5 +1,6 @@
 <?php
 require ('../connect.php');
+if (session_status() === PHP_SESSION_ACTIVE) {
                 extract($_GET);
                 $date = date('m-d-Y');
                 $sql = "INSERT INTO sales VALUES(NULL, now(), $price, $id)";
@@ -12,4 +13,5 @@ require ('../connect.php');
                 }else{
                         echo "Error On Query";
                 }
+        }
 ?>

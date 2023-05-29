@@ -1,5 +1,6 @@
 <?php
 require ('../connect.php');
+if (session_status() === PHP_SESSION_ACTIVE) {
 		$id = $_POST['id'];
 		$query = "SELECT * FROM `appointments` JOIN users ON appointments.studentID = users.userID JOIN schedules ON appointments.scheduleID = schedules.id JOIN user_details ON user_details.username = users.username
 		WHERE appointmentID = $id";
@@ -17,4 +18,5 @@ require ('../connect.php');
 		// <p>Time: <span id="time__text">'.$time_std.'</span></p>
 		// <p>Status: <span id="status__text">'.$status.'</span></p>
 		// <p>Price: <span id="price__text">'.$price.'</span></p>';
+}
 ?>

@@ -38,9 +38,9 @@
                     <div class="footer-single-box">
                         <h2>Pages</h2>
                     <ul>
-                        <li><a href="#">Therotical Driving Course</a></li>
+                        <li><a href="#">Theoretical Driving Course</a></li>
                         <li><a href="#">Practical Driving Course</a></li>
-                        <li><a href="#">Regsitration</a></li>
+                        <li><a href="#">Registration</a></li>
                     </ul>
                     </div>                    
                 </div>

@@ -1,5 +1,6 @@
 <?php
     require('../connect.php');
+if (session_status() === PHP_SESSION_ACTIVE) {
 
     extract($_POST);
 
@@ -14,4 +15,5 @@
 
         addSystemLogs($lastid, "addfeedback");
     }
+}
 ?>

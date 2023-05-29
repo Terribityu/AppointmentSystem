@@ -52,7 +52,6 @@ $(document).ready(function () {
       url: "database/instructors/add.php",
       data: data,
       success: function (data) {
-        console.log(data);
         $("#addInstructorModal").modal("hide");
         mySuccess("Instructor successfully added.");
         load_data();
@@ -71,7 +70,6 @@ $(document).ready(function () {
       url: "database/instructors/email.php",
       data: data,
       success: function (data) {
-        console.log(data);
       },
     });
   }
@@ -113,7 +111,6 @@ $(document).ready(function () {
       url: "database/instructors/edit.php",
       data: data,
       success: function (data) {
-        console.log(data);
         $("#editInstructorModal").modal("hide");
         mySuccess("User successfully updated.");
         load_data();

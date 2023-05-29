@@ -41,16 +41,27 @@ $(document).ready(function () {
       url: "database/students/add.php",
       data: data,
       success: function (data) {
-        console.log(data);
         $("#addStudentModal").modal("hide");
-        mySuccess("Instructor successfully added.");
+        mySuccess("Student successfully added.");
         load_data();
+        sendEmail(data);
       },
       error: function (xhr, status, error) {
         $("body").html("<h1>" + xhr["status"] + " " + error + "</h1>");
       },
     });
   });
+
+  function sendEmail(data) {
+    var data = JSON.parse(data);
+    $.ajax({
+      type: "POST",
+      url: "database/instructors/email.php",
+      data: data,
+      success: function (data) {
+      },
+    });
+  }
 
   $(document).on("click", "#editStud", function () {
     $("#editStudentForm")[0].reset();
@@ -100,7 +111,6 @@ $(document).ready(function () {
       url: "database/students/edit.php",
       data: data,
       success: function (data) {
-        console.log(data);
         $("#editStudentModal").modal("hide");
         mySuccess("User successfully updated.");
         load_data();

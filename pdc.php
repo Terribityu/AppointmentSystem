@@ -88,7 +88,7 @@
     
     <section id="content">
         <div class="container">
-            <h2 class="text-center">Appointments</h2>
+            <h2 class="text-center">List of Available Schedules</h2>
             <ul id="schedlist" class="list-group my-3">
                 <li class="list-group-item d-flex align-items-center">
                 <img src="assets/img/avatar.jpg" alt="">

@@ -35,7 +35,6 @@ $(document).ready(function () {
     var currentPageURL = window.location.href;
 
     var data = $(this).serialize();
-    console.log(data);
     $.ajax({
       type: "POST",
       url: "./database/registration/login.php",

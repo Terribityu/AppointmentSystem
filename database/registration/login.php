@@ -1,5 +1,6 @@
 <?php
 include("../connect.php");
+if (session_status() === PHP_SESSION_ACTIVE) {
     $username = $_POST['username'];
     $password = $_POST['password'];
     
@@ -25,5 +26,5 @@ include("../connect.php");
     } else {
         echo "User doesn't exist.";
     }
-
+}
 ?>

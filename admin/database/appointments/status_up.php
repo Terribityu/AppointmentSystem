@@ -1,6 +1,7 @@
 <?php
 require ('../connect.php');
                 extract($_GET);
+        if (session_status() === PHP_SESSION_ACTIVE) {
                 if($stats == "approved"){
                         $query = "UPDATE appointments SET status_a = '$stats' where appointmentID = '".$id."'";
                 }else{
@@ -17,4 +18,5 @@ require ('../connect.php');
                 }else{
                         echo "Error On Query";
                 }
+        }
 ?>

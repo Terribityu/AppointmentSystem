@@ -1,11 +1,11 @@
 <?php
-    require_once( 'C:\xampp\htdocs\admin\vendor\autoload.php' );
+    require_once( 'vendor\autoload.php' );
 
     $ch = curl_init();
 $parameters = array(
-    'apikey' => '', //Your API KEY
-    'number' => $number,
-    'message' => $message_n,
+    'apikey' => '4afeb6f4b219814bc58eec20d61cb840', //Your API KEY
+    'number' => '09351723271',
+    'message' => 'I just sent my first message with Semaphore',
     'sendername' => 'SEMAPHORE'
 );
 curl_setopt( $ch, CURLOPT_URL,'https://semaphore.co/api/v4/messages' );
@@ -19,7 +19,5 @@ curl_setopt( $ch, CURLOPT_RETURNTRANSFER, true );
 $output = curl_exec( $ch );
 curl_close ($ch);
 
-//Show the server response
-echo $output;
 
     ?>

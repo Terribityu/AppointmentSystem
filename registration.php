@@ -219,7 +219,7 @@
                         <button type="submit" class="btn btn-info btn-block">Register</button>
                      </div>
                      <div class="col-6">
-                        <a href="index.html" style="color:white;" class="text-center btn btn-info btn-block">Sign In</a>
+                        <a data-bs-toggle="modal" data-bs-target="#loginModal" href='#' style="color:white;" class="text-center btn btn-secondary btn-block">Sign In</a>
                      </div>
                    </div><br>
                      </form>

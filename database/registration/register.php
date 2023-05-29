@@ -7,7 +7,7 @@
 
 	use Cloudinary\Cloudinary;
 	use Cloudinary\Transformation\Resize;
-
+if (session_status() === PHP_SESSION_ACTIVE) {
 	$cloudinary = new Cloudinary(
 		[
 			'cloud' => [
@@ -57,5 +57,5 @@
 	}else{
 		echo mysqli_error($conn);
 	}
-
+}
 ?>

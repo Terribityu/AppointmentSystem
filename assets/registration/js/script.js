@@ -175,7 +175,7 @@ $(document).ready(function () {
       timerId = setInterval(countdown, 1000);
       $.ajax({
         url: "database/registration/otp.php",
-        method: "post",
+        method: "GET",
         data: { number: number },
         success: function (data) {
           console.log(data);
