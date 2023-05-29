@@ -8,20 +8,24 @@ if (session_status() === PHP_SESSION_ACTIVE) {
     $result = mysqli_query($conn, $query);
     if (mysqli_num_rows($result) == 1) {
         $row = mysqli_fetch_array($result);
-        if($row['userType'] == "admin"){
-            echo "Incorrect Username or password";
-        }else if(password_verify($password, $row['password'])) {
-            $_SESSION['username'] = $row['username'];
-            $_SESSION['userType'] = $row['userType'];
-            $_SESSION['userID'] = $row['userID'];
-            $_SESSION['avatar'] = $row['avatar'];
-            $_SESSION['firstname'] = $row['firstname'];
-            // echo "<script type='text/javascript'>myAlertAdmin()</script>";
-            // header("Location: ../index.php");
-        }
-        else {
-            echo "Incorrect Username or Password";
-            // header("Location: ../login.php?error");
+        if($row['userArchive'] == 0){
+            if($row['userType'] == "admin"){
+                echo "You don't have access here!";
+            }else if(password_verify($password, $row['password'])) {
+                $_SESSION['username'] = $row['username'];
+                $_SESSION['userType'] = $row['userType'];
+                $_SESSION['userID'] = $row['userID'];
+                $_SESSION['avatar'] = $row['avatar'];
+                $_SESSION['firstname'] = $row['firstname'];
+                // echo "<script type='text/javascript'>myAlertAdmin()</script>";
+                // header("Location: ../index.php");
+            }
+            else {
+                echo "Incorrect Username or Password";
+                // header("Location: ../login.php?error");
+            }
+        }else{
+            echo "User is disabled. Contact Support for more info";
         }
     } else {
         echo "User doesn't exist.";

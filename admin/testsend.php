@@ -3,7 +3,7 @@
 
     $ch = curl_init();
 $parameters = array(
-    'apikey' => '4afeb6f4b219814bc58eec20d61cb840', //Your API KEY
+    'apikey' => '', //Your API KEY
     'number' => '09351723271',
     'message' => 'I just sent my first message with Semaphore',
     'sendername' => 'SEMAPHORE'
