@@ -10,7 +10,7 @@ if(isset($_GET['number'])){
 
         $ch = curl_init();
     $parameters = array(
-        'apikey' => '', //Your API KEY
+        'apikey' => 'dsads', //Your API KEY
         'number' => $number,
         'message' => 'Dear user, Your OTP verification code is '.$otp,
         'sendername' => 'SEMAPHORE'
