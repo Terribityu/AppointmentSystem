@@ -4,7 +4,7 @@
                 <div class="col-lg-3 col-sm-3">
                     <div class="footer-single-box">
                         <img id="footer-logo" src="assets/logo/logo_100x100.png" alt="">
-                    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quam repellendus sunt praesentium aspernatur iure molestias.</p>
+                    <p>2/F M. De Castro Bldg., Cagayan Valley Road, Salangan, San Miguel, Philippines</p>
                     <i class="fa-solid fa-location-dot"></i>
                     <!-- <h3>We Accept</h3>
                     <div class="card-area">
@@ -15,7 +15,7 @@
                     </div> -->
                         <h2>Follow us on</h2>
                         <p class="footer-socials">
-                            <i class="fa-brands fa-facebook-f"></i>
+                            <a target="_blank" href="https://www.facebook.com/DestinyDrivingSchool101"><i class="fa-brands fa-facebook-f"></i></a>
                             <!-- <i class="fa-brands fa-dribbble"></i>
                             <i class="fa-brands fa-pinterest"></i>
                             <i class="fa-brands fa-twitter"></i> -->

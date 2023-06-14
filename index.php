@@ -121,15 +121,21 @@
                 </div>
             </div>
             <div class="carousel-item c-item">
-                <img src="assets/index/banner/banner_bg.png" class="d-block w-100 c-img" alt="Slide 2">
+                <img src="assets/index/banner/bg_2.jpg" class="d-block w-100 c-img" alt="Slide 2">
                 <div class="carousel-caption mt-5">
                 <p class="text-uppercase fs-3 mt-5">The season has arrived</p>
                 <h1 class="display-1 fw-bolder text-capitalize">Destiny Driving School</p>
+                <?php
+                    if(!isset($_SESSION['username'])){
+                ?>
                 <a href="registration.php" class="btn btn-primary px-4 py-2 fs-5 mt-5">Register</a>
+                <?php
+                    }
+                ?>
                 </div>
             </div>
             <div class="carousel-item c-item">
-                <img src="assets/index/banner/banner_bg.png" class="d-block w-100 c-img" alt="Slide 3">
+                <img src="assets/index/banner/bg_3.jpg" class="d-block w-100 c-img" alt="Slide 3">
                 <div class="carousel-caption mt-5">
                 <p class="text-uppercase fs-3 mt-5">Destination activities</p>
                 <h1 class="display-1 fw-bolder text-capitalize">Destiny Driving School</p>
@@ -177,12 +183,12 @@
     <section id="routes">
         <div class="container">
             <div class="row">
-                <div class="col-lg-6 col-md-12 col-12 ps-lg-5 mt-md-5">
-                    <h2>Routes</h2>
-                    <p>This is Photoshop's version  of Lorem Ipsum. Proin gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auctor, nisi elit consequat ipsum, nec sagittis sem nibh id elit. Duis sed odio sit amet nibh vulputate cursus</p>
+                <div class="text-center col-lg-12 col-md-12 col-12 ps-lg-5 mt-md-5">
+                    <h2>Destiny Driving School Address</h2>
+                    <p>Destiny Driving School is located at 2/F M. De Castro Bldg., Cagayan Valley Road, Salangan, San Miguel, Philippines</p>
                 </div>
-                <div class="col-lg-6 col-md-12 col-12 d-flex justify-content-center align-items-center">
-                <iframe src="https://www.google.com/maps/embed?pb=!1m20!1m8!1m3!1d87159.90552388459!2d121.01685339904044!3d15.105532268086442!3m2!1i1024!2i768!4f13.1!4m9!3e0!4m3!3m2!1d15.1316209!2d120.9612528!4m3!3m2!1d15.062586699999999!2d121.0822098!5e0!3m2!1sen!2sph!4v1685031635389!5m2!1sen!2sph" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>       
+                <div class="col-lg-12 col-md-12 col-12 d-flex justify-content-center align-items-center">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d240.7179544774399!2d120.96114828721052!3d15.131561372496453!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x33971d675ed7e519%3A0x9c89613b14854be5!2sDestiny%20Driving%20School!5e0!3m2!1sen!2sph!4v1686765243441!5m2!1sen!2sph" width="1200" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                 </div>
             </div>
         </div>

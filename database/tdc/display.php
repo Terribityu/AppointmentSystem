@@ -12,10 +12,10 @@ require ('../connect.php');
         or suffix like '%$search%'
         or address like '%$search%'
         or number like '%$search%'
-        or email like '%$search%') and slots > 0 and start > CURDATE() and title = 'TDC'";
+        or email like '%$search%') and slots > 0 and start >= CURDATE() and title = 'TDC'";
         
     }else {
-        $query = "SELECT * FROM `schedules` JOIN `users` ON schedules.instructorID = users.userID JOIN `user_details` ON users.username = user_details.username where slots > 0 and start > CURDATE() and title = 'TDC'";
+        $query = "SELECT * FROM `schedules` JOIN `users` ON schedules.instructorID = users.userID JOIN `user_details` ON users.username = user_details.username where slots > 0 and start >= CURDATE() and title = 'TDC'";
     }
     $q1 = "SELECT * FROM users
     JOIN user_details ON users.username = user_details.username
@@ -60,11 +60,17 @@ if (mysqli_num_rows($r1) > 0) {
 
             while ($row = mysqli_fetch_array($result)) {
                 extract($row);
+
+                if(isset($_SESSION['userID'])){
+                    $sqlite = "SELECT * FROM appointments JOIN schedules ON appointments.scheduleID = schedules.id WHERE appointments.status_a = 'pending' AND schedules.title = 'TDC' AND appointments.studentID =".$_SESSION['userID'];
+                    $query1 = mysqli_query($conn, $sqlite);
+                    $hehe = mysqli_num_rows($query1);
+                }
                 if ($instructorUsername == $row['username']) {
                     $date_text = date("F d, Y", strtotime($start));
                     $time_std = date("g:i A", strtotime($time));
                     if (isset($_SESSION['userID'])){
-                        echo "<button id='selectSched' value='" . $row['id'] . "' data-value='" . $_SESSION['userID'] . "' class='badge bg-primary rounded-pill'>$title $date_text $time_std</button>&nbsp";
+                        echo "<button id='selectSched' value='" . $row['id'] . "' data-value='" . $_SESSION['userID'] . "' data-old-value='".$hehe."' class='badge bg-primary rounded-pill'>$title $date_text $time_std</button>&nbsp";
                     }else{
                         echo "<button data-bs-toggle='modal' data-bs-target='#loginModal' class='badge bg-primary rounded-pill'>$title $date_text $time_std</button>&nbsp";
                     }

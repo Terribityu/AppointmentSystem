@@ -10,7 +10,6 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   function getInstructorName(id) {
-    console.log(id);
     $.ajax({
       type: "GET",
       url: "./database/schedules/check.php?id=" + id,
@@ -35,48 +34,79 @@ document.addEventListener("DOMContentLoaded", function () {
     select: async function (start, end, allDay) {
       selectInstructName();
       const { value: formValues } = await Swal.fire({
-        title: "Add Event",
+        title: "Add Schedule",
         html:
           '<label for="title" class="d-flex justify-content-start">Title: <span id="form_required"></span></label>' +
           '<select id="swalEvtTitle" class="form-control mb-3" required name="swalEvtTitle" aria-label="Default select example">' +
-          '<option value="PDC">PDC</option>' +
-          '<option value="TDC">TDC</option>' +
+          '<option selected value="PDC">Practical Driving Course</option>' +
+          '<option value="TDC">Theoretical Driving Course</option>' +
           "</select>" +
           '<label for="time" class="d-flex justify-content-start">Time: <span id="form_required"></span></label>' +
-          '<input id="swalEvtTime" type="time" class="form-control mb-3" required placeholder="Enter URL">' +
+          '<select id="swalEvtTime" class="form-control mb-3" required name="swalEvtTime" aria-label="Default select example">' +
+          '<option value="8:00 AM">8:00 AM</option>' +
+          '<option value="8:00 AM - 12:00 PM">8:00 AM - 12:00 PM</option>' +
+          '<option value="1:00 PM - 5:00 PM">1:00 PM - 5:00 PM</option>' +
+          "</select>" +
+          "<div id='divSession' style='display: none;'>" +
+          '<label for="swalEvtSession" class="d-flex justify-content-start">Session: <span id="form_required"></span></label>' +
+          '<select id="swalEvtSession" class="form-control mb-3" required name="swalEvtSession" aria-label="Default select example">' +
+          '<option slected value="first">First Session</option>' +
+          '<option value="second">Second Session</option>' +
+          "</select>" +
+          "</div>" +
+          "<div id='divPrice' style='display: none;'>" +
           '<label for="price" class="d-flex justify-content-start">Price: <span id="form_required"></span></label>' +
-          '<input id="swalEvtPrice" name="price" type="number" class="form-control mb-3" required placeholder="Enter Price">' +
+          '<input id="swalEvtPrice" value="0" name="price" type="price" class="form-control mb-3" required placeholder="Enter Price">' +
+          "</div>" +
           '<label for="instructor" class="d-flex justify-content-start">Instructor: <span id="form_required"></span></label>' +
           '<select id="swalEvtInstructor" class="form-control mb-3" name="instructor" aria-label="Default select example">' +
           "<option selected value=1>Johny</option>" +
           "<option value=2>Yes PAPA</option>" +
           "</select>",
         focusConfirm: false,
+        showCancelButton: true,
+        confirmButtonText: "Submit",
         preConfirm: () => {
-          return [
-            document.getElementById("swalEvtTitle").value,
-            document.getElementById("swalEvtTime").value,
-            document.getElementById("swalEvtPrice").value,
-            document.getElementById("swalEvtInstructor").value,
-          ];
+          const swalEvtTitle = $("#swalEvtTitle").val();
+          const swalEvtTime = $("#swalEvtTime").val();
+          const swalEvtPrice = $("#swalEvtPrice").val();
+          const swalEvtInstructor = $("#swalEvtInstructor").val();
+          const swalEvtSession = $("#swalEvtSession").val();
+
+          if (
+            swalEvtTitle.trim() === "" ||
+            swalEvtTime.trim() === "" ||
+            swalEvtPrice.trim() === "" ||
+            swalEvtSession.trim() === "" ||
+            swalEvtInstructor.trim() === ""
+          ) {
+            swal.showValidationMessage("Please fill in all fields");
+          } else {
+            return [
+              document.getElementById("swalEvtTitle").value,
+              document.getElementById("swalEvtTime").value,
+              document.getElementById("swalEvtPrice").value,
+              document.getElementById("swalEvtInstructor").value,
+              document.getElementById("swalEvtSession").value,
+            ];
+          }
         },
       });
 
       if (formValues) {
         // Add EVent
-        console.log(JSON.stringify(formValues));
-        fetch("./database/schedules/eventHandler.php", {
+        $.ajax({
+          url: "./database/schedules/eventHandler.php",
           method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
+          // headers: { "Content-Type": "application/json" },
+          data: {
             request_type: "addEvent",
             start: start.startStr,
             end: start.endStr,
             event_data: formValues,
-          }),
-        })
-          .then((response) => response.json())
-          .then((data) => {
+          },
+          success: function (data) {
+            data = JSON.parse(data);
             if (data.status == 1) {
               Swal.fire("Event added successfully!", "", "success");
             } else {
@@ -85,14 +115,14 @@ document.addEventListener("DOMContentLoaded", function () {
 
             // Refetch events from all sources and rerender
             calendar.refetchEvents();
-          })
-          .catch(console.error);
+          },
+        });
       }
     },
     eventClick: function (info) {
       info.jsEvent.preventDefault();
       // Change border color
-      getInstructorName(info.event.extendedProps.userID);
+      getInstructorName(info.event.extendedProps.instructorID);
       const startDate = new Date(info.event.start);
       const dateString = startDate.toLocaleDateString();
       info.el.style.bordercolor = "red";
@@ -119,16 +149,15 @@ document.addEventListener("DOMContentLoaded", function () {
       }).then((result) => {
         if (result.isConfirmed) {
           // Delete Event
-          fetch("./database/schedules/eventHandler.php", {
+          $.ajax({
+            url: "./database/schedules/eventHandler.php",
             method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({
+            data: {
               request_type: "deleteEvent",
               event_id: info.event.id,
-            }),
-          })
-            .then((response) => response.json())
-            .then((data) => {
+            },
+            success: function (data) {
+              data = JSON.parse(data);
               if (data.status == 1) {
                 Swal.fire("Event deleted successfully!", "", "success");
               } else {
@@ -137,8 +166,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
               // Refetch events from all sources and rerender
               calendar.refetchEvents();
-            })
-            .catch(console.error);
+            },
+          });
         } else {
           Swal.close();
         }
@@ -147,4 +176,15 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
   calendar.render();
+  $(document).on("change", "#swalEvtTitle", function () {
+    // Handle the change event
+    var selectedValue = $(this).val();
+    if (selectedValue == "TDC") {
+      $("#divPrice").show();
+      $("#divSession").show();
+    } else {
+      $("#divPrice").hide();
+      $("#divSession").hide();
+    }
+  });
 });

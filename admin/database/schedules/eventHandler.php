@@ -3,19 +3,20 @@
 require_once 'dbConfig.php';
 
 // Retrieve JSON from post BODY
-$jsonstr = file_get_contents('php://input');
-$jsonObj = json_decode($jsonstr);
+// $jsonstr = file_get_contents('php://input');
+extract($_POST);
     if (session_status() === PHP_SESSION_ACTIVE) {
 
-    if ($jsonObj->request_type == 'addEvent'){
-        $start = $jsonObj->start;
-        $end = $jsonObj->end;
+    if ($request_type == 'addEvent'){
+        $start = $start;
+        $end = $end;
 
-        $event_data = $jsonObj->event_data;
+        $event_data = $event_data;
         $eventTitle = !empty($event_data[0])?$event_data[0]:'';
         $eventTime = !empty($event_data[1])?$event_data[1]:'';
         $eventPrice = !empty($event_data[2])?$event_data[2]:'';
         $eventInstructor = !empty($event_data[3])?$event_data[3]:'';
+        $sample = !empty($event_data[4])?$event_data[4]:'{}';
         $eventSlots = 1;
         if($eventTitle == "TDC"){
             $eventSlots = 30;
@@ -23,9 +24,9 @@ $jsonObj = json_decode($jsonstr);
 
         if(!empty($eventTitle)){
             // Insert event data into database
-            $sqlQ = "INSERT INTO schedules (title, start, end, time, price, slots, instructorID) VALUES(?,?,?,?,?,?,?)";
+            $sqlQ = "INSERT INTO schedules (title, start, end, time, sched_details, price, slots, instructorID) VALUES(?,?,?,?,?,?,?,?)";
             $stmt = $db->prepare($sqlQ);
-            $stmt->bind_param("ssssiii", $eventTitle, $start, $end, $eventTime, $eventPrice, $eventSlots, $eventInstructor);
+            $stmt->bind_param("sssssiii", $eventTitle, $start, $end, $eventTime, $sample, $eventPrice, $eventSlots, $eventInstructor);
             $insert = $stmt->execute();
 
             if($insert){
@@ -44,8 +45,8 @@ $jsonObj = json_decode($jsonstr);
                 echo json_encode($output);
             }
         }
-    } elseif($jsonObj->request_type == 'deleteEvent'){
-        $id = $jsonObj->event_id;
+    } elseif($request_type == 'deleteEvent'){
+        $id = $event_id;
 
         // Delete event from the database
         $sql = "DELETE FROM schedules WHERE id = ?";

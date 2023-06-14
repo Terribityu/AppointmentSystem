@@ -154,30 +154,7 @@ include("template/my-modal.php");
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                    <th scope="row">Name</th>
-                    <td>PDC</td>
-                    <td>May 5 2000</td>
-                    <td>8:00 am</td>
-                    <td>TBA</td>
-                    <td>On Going</td>
-                    </tr>
-                    <tr>
-                    <th scope="row">Gorr</th>
-                    <td>PDC</td>
-                    <td>May 5 2000</td>
-                    <td>8:00 am</td>
-                    <td>TBA</td>
-                    <td>On Going</td>
-                    </tr>
-                    <tr>
-                    <th scope="row">Jerry</th>
-                    <td>PDC</td>
-                    <td>May 5 2000</td>
-                    <td>8:00 am</td>
-                    <td>TBA</td>
-                    <td>On Going</td>
-                    </tr>
+                    
                 </tbody>
             </table>
             

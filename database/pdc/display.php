@@ -12,10 +12,10 @@ require ('../connect.php');
         or suffix like '%$search%'
         or address like '%$search%'
         or number like '%$search%'
-        or email like '%$search%') and slots > 0 and start > CURDATE() and title = 'PDC'";
+        or email like '%$search%') and slots > 0 and start >= CURDATE() and title = 'PDC'";
         
     }else {
-        $query = "SELECT * FROM `schedules` JOIN `users` ON schedules.instructorID = users.userID JOIN `user_details` ON users.username = user_details.username where slots > 0 and start > CURDATE() and title = 'PDC'";
+        $query = "SELECT * FROM `schedules` JOIN `users` ON schedules.instructorID = users.userID JOIN `user_details` ON users.username = user_details.username where slots > 0 and start >= CURDATE() and title = 'PDC'";
     }
     $q1 = "SELECT * FROM users
     JOIN user_details ON users.username = user_details.username
@@ -61,9 +61,10 @@ if (mysqli_num_rows($r1) > 0) {
                 extract($row);
 
                 if(isset($_SESSION['userID'])){
-                    $sqlite = "SELECT * FROM appointments JOIN schedules ON appointments.scheduleID = schedules.id WHERE schedules.title = 'PDC' AND appointments.studentID =".$_SESSION['userID'];
+                    $sqlite = "SELECT * FROM appointments JOIN schedules ON appointments.scheduleID = schedules.id WHERE appointments.status_a = 'pending' AND schedules.title = 'PDC' AND appointments.studentID =".$_SESSION['userID'];
                     $query1 = mysqli_query($conn, $sqlite);
                     $hehe = mysqli_num_rows($query1);
+                    
                 }
                 if ($instructorUsername == $row['username']) {
                     $date_text = date("F d, Y", strtotime($start));

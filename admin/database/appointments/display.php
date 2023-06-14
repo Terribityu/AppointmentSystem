@@ -1,7 +1,7 @@
 <?php
 require ('../connect.php');
     extract($_POST);
-    $inst_name = $_SESSION['username'];
+    $inst_id = $_SESSION['userID'];
     if(isset($search))
     {
         $search = mysqli_real_escape_string($conn, $_POST["search"]);
@@ -19,7 +19,7 @@ require ('../connect.php');
         if($_SESSION['userType'] == "admin"){
             $query = "SELECT * FROM `appointments` JOIN users ON appointments.studentID = users.userID JOIN user_details ON user_details.username = users.username JOIN schedules ON appointments.scheduleID = schedules.id where appointmentArchive = 0 and status_a = '$stats'";
         }else {
-            $query = "SELECT * FROM `appointments` JOIN users ON appointments.studentID = users.userID JOIN user_details ON user_details.username = users.username JOIN schedules ON appointments.scheduleID = schedules.id where appointmentArchive = 0 and status_a = '$stats' and users.username = '$inst_name'";
+            $query = "SELECT * FROM `appointments` JOIN users ON appointments.studentID = users.userID JOIN user_details ON user_details.username = users.username JOIN schedules ON appointments.scheduleID = schedules.id where appointmentArchive = 0 and status_a = '$stats' and schedules.instructorID = '$inst_id'";
         }
     }
 

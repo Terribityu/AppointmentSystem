@@ -101,7 +101,7 @@ $(document).ready(function () {
     }
   });
 
-  $("#salesFilter").on("change", function () {
+  $(document).on("change", "#salesFilter", function () {
     load_data(currentPage, search);
   });
 
