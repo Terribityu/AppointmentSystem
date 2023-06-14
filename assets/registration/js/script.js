@@ -9,7 +9,7 @@ $(document).ready(function () {
   //       cache: false,
   //       processData: false,
   //       success: function (data) {
-  //         console.log(data);
+  //
   //         load_data();
   //       },
   //       error: function (xhr, status, error) {
@@ -98,7 +98,7 @@ $(document).ready(function () {
         processData: false,
         success: function (data) {
           mySuccess("Successfully Registered");
-          console.log(data);
+
           setTimeout(function () {
             // Redirect to the desired location
             window.location.href = "index.php?openModal=true";
@@ -175,7 +175,7 @@ $(document).ready(function () {
       timerId = setInterval(countdown, 1000);
       $.ajax({
         url: "database/registration/otp.php",
-        method: "GET",
+        method: "POST",
         data: { number: number },
         success: function (data) {
           console.log(data);
@@ -199,9 +199,7 @@ $(document).ready(function () {
         url: "database/registration/otp.php",
         method: "post",
         data: { number: number },
-        success: function (data) {
-          console.log(data);
-        },
+        success: function (data) {},
       });
     }
   });

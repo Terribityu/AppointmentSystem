@@ -50,13 +50,13 @@
                         <div class="input-group mb-3">
                             <form id="contactform">
                             <div class="col-md-12 mb-3">
-                                <input type="email" class="form-control" placeholder="Email" aria-label="Enter your Email ...">
+                                <input type="email" class="form-control" name="email" placeholder="Email" aria-label="Enter your Email ...">
                             </div>
                             <div class="col-md-12 mb-3">
-                                <input type="text" class="form-control" placeholder="Subject" aria-label="Subject ...">
+                                <input type="text" class="form-control" name="subject" placeholder="Subject" aria-label="Subject ...">
                             </div>
                             <div class="col-md-12 mb-3">
-                                <textarea type="text" class="form-control" rows="4" placeholder="Details" aria-label="Details ..."></textarea>
+                                <textarea type="text" class="form-control" name="details" rows="4" placeholder="Details" aria-label="Details ..."></textarea>
                             </div>
                             <div class="col-md-12 mb-3">
                                 <input type="submit" class="btn btn-secondary w-100" value="Contact Us" style="height: auto;">

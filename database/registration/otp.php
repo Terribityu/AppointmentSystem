@@ -2,8 +2,8 @@
     require_once '..\..\admin\vendor\autoload.php';
 
     session_start();
-    extract($_GET);
-if(isset($_GET['number'])){
+    extract($_POST);
+if(isset($_POST['number'])){
     $otp = rand(100000,999999);
     $_SESSION['otp'] = $otp;
     $_SESSION['number'] = $number;
@@ -13,7 +13,7 @@ if(isset($_GET['number'])){
         'apikey' => '', //Your API KEY
         'number' => $number,
         'message' => 'Dear user, Your OTP verification code is '.$otp,
-        'sendername' => 'SEMAPHORE'
+        'sendername' => 'Destiny'
     );
     curl_setopt( $ch, CURLOPT_URL,'https://semaphore.co/api/v4/messages' );
     curl_setopt( $ch, CURLOPT_POST, 1 );

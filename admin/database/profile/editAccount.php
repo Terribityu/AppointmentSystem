@@ -42,6 +42,7 @@ require_once('../../../vendor/autoload.php');
 		mysqli_stmt_bind_param($stmt2, "ssssi", $number, $email, $hashpass, $imageUrl, $userID);
 
 		if (mysqli_stmt_execute($stmt2)) {
+			$_SESSION['avatar'] = $imageUrl;
 			addSystemLogs($userID, "updateAccount");
 		} else {
 			echo "Error executing query.";

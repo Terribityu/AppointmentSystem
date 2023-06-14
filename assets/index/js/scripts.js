@@ -12,6 +12,17 @@ $(document).ready(function () {
     });
   }
 
+  function mySuccess(success) {
+    Swal.fire({
+      position: "center",
+      icon: "success",
+      title: "Success",
+      text: success,
+      showConfirmButton: false,
+      timer: 2000,
+    });
+  }
+
   $(".team-slider").owlCarousel({
     loop: true,
     nav: false,
@@ -36,5 +47,19 @@ $(document).ready(function () {
         items: 3,
       },
     },
+  });
+
+  $("#contactform").on("submit", function (e) {
+    e.preventDefault();
+    var data = $(this).serialize();
+    $.ajax({
+      url: "database/index/contact.php",
+      method: "post",
+      data: data,
+      success: function (data) {
+        mySuccess("Thank you for messaging us, Well get back at you later!");
+        $(this)[0].reset();
+      },
+    });
   });
 });

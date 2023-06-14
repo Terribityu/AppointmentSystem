@@ -154,6 +154,71 @@
         </div>
     </section>
 
+    
+    <!-- Start of Services -->
+    <section id="services">
+        <div class="row">
+            <h1 class="testimonial-header">Services <span>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</span></h1>
+            <div class="services-wrapper">
+                <div class="services-box-area service-tdc">
+                    <div class="services-icon-area">
+                    <i class="fa-solid fas fa-car"></i>
+                    </div>
+                    <h6>TDC</h6>
+                    <p>Theoretical Driving Course</p>
+                </div>
+                <div class="services-box-area service-pdc">
+                    <div class="services-icon-area">
+                    <i class="fa-solid fas fa-car"></i>
+                    </div>
+                    <h6>PDC</h6>
+                    <p>Practical Driving Course</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- End of Services -->
+    
+    <!-- Start of Team -->
+    <section id="team">
+        <div class="container">
+			<div class="row">
+				<div class="col-lg-8 offset-lg-2 col-md-10 offset-md-1">
+						<h1 class="teams-header">Instructors<span>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</span></h1>
+				</div>
+			</div>
+		</div>
+		<div class="testimonial-box">
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-12">
+						<div class="team-slider owl-carousel">
+							<?php
+                                if(mysqli_num_rows($result)>0){
+                                    while($row = mysqli_fetch_array($result)){
+                                        extract($row);
+                                        echo "
+                                        <div class='single-box text-center'>
+                                            <div class='mt-3 img-area'><img alt='' class='img-fluid move-animation' src='$avatar'></div>
+                                                <div class='info-area'>
+                                                    <h4>$firstname $lastname</h4>
+                                                    <p>Destiny Driving School Instructor</p><a href='#'>Learn More</a>
+                                                </div>
+                                        </div>\n																														
+                                        ";
+                                    }
+                                }else{
+                                    echo "<h5 style='text-align:center'><i class='fa-regular fas fa-magnifying-glass'></i>No Results Found.</h5>";
+                                }
+                            ?>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+    </section>
+    <!-- End of Teams -->
+
     <!-- About Section Start-->
     <section id="about">
         <div class="container">
@@ -178,7 +243,78 @@
             </div>
         </div>
     </section>
+
+    <section id="howtoenroll">
+        <div class="container">
+        <h1 class="testimonial-header">How to enroll at Destiny Driving School </h1>
+            <div class="row">
+                <div class="col-lg-4 col-md-12 col-12 text-center">
+                    <img style="max-width:350px;" src="assets/index/about/requirements.png" alt="Hotodg">
+                    <h5>Step 1</h5>
+                    <p class='d-flex'>
+                        <ul>
+                            <li>Must be 17yrs. Old & Above</li>
+                            <li>Original PSA birth certificate</li>
+                            <li>Marriage Certificate (If Married, For Women Only)</li>
+                        </ul>
+                    </p>
+                </div>
+                <div class="col-lg-4 col-md-12 col-12 text-center">
+                    <img style="max-width:350px;" src="assets/index/about/register.png" alt="Hotodg">
+                    <h5>Step 2</h5>
+                    <p class='d-flex'>
+                        <ul>
+                            <li><a href="registration.php">Register</a> an account.</li>
+                            <li>Select an available <a href="#services">schedules</a> from the list</li>
+                            <li>Enroll for the available schedule that you desire</li>
+                        </ul>
+                    </p>
+                </div>
+                <div class="col-lg-4 col-md-12 col-12 text-center">
+                    <img style="max-width:350px;" src="assets/index/about/driving-school-1.png" alt="Hotodg">
+                    <h5>Step 3</h5>
+                    <p class='d-flex'>
+                        <ul>
+                            <li>After approved enrollment</li>
+                            <li>Visit our office and bring the necessary requirements plus payment to enroll.</li>
+                            <li>Start your Driving School Session.</li>
+                        </ul>
+                    </p>
+                </div>
+        </div>
+    </section>
     <!-- End of About Section -->
+
+    <!-- Start of Gallery -->
+    <section id="gallery">
+        <div class="container">
+        <h1 class="testimonial-header">Destiny Driving School Gallery </h1>
+            <div class="gallery-img-area">
+                
+                <div class="gallery-wrapper">
+                    <div class="gallery-single-box">
+                    <a href="#"><img src="https://res.cloudinary.com/ddf34uiqq/image/upload/v1686774427/273446234_431696302075549_2403184082140346495_n_q8kjdt.jpg" /></a>
+                    </div>
+                    <div class="gallery-single-box">
+                    <a href="#"><img src="https://res.cloudinary.com/ddf34uiqq/image/upload/v1686774434/289338249_520978616480650_4081346908152020529_n_ufjjbs.jpg" /></a>
+                    </div>
+                    <div class="gallery-single-box">
+                    <a href="#"><img src="https://res.cloudinary.com/ddf34uiqq/image/upload/v1686774425/273751863_432540155324497_7214586072964737366_n_xbbbgj.jpg" /></a>
+                    </div>
+                    <div class="gallery-single-box">
+                    <a href="#"><img src="https://res.cloudinary.com/ddf34uiqq/image/upload/v1686774427/275513503_449316270313552_92543345730777378_n_jn7mmf.jpg" /></a>
+                    </div>
+                    <div class="gallery-single-box">
+                    <a href="#"><img src="https://res.cloudinary.com/ddf34uiqq/image/upload/v1686774428/275867833_452857716626074_407916966712471922_n_quba3e.jpg" /></a>
+                    </div>
+                    <div class="gallery-single-box">
+                    <a href="#"><img src="https://res.cloudinary.com/ddf34uiqq/image/upload/v1686774426/275135440_444649877446858_4302510335570067271_n_sjjflk.jpg" /></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- End of Gallery -->
     <!-- Routes Section Start -->
     <section id="routes">
         <div class="container">
@@ -297,68 +433,6 @@
         </div>
     </section>
     <!-- End of Testimonials -->
-    <!-- Start of Team -->
-    <section id="team">
-        <div class="container">
-			<div class="row">
-				<div class="col-lg-8 offset-lg-2 col-md-10 offset-md-1">
-						<h1 class="teams-header">Instructors<span>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</span></h1>
-				</div>
-			</div>
-		</div>
-		<div class="testimonial-box">
-			<div class="container">
-				<div class="row">
-					<div class="col-lg-12">
-						<div class="team-slider owl-carousel">
-							<?php
-                                if(mysqli_num_rows($result)>0){
-                                    while($row = mysqli_fetch_array($result)){
-                                        extract($row);
-                                        echo "
-                                        <div class='single-box text-center'>
-                                            <div class='mt-3 img-area'><img alt='' class='img-fluid move-animation' src='$avatar'></div>
-                                                <div class='info-area'>
-                                                    <h4>$firstname $lastname</h4>
-                                                    <p>Destiny Driving School Instructor</p><a href='#'>Learn More</a>
-                                                </div>
-                                        </div>\n																														
-                                        ";
-                                    }
-                                }else{
-                                    echo "<h5 style='text-align:center'><i class='fa-regular fas fa-magnifying-glass'></i>No Results Found.</h5>";
-                                }
-                            ?>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-    </section>
-    <!-- End of Teams -->
-    <!-- Start of Services -->
-    <section id="services">
-        <div class="row">
-            <h1 class="testimonial-header">Services <span>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</span></h1>
-            <div class="services-wrapper">
-                <div class="services-box-area service-tdc">
-                    <div class="services-icon-area">
-                    <i class="fa-solid fas fa-car"></i>
-                    </div>
-                    <h6>TDC</h6>
-                    <p>Theoretical Driving Course</p>
-                </div>
-                <div class="services-box-area service-pdc">
-                    <div class="services-icon-area">
-                    <i class="fa-solid fas fa-car"></i>
-                    </div>
-                    <h6>PDC</h6>
-                    <p>Practical Driving Course</p>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- End of Services -->
 
     <script>
         window.onload = function () {

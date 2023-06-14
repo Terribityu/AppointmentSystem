@@ -112,7 +112,7 @@ $(document).ready(function () {
           mySuccess("Account Successfuly Updated!");
           $("#editAccountModal").modal("hide");
           load_data();
-          // console.log(data);
+          //
           // setTimeout(function () {
           //   // Redirect to the desired location
           //   window.location.href = "index.php?openModal=true";
@@ -225,9 +225,7 @@ $(document).ready(function () {
         url: "../database/registration/otp.php",
         method: "post",
         data: { number: number },
-        success: function (data) {
-          console.log(data);
-        },
+        success: function (data) {},
       });
     }
   });
@@ -247,9 +245,7 @@ $(document).ready(function () {
         url: "../database/registration/otp.php",
         method: "post",
         data: { number: number },
-        success: function (data) {
-          console.log(data);
-        },
+        success: function (data) {},
       });
     }
   });
