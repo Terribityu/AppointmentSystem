@@ -45,9 +45,9 @@
 
 /* Gallery */
 #gallery {
-    padding: 5rem;
-    display: flex;
-    align-items: center;
+    /* padding: 5rem; */
+    /* display: flex;
+    align-items: center; */
     background: #f0f1f3;
 }
 
@@ -286,8 +286,8 @@
 	margin: 0 auto;
 	-webkit-transition: all 0.5s ease;
 	transition: all 0.5s ease;
-	max-width: 230px;
-	max-height: 300px
+	max-width: 250px;
+	max-height: 250px
 }
 .single-box:hover img {
 	-webkit-transform: scale(1.1);

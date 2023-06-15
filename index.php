@@ -249,7 +249,7 @@
         <h1 class="testimonial-header">How to enroll at Destiny Driving School </h1>
             <div class="row">
                 <div class="col-lg-4 col-md-12 col-12 text-center">
-                    <img style="max-width:350px;" src="assets/index/about/requirements.png" alt="Hotodg">
+                    <img style="width:100%; max-width:350px;" src="assets/index/about/requirements.png" alt="Hotodg">
                     <h5>Step 1</h5>
                     <p class='d-flex'>
                         <ul>
@@ -260,7 +260,7 @@
                     </p>
                 </div>
                 <div class="col-lg-4 col-md-12 col-12 text-center">
-                    <img style="max-width:350px;" src="assets/index/about/register.png" alt="Hotodg">
+                    <img style="width:100%; max-width:350px;" src="assets/index/about/register.png" alt="Hotodg">
                     <h5>Step 2</h5>
                     <p class='d-flex'>
                         <ul>
@@ -271,7 +271,7 @@
                     </p>
                 </div>
                 <div class="col-lg-4 col-md-12 col-12 text-center">
-                    <img style="max-width:350px;" src="assets/index/about/driving-school-1.png" alt="Hotodg">
+                    <img style="width:100%; max-width:350px;" src="assets/index/about/driving-school-1.png" alt="Hotodg">
                     <h5>Step 3</h5>
                     <p class='d-flex'>
                         <ul>
