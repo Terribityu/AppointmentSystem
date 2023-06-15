@@ -1,10 +1,10 @@
 <?php
-    require("C:\laragon\www\Destiny\admin\database\connect.php");
+    require("C:\laragon\www\admin\database\connect.php");
     // Update the path below to your autoload.php,
     // see https://getcomposer.org/doc/01-basic-usage.md
 
     $query7 = "SELECT *
-    FROM schedules WHERE start = DATE_SUB(CURDATE(), INTERVAL 1 DAY) AND status = 'upcoming'";
+    FROM schedules WHERE start = DATE_SUB(CURDATE(), INTERVAL 1 DAY) AND status = 'ongoing'";
     $result7 = mysqli_query($conn, $query7);
     if (mysqli_num_rows($result7) > 0) {
         while ($row = mysqli_fetch_array($result7)) {
@@ -115,12 +115,12 @@
             $date_text = date("F d, Y", strtotime($start));
             $time_std = date("g:i A", strtotime($time));
             $message_n = "Hi, $firstname $lastname you have an $title appointment Today at $time_std for Destiny Driving School";
-            onGoingSched($row);
+            onGoingSched($conn, $row);
             require("sendnotif.php");
         }
     }
 
-    function onGoingSched($data){
+    function onGoingSched($conn, $data){
         $sql = "UPDATE schedules SET status = 'ongoing' WHERE id = ".$data['id'];
         mysqli_query($conn, $sql);
     }
