@@ -46,7 +46,7 @@ if (mysqli_num_rows($r1) > 0) {
                     <li class='list-group-item'>
             <div class='row'>
                 <div class='col col-md-3'>
-                    <img src='". $row1['avatar']. "' alt=''>
+                    <img class='list__img' src='". $row1['avatar']. "' alt=''>
                     &nbsp;
                 </div>
                 <div class='col col-md-9 descrip'>

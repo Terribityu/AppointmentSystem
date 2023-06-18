@@ -9,7 +9,7 @@
     padding: 2rem;
   }
 
-#personal__info span, #personal__info p {
+#user__details, #user__accounts {
     font-size: 1.2em;
     color: black;
  }
@@ -72,3 +72,10 @@
     max-width: 250px;
     max-height: 250px;
   }
+
+  @media (max-width: 376px){
+    #user__details, #user__accounts, #user__feedbacks{
+      font-size: .8em;
+      color: black;
+   }
+}  

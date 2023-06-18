@@ -153,7 +153,9 @@
                     <thead class="table-dark">
                         <tr>
                         <th scope="col">Full Name</th>
-                        <th scope="col">Address</th>
+                        <th scope="col">Appointment Type</th>
+                        <th scope="col">Date and Time</th>
+                        <th scope="col">Instructor Name</th>
                         <th scope="col">Number</th>
                         <th scope="col">Email</th>
                         <th scope="col">Status</th>

@@ -23,14 +23,14 @@
 
 /* Content */
 #profile__content {
-    padding: 5rem;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
 }
 
 #profile__info {
     position: relative;
     margin-top: -200px;
-    display: flex;
-    align-items: end;
+    text-align: center;
 }
 
 #profile__info h1 {
@@ -47,7 +47,7 @@
     padding: 2rem;
   }
 
-#personal__info span, #personal__info p{
+#user__details, #user__accounts, #user__feedbacks{
     font-size: 1.2em;
     color: black;
  }
@@ -106,3 +106,17 @@
     max-width: 250px;
     max-height: 250px;
   }
+
+  @media (max-width: 376px){
+    #user__details, #user__accounts, #user__feedbacks{
+      font-size: .8em;
+      color: black;
+   }
+}  
+
+/* @media (max-width:690px){
+	#personal__info span, #personal__info p{
+    font-size: 1.2em;
+    color: black;
+ }
+} */

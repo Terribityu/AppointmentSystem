@@ -112,8 +112,14 @@
     
     <section id="profile__content">
         <div class="container mb-5" id="profile__info">
-            <img id="profile__img" alt="Profile Picture">
-            <h1 id="fullname__text">John Rey D Sto Domingo</h1><h1></h1>
+            <div class="row">
+                <div class="col-md-6">
+                    <img id="profile__img" alt="Profile Picture">
+                </div>
+                <div class="col-md-6">
+                    <h1 id="fullname__text">John Rey D Sto Domingo</h1>
+                </div>
+            </div>
         </div>
         <div id="personal__info" class="container">
             <div class="row">

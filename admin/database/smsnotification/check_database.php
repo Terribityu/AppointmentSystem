@@ -1,5 +1,5 @@
 <?php
-    require("C:\laragon\www\admin\database\connect.php");
+    require("C:\laragon\www\Destiny\admin\database\connect.php");
     // Update the path below to your autoload.php,
     // see https://getcomposer.org/doc/01-basic-usage.md
 
@@ -96,7 +96,7 @@
             $date_text = date("F d, Y", strtotime($start));
             $time_std = date("g:i A", strtotime($time));
             $message_n = "Hi, $firstname $lastname you have an $title appointment Today at $time_std for Destiny Driving School";
-            onGoingSched($row);
+            onGoingSched($conn, $row);
             require("sendnotif.php");
         }
     }

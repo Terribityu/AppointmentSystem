@@ -27,10 +27,17 @@ require ('../connect.php');
     if(mysqli_num_rows($result) > 0){
         while($row = mysqli_fetch_array($result)){
             extract($row);
+            $start = date("F d, Y", strtotime($row['start']));
+    	    $time = date("g:i A", strtotime($row['time']));
+            $getins = "SELECT * FROM users JOIN user_details ON users.username = user_details.username WHERE userID = $instructorID";
+            $row1 = mysqli_query($conn, $query);
+            $instname = $row['firstname']." ".$row['lastname'];
             echo "
                 <tr>
                     <td>$firstname $middlename $lastname $suffix</td>
-                    <td>$address</td>
+                    <td>$title</td>
+                    <td>$start $time</td>
+                    <td>$instname</td>
                     <td>$number</td>
                     <td>$email</td>";
 

@@ -90,7 +90,7 @@
     </section>
     
     <section id="appointments__content">
-        <div class="container">
+        <div class="container table-responsive">
             <h2 class="text-center">My Appointments</h2>
             <table id="displayAppointments" class="table table-hover">
                 <thead>
