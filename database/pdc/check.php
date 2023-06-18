@@ -16,7 +16,6 @@ require ('../connect.php');
 			while($row1 = mysqli_fetch_array($res)){
 	
 				$vehicle = json_decode($row1['sched_details'], true);
-				$veh = $vehicle['inlineCheckbox3'];
 				if(isset($vehicle['inlineCheckbox2'])){
 					$veh= 'lightat';
 					break;

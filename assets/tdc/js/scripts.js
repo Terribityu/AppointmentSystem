@@ -43,6 +43,8 @@ $(document).ready(function () {
                 data["slots"] +
                 "</p><p>Price: " +
                 data["price"] +
+                "</p><p>Session: " +
+                data["sched_details"] +
                 "</p>",
               icon: "info",
               showCancelButton: true,

@@ -22,6 +22,7 @@ $(document).ready(function () {
         url: "database/pdc/check.php?schedID=" + schedID,
         method: "GET",
         success: function (result) {
+          console.log(result);
           result = JSON.parse(result);
           vehicle = result.vehicle;
           data = result.info;
