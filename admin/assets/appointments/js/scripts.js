@@ -331,4 +331,32 @@ $(document).ready(function () {
     appr.val("active");
     load_data();
   });
+
+  $(document).on("click", "#paymentStatus", function () {
+    var appID = $(this).val();
+    var name = $(this).attr("data-value");
+    var price = $(this).attr("old-value");
+
+    Swal.fire({
+      title: "Are you sure?",
+      text: "Mark " + name + " as Paid? (₱" + price + ")",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, Confirm Payment!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        Swal.fire("Success!", "Payment Successfully Added.", "success");
+        $.ajax({
+          url: "database/appointments/payment_up.php",
+          method: "post",
+          data: { id: appID, price: price },
+          success: function (data) {
+            load_data();
+          },
+        });
+      }
+    });
+  });
 });

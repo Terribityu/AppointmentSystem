@@ -25,7 +25,7 @@ require ('../connect.php');
             $result1 = mysqli_query($conn, $query1);
             $row1 = mysqli_fetch_array($result1); 
             $start = date("F d, Y", strtotime($row['start']));
-    	    $time = date("g:i A", strtotime($row['time']));
+    	    // $time = date("g:i A", strtotime($row['time']));
             echo "
                 <tr class='clickable-row' data-value='".$row['appointmentID']."'>
                     <th scope='row'>".$row1['firstname']." ".$row1['lastname']."</th>

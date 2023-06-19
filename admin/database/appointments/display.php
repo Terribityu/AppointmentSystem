@@ -28,7 +28,7 @@ require ('../connect.php');
         while($row = mysqli_fetch_array($result)){
             extract($row);
             $start = date("F d, Y", strtotime($row['start']));
-    	    $time = date("g:i A", strtotime($row['time']));
+    	    // $time = date("g:i A", strtotime($row['time']));
             $getins = "SELECT * FROM users JOIN user_details ON users.username = user_details.username WHERE userID = $instructorID";
             $row1 = mysqli_query($conn, $query);
             $instname = $row['firstname']." ".$row['lastname'];
@@ -50,11 +50,25 @@ require ('../connect.php');
                     <button id='deleteAppointment' title='Archive Appointment' value='$appointmentID' old-value='$scheduleID' data-value='$firstname $lastname' class='btn btn-danger'><i class='fa-solid fa-box-archive'></i></button></td>
                 </tr>";
                 }else{
-                    echo "<td>$status_a</td>";
-                    echo "
-                    <td>
-                    <button id='deleteAppointment' title='Archive Appointment' value='$appointmentID' old-value='$scheduleID' data-value='$firstname $lastname' class='btn btn-danger'><i class='fa-solid fa-box-archive'></i></button></td>
-                </tr>";
+                    if($status == "completed"){
+                        echo "<td>$status</td>";
+                        echo "
+                        <td>
+                        <button id='deleteAppointment' title='Archive Appointment' value='$appointmentID' old-value='$scheduleID' data-value='$firstname $lastname' class='btn btn-danger'><i class='fa-solid fa-box-archive'></i></button>";
+                        if($payment_s == "unpaid"){
+                            echo "&nbsp;<button id='paymentStatus' title='Mark as Paid' value='$appointmentID' old-value='$price' data-value='$firstname $lastname' class='btn btn-success'><i class='fa-solid fa-peso-sign'></i></i></button></td>";
+                        }
+                    echo "</tr>";
+                    }else{
+                        echo "<td>$status_a: $reason_rej</td>";
+                        echo "
+                        <td>
+                        <button id='deleteAppointment' title='Archive Appointment' value='$appointmentID' old-value='$scheduleID' data-value='$firstname $lastname' class='btn btn-danger'><i class='fa-solid fa-box-archive'></i></button>";
+                        if($payment_s == "unpaid"){
+                            echo "&nbsp;<button id='paymentStatus' title='Mark as Paid' value='$appointmentID' old-value='$price' data-value='$firstname $lastname' class='btn btn-success'><i class='fa-solid fa-peso-sign'></i></i></button></td>";
+                        }
+                    echo "</tr>";
+                    }
                 }
         }
     }else{

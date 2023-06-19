@@ -22,14 +22,14 @@ require ('../connect.php');
     if(mysqli_num_rows($result) > 0){
         while($row = mysqli_fetch_array($result)){
             $start = date("F d, Y", strtotime($row['start']));
-    	    $time = date("g:i A", strtotime($row['time']));
+    	    // $time = date("g:i A", strtotime($row['time']));
             if($stats == 'approved'){
                 echo "<tr class='clickable-row' data-value='".$row['appointmentID']."'>";
             }else{
                 echo "<tr'>";
             }
             echo "  <th scope='row'>".$row['firstname']." ".$row['lastname']."</th>
-                    <td>".$row['title']."</td>
+                    <td>".$row['title']. ":". $row['sched_details']."</td>
                     <td>".$start."</td>
                     <td>".$time."</td>
                     <td>".$row['remarks']."</td>";

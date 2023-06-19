@@ -159,6 +159,7 @@
                         <th scope="col">Number</th>
                         <th scope="col">Email</th>
                         <th scope="col">Status</th>
+                        <th id="apprPay" hidden scope="col">Payment</th>
                         <th scope="col">Action</th>
                         </tr>
                     </thead>
