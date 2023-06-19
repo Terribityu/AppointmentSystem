@@ -6,7 +6,7 @@ $parameters = array(
     'apikey' => '', //Your API KEY
     'number' => $number,
     'message' => $message_n,
-    'sendername' => 'SEMAPHORE'
+    'sendername' => 'Destiny'
 );
 curl_setopt( $ch, CURLOPT_URL,'https://semaphore.co/api/v4/messages' );
 curl_setopt( $ch, CURLOPT_POST, 1 );

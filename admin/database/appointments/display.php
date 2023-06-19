@@ -34,7 +34,7 @@ require ('../connect.php');
             $instname = $row['firstname']." ".$row['lastname'];
             echo "
                 <tr>
-                    <td>$firstname $middlename $lastname $suffix</td>
+                    <td>$firstname $lastname</td>
                     <td>$title</td>
                     <td>$start $time</td>
                     <td>$instname</td>

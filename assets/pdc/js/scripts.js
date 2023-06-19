@@ -22,7 +22,6 @@ $(document).ready(function () {
         url: "database/pdc/check.php?schedID=" + schedID,
         method: "GET",
         success: function (result) {
-          console.log(result);
           result = JSON.parse(result);
           vehicle = result.vehicle;
           data = result.info;
@@ -126,11 +125,13 @@ $(document).ready(function () {
       });
 
       if (text) {
+        console.log(text);
         $.ajax({
           url: "database/pdc/enroll.php",
           method: "post",
           data: { data: text },
           success: function (data) {
+            console.log(data);
             Swal.fire("Enrolled!", "You have successfuly enrolled.", "success");
             $("#inlineCheckbox2").prop("disabled", false);
             $("#inlineCheckbox3").prop("disabled", false);

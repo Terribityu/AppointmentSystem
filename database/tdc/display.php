@@ -70,7 +70,7 @@ if (mysqli_num_rows($r1) > 0) {
                     $date_text = date("F d, Y", strtotime($start));
                     // $time_std = date("g:i A", strtotime($time));
                     if (isset($_SESSION['userID'])){
-                        echo "<button id='selectSched' value='" . $row['id'] . "' data-value='" . $_SESSION['userID'] . "' data-old-value='".$hehe."' class='badge bg-primary rounded-pill'>$title $date_text $time_std</button>&nbsp";
+                        echo "<button id='selectSched' value='" . $row['id'] . "' data-value='" . $_SESSION['userID'] . "' data-old-value='".$hehe."' class='badge bg-primary rounded-pill'>$title $date_text $time</button>&nbsp";
                     }else{
                         echo "<button data-bs-toggle='modal' data-bs-target='#loginModal' class='badge bg-primary rounded-pill'>$title $date_text $time</button>&nbsp";
                     }
