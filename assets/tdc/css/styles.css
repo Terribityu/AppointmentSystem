@@ -41,12 +41,41 @@
 	max-height: 250px
 }
 
-@media (max-width:880px){
+@media (max-width:1228px){
+	.list-group-item img{
+        width: 200px;
+        height: 200px;
+    }
+    .list-group-item{
+        font-size: 16px;
+    }
+
+    .descrip{
+        margin-top: 0;
+    }
+}
+
+@media (max-width:1015px){
 	.list-group-item img{
         width: 150px;
+        height: 150px;
     }
     .list-group-item{
         font-size: 14px;
+    }
+
+    .descrip{
+        margin-top: 0;
+    }
+}
+
+@media (max-width:400px){
+	.list-group-item img{
+        width: 150px;
+        height: 150px;
+    }
+    .list-group-item{
+        font-size: 12px;
     }
 
     .descrip{
