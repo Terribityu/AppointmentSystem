@@ -1,5 +1,5 @@
 <?php
-    require("C:\laragon\www\Destiny\admin\database\connect.php");
+    require("C:\laragon\Destiny\admin\database\connect.php");
     // Update the path below to your autoload.php,
     // see https://getcomposer.org/doc/01-basic-usage.md
 
@@ -26,7 +26,7 @@
             extract($row);
             $date_text = date("F d, Y", strtotime($start));
             $time_std = date("g:i A", strtotime($time));
-            $message_n = "Hi, $firstname $lastname you have an $title appointment due $date_text $time_std for Destiny Driving School";
+            $message_n = "Hi, $firstname $lastname you have an $title appointment on $date_text $time_std for Destiny Driving School";
             require("sendnotif.php");
         }
     }
@@ -43,7 +43,7 @@
             extract($row);
             $date_text = date("F d, Y", strtotime($start));
             $time_std = date("g:i A", strtotime($time));
-            $message_n = "Hi, $firstname $lastname you have an $title appointment due $date_text $time_std for Destiny Driving School";
+            $message_n = "Hi, $firstname $lastname you have an $title appointment on $date_text $time_std for Destiny Driving School";
             require("sendnotif.php");
         }
     }
@@ -60,7 +60,7 @@
             extract($row);
             $date_text = date("F d, Y", strtotime($start));
             $time_std = date("g:i A", strtotime($time));
-            $message_n = "Hi, $firstname $lastname you have an $title appointment due $date_text $time_std for Destiny Driving School";
+            $message_n = "Hi, $firstname $lastname you have an $title appointment on $date_text $time_std for Destiny Driving School";
             require("sendnotif.php");
         }
     }
@@ -77,7 +77,7 @@
             extract($row);
             $date_text = date("F d, Y", strtotime($start));
             $time_std = date("g:i A", strtotime($time));
-            $message_n = "Hi, $firstname $lastname you have an $title appointment due $date_text $time_std for Destiny Driving School";
+            $message_n = "Hi, $firstname $lastname you have an $title appointment on $date_text $time_std for Destiny Driving School";
             require("sendnotif.php");
         }
     }
@@ -95,7 +95,7 @@
             extract($row);
             $date_text = date("F d, Y", strtotime($start));
             $time_std = date("g:i A", strtotime($time));
-            $message_n = "Hi, $firstname $lastname you have an $title appointment Today at $time_std for Destiny Driving School";
+            $message_n = "Hi, $firstname $lastname you have an $title appointment today at $time_std for Destiny Driving School";
             onGoingSched($conn, $row);
             require("sendnotif.php");
         }
@@ -114,7 +114,7 @@
             extract($row);
             $date_text = date("F d, Y", strtotime($start));
             $time_std = date("g:i A", strtotime($time));
-            $message_n = "Hi, $firstname $lastname you have an $title appointment Today at $time_std for Destiny Driving School";
+            $message_n = "Hi, $firstname $lastname you have a $title appointment today at $time_std for Destiny Driving School";
             onGoingSched($conn, $row);
             require("sendnotif.php");
         }

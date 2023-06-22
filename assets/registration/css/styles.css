@@ -159,3 +159,13 @@
   border-color: #17a2b8;
   box-shadow: none;
 }
+
+/* Strong password style */
+.strong {
+  color: green;
+}
+
+/* Weak password style */
+.weak {
+  color: red;
+}

@@ -130,8 +130,15 @@
             <div class="d-flex justify-content-between mb-2">
                 <div class="d-flex">
                     <h2>Income</h2>&nbsp
+                    <select id='instructFilter' class="form-select ml-3 btn btn-outline-dark" aria-label="Default select example">
+                    </select>&nbsp
+                    <select id='typeFilter' class="form-select ml-3 btn btn-outline-dark" aria-label="Default select example">
+                        <option selected value='all'>All Type</option>
+                        <option value="pdc">PDC</option>
+                        <option value="tdc">TDC</option>
+                    </select>&nbsp
                     <select id='salesFilter' class="form-select ml-3 btn btn-outline-dark" aria-label="Default select example">
-                        <option selected value='all'>All</option>
+                        <option selected value='all'>All Records</option>
                         <option value="thismonth">This Month</option>
                         <option value="6months">6 Months</option>
                         <option value="year">1 Year</option>

@@ -28,12 +28,32 @@ $(document).ready(function () {
         $("#time__text").html(data["time"]);
         $("#status__text").html(data["status_a"] + ": " + data["reason_rej"]);
         $("#price__text").html(data["price"]);
-        if (data["status_a"] == "rejected") {
+
+        // Get the current date
+        var currentDate = new Date();
+
+        // Create a date string for comparison
+        var dateString = data["start"]; // Replace with your desired date
+
+        // Convert the date string to a Date object
+        var givenDate = new Date(dateString);
+
+        // Calculate the difference in milliseconds between the two dates
+        var timeDifference = givenDate.getTime() - currentDate.getTime();
+
+        // Calculate the number of days remaining
+        var daysRemaining = timeDifference / (1000 * 60 * 60 * 24);
+
+        if (data["status_a"] == "rejected" || daysRemaining <= 2) {
+          $("#rescheduleApp").attr("hidden", "true");
+        }
+        if (data["status_a"] == "rejected" || data["status_a"] == "approved") {
           $("#cancelAppoint").attr("hidden", "true");
         } else {
           $("#cancelAppoint").removeAttr("hidden");
         }
         $("#cancelAppoint").val(data["appointmentID"]);
+        $("#rescheduleApp").val(data["appointmentID"]);
         $("#appointInfoModal").modal("show");
 
         changeButton(data);
@@ -78,10 +98,67 @@ $(document).ready(function () {
       confirmButtonText: "Yes, cancel it!",
     }).then((result) => {
       if (result.isConfirmed) {
+        $.ajax({
+          url: "database/appointments/cancel.php",
+          method: "post",
+          data: { id: id, reason: text },
+          success: function (data) {
+            console.log(data);
+            load_data();
+            Swal.fire(
+              "Success!",
+              "Your request has been submitted.",
+              "success"
+            );
+          },
+        });
+      } else {
+        $("#appointInfoModal").modal("show");
+      }
+    });
+  });
+
+  $(document).on("click", "#rescheduleApp", function (e) {
+    e.preventDefault();
+    var id = $(this).val();
+    var schedID = $(this).attr("old-value");
+    $("#appointInfoModal").modal("hide");
+    getSchedules();
+    (async () => {
+      const { value: text } = await Swal.fire({
+        title: "Reschedule Appointment",
+        html:
+          '<label for="title" class="d-flex justify-content-start">Title: &nbsp;<b>Rogelio Salsalin</b><span id="form_required"></span></label><br>' +
+          '<label for="title" class="d-flex justify-content-start">Schedules: <span id="form_required"></span></label>' +
+          '<select id="swalEvtSched" class="form-control mb-3" required name="swalEvtSched" aria-label="Default select example">' +
+          '<option selected value="PDC">Practical Driving Course</option>' +
+          "</select>",
+        focusConfirm: false,
+        showCancelButton: true,
+        confirmButtonText: "Submit",
+        preConfirm: () => {
+          // Check if all fields are filled up
+          const sched = document.getElementById("swalEvtSched").value;
+
+          if (!sched === 0) {
+            Swal.showValidationMessage(
+              "Please fill in all the required fields"
+            );
+          } else {
+            const data = {
+              schedID: document.getElementById("swalEvtSched").value,
+            };
+
+            return data;
+          }
+        },
+      });
+
+      if (text) {
         (async () => {
-          const { value: text } = await Swal.fire({
+          const { value: conf } = await Swal.fire({
             input: "textarea",
-            inputLabel: "Reason for cancel appointment request.",
+            inputLabel: "Reason for reschedule appointment request.",
             inputPlaceholder: "Type your message here...",
             inputAttributes: {
               "aria-label": "Type your message here",
@@ -89,32 +166,48 @@ $(document).ready(function () {
             showCancelButton: true,
           });
 
-          if (text) {
+          if (conf) {
+            text["reason"] = conf;
             $.ajax({
               url: "database/appointments/request.php",
               method: "post",
-              data: { id: id, reason: text },
+              data: { id: id, data: text },
               success: function (data) {
                 console.log(data);
-                load_data();
                 Swal.fire(
-                  "Success!",
-                  "Your request has been submitted.",
+                  "Enrolled!",
+                  "You request has been submitted.",
                   "success"
                 );
+                load_data();
               },
             });
           } else {
             Swal.fire({
               icon: "info",
               title: "Oops...",
-              text: "Cancel request has been cancelled",
+              text: "Reschedule request has been cancelled",
             });
           }
         })();
       } else {
-        $("#appointInfoModal").modal("show");
+        Swal.fire({
+          icon: "info",
+          title: "Oops...",
+          text: "Request has been cancelled",
+        });
       }
-    });
+    })();
   });
+
+  function getSchedules() {
+    // Function to get the List of Schedules
+    $.ajax({
+      url: "database/appointments/getSchedule.php",
+      method: "post",
+      success: function (data) {
+        $("#swalEvtSched").html(data);
+      },
+    });
+  }
 });

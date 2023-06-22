@@ -3,14 +3,41 @@ let search = "";
 let currentPage = 1;
 $(document).ready(function () {
   load_data(currentPage, search);
+  getStudentList();
+  function getStudentList() {
+    // Function to get All Students
+    $.ajax({
+      url: "database/sales/getInstructors.php",
+      method: "post",
+      success: function (data) {
+        $("#instructFilter").html(data);
+      },
+    });
+  }
+
+  $(document).on("change", "#instructFilter", function () {
+    load_data(currentPage, search);
+  });
+
+  $(document).on("change", "#typeFilter", function () {
+    load_data(currentPage, search);
+  });
 
   function load_data(page, search) {
-    var type = $("#salesFilter").val();
+    var duration = $("#salesFilter").val();
+    var instructor = $("#instructFilter").val();
+    var type = $("#typeFilter").val();
     currentPage = page; // Update current page
     $.ajax({
       url: "database/sales/display.php",
       type: "GET",
-      data: { page: page, query: search, type: type },
+      data: {
+        page: page,
+        query: search,
+        duration: duration,
+        instruct: instructor,
+        type: type,
+      },
       dataType: "json",
       success: function (response) {
         updateTable(response.data); // Update table

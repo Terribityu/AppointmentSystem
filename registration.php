@@ -202,7 +202,7 @@
                                     </div>
                                     <div class="col-md-4">
                                         <label id="formlabel" for="password">Password <span id="form_required">*</span></label>
-                                        <input type="password" class="form-control" name="password" required></input>
+                                        <input type="password" class="form-control" minlength="10" name="password" required></input>
                                     </div>
                                     <div class="col-md-4">
                                         <label id="formlabel" for="password_cnf">Confirm Password <span id="form_required">*</span></label>

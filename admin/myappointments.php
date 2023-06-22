@@ -132,8 +132,8 @@ include("template/my-modal.php");
                 <button id="currentapp" type="button" class="ml-3 btn btn-primary" title="Current Appointments" data-placement="right" value="active">
 		        Current
                 </button>&nbsp
-                <button id="cancelapp" type="button" class="ml-3 btn btn-outline-primary" title="Cancel Request" data-placement="right">
-                Cancel Request
+                <button id="reschedapp" type="button" class="ml-3 btn btn-outline-primary" title="Cancel Request" data-placement="right">
+                Reschedule Request
                 </button>
                 </div>
                 <h2>My Appointments</h2>&nbsp

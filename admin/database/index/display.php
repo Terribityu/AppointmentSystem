@@ -23,11 +23,11 @@ if ($result2) {
 }
 
 if($_SESSION['userType'] == "admin"){
-    $query3 = "SELECT * FROM appointments";
+    $query3 = "SELECT * FROM appointments join schedules ON appointments.scheduleID = schedules.id WHERE MONTH(schedules.start) = MONTH(CURRENT_DATE())";
     $result3 = mysqli_query($conn, $query3);
     $all_appoint = mysqli_num_rows($result3);
 }else{
-    $query3 = "SELECT * FROM appointments JOIN schedules ON appointments.scheduleID = schedules.id WHERE instructorID =".$_SESSION['userID'];
+    $query3 = "SELECT * FROM appointments JOIN schedules ON appointments.scheduleID = schedules.id WHERE MONTH(schedules.start) = MONTH(CURRENT_DATE()) and instructorID =".$_SESSION['userID'];
     $result3 = mysqli_query($conn, $query3);
     $all_appoint = mysqli_num_rows($result3);
 }

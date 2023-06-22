@@ -4,20 +4,52 @@ require ('../connect.php');
 $page = isset($_GET['page']) ? $_GET['page'] : 1; // Current page number
 $limit = 10; // Number of records per page
 $offset = ($page - 1) * $limit; // Offset for the database query
+    $duration = $_GET['duration'];
+    $instruct = $_GET['instruct'];
     $type = $_GET['type'];
     $forsearch = ' ';
-        if($type == 'thismonth'){
-            $type = 'WHERE MONTH(date) = MONTH(CURRENT_DATE())';
+    $forinstruct = ' ';
+    $fortype = ' ';
+
+        if($duration == 'thisday'){
+            $duration = 'WHERE DAY(date) = DAY(CURRENT_DATE()';
+            $forsearch = 'AND DAY(date) = DAY(CURRENT_DATE()';
+        }elseif($duration == 'thismonth'){
+            $duration = 'WHERE MONTH(date) = MONTH(CURRENT_DATE())';
             $forsearch = 'AND MONTH(date) = MONTH(CURRENT_DATE())';
-        }elseif($type == '6months'){
-            $type = 'WHERE date BETWEEN DATE_SUB(CURDATE(), INTERVAL 6 MONTH) AND CURDATE()';
+        }elseif($duration == '6months'){
+            $duration = 'WHERE date BETWEEN DATE_SUB(CURDATE(), INTERVAL 6 MONTH) AND CURDATE()';
             $forsearch = 'AND date BETWEEN DATE_SUB(CURDATE(), INTERVAL 6 MONTH) AND CURDATE()';
-        }elseif($type == 'year'){
-            $type = 'WHERE date BETWEEN DATE_SUB(CURDATE(), INTERVAL 1 YEAR) AND CURDATE()';
+        }elseif($duration == 'year'){
+            $duration = 'WHERE date BETWEEN DATE_SUB(CURDATE(), INTERVAL 1 YEAR) AND CURDATE()';
             $forsearch = 'AND date BETWEEN DATE_SUB(CURDATE(), INTERVAL 1 YEAR) AND CURDATE()';
         }else{
-            $type = ' ';
+            $duration = ' ';
             $forsearch = ' ';
+        }
+        
+        if($instruct != 'all' && $instruct != null){
+          if($duration == 'all'){
+            $instructs = "WHERE schedules.instructorID = $instruct";
+          }else{
+            $instructs = "AND schedules.instructorID = $instruct";
+          }
+          $forinstructs = "AND schedules.instructorID = $instruct";
+        }else{
+          $instructs = '';
+          $forinstructs = '';
+        }
+  
+        if($type != 'all' && $instruct != null){
+          if($duration == 'all' || $duration == 'all'){
+            $types = "WHERE schedules.title = '$type'";
+          }else{
+            $types = "AND schedules.title = '$type'";
+          }
+          $fortypes = "AND schedules.title = '$type'";
+        }else{
+          $types = '';
+          $fortypes = "";
         }
 
 $query = isset($_GET['query']) ? mysqli_real_escape_string($conn, $_GET['query']) : ""; // Search query
@@ -25,15 +57,15 @@ $query = isset($_GET['query']) ? mysqli_real_escape_string($conn, $_GET['query']
 // pag merong query which is yung search bar nasa index.php mag run itong if statement
 if (isset($_GET['query'])) {
   $sql = "SELECT * FROM sales JOIN appointments ON sales.appointmentID = appointments.appointmentID JOIN schedules ON schedules.id = appointments.scheduleID
-  where title like '%$query%'
+  where (title like '%$query%'
   or price_s like '%$query%'
   or start like '%$query%'
   OR MONTHNAME(`date`) LIKE '%$query%'
   OR DAY(`date`) = '$query'
-  OR YEAR(`date`) = '$query' ".$forsearch." LIMIT $offset, $limit";
+  OR YEAR(`date`) = '$query') ".$forsearch." $forinstructs $fortypes LIMIT $offset, $limit";
 } else {
   // pag walang query mag run itong else statementF
-  $sql = "SELECT * FROM sales JOIN appointments ON sales.appointmentID = appointments.appointmentID JOIN schedules ON schedules.id = appointments.scheduleID ".$type." LIMIT $offset, $limit";
+  $sql = "SELECT * FROM sales JOIN appointments ON sales.appointmentID = appointments.appointmentID JOIN schedules ON schedules.id = appointments.scheduleID ".$duration." $instructs $types LIMIT $offset, $limit";
 }
 
 $result = mysqli_query($conn, $sql);

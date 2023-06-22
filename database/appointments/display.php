@@ -31,7 +31,7 @@ require ('../connect.php');
                     <th scope='row'>".$row1['firstname']." ".$row1['lastname']."</th>
                     <td>".$row['title']."</td>
                     <td>".$start."</td>
-                    <td>".$time."</td>
+                    <td>".$row['time']."</td>
                     <td>".$row['remarks']."</td>";
                 if($row['status_a']=="rejected"){
                     echo "<td>".$row['status_a'].": ".$row['reason_rej']."</td>";

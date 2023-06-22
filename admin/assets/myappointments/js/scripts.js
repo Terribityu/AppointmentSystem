@@ -200,7 +200,7 @@ $(document).ready(function () {
 
   $(document).on("click", "#currentapp", function () {
     var pend = $(this);
-    var appr = $("#cancelapp");
+    var appr = $("#reschedapp");
 
     appr.removeClass("btn-primary");
     appr.addClass("btn-outline-primary");
@@ -211,7 +211,7 @@ $(document).ready(function () {
     load_data();
   });
 
-  $(document).on("click", "#cancelapp", function () {
+  $(document).on("click", "#reschedapp", function () {
     var pend = $("#currentapp");
     var appr = $(this);
 
