@@ -10,7 +10,7 @@ if(isset($_POST['number'])){
 
         $ch = curl_init();
     $parameters = array(
-        'apikey' => '', //Your API KEY
+        'apikey' => '4afeb6f4b219814bc58eec20d61cb840', //Your API KEY
         'number' => $number,
         'message' => 'Dear user, Your OTP verification code is '.$otp,
         'sendername' => 'Destiny'

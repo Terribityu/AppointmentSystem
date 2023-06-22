@@ -47,7 +47,11 @@ $(document).ready(function () {
         if (data["status_a"] == "rejected" || daysRemaining <= 2) {
           $("#rescheduleApp").attr("hidden", "true");
         }
-        if (data["status_a"] == "rejected" || data["status_a"] == "approved") {
+        if (
+          data["status_a"] == "rejected" ||
+          data["status_a"] == "cancelled" ||
+          data["status_a"] == "approved"
+        ) {
           $("#cancelAppoint").attr("hidden", "true");
         } else {
           $("#cancelAppoint").removeAttr("hidden");
