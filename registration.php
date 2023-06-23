@@ -69,7 +69,7 @@
                                         else{
                                     ?> 
                                         <li class="nav-item">
-                                            <a class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#loginModal" href="#">Log in</a>
+                                            <a class="btn btn-primary" id='btn_login' href="#">Log in</a>
                                         </li>    
                                     <?php
                                         }
@@ -215,12 +215,12 @@
                         </div>
                         <!-- /.card-body -->
                         <div class="row">
-                        <div class="col-6">
+                        <div class="col-12">
                         <button type="submit" class="btn btn-info btn-block">Register</button>
                      </div>
-                     <div class="col-6">
+                     <!-- <div class="col-6">
                         <a data-bs-toggle="modal" data-bs-target="#loginModal" href='#' style="color:white;" class="text-center btn btn-secondary btn-block">Sign In</a>
-                     </div>
+                     </div> -->
                    </div><br>
                      </form>
                   </div>

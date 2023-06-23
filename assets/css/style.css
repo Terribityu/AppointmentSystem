@@ -148,3 +148,15 @@ footer {
 	max-height: 20px;
 	border-radius: 50px;
 }
+
+.password-input-container {
+	position: relative;
+  }
+  
+  .password-toggle {
+	position: absolute;
+	top: 50%;
+	right: 10px;
+	transform: translateY(-50%);
+	cursor: pointer;
+  }

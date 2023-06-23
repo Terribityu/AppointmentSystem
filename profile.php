@@ -90,7 +90,7 @@
                                         else{
                                     ?> 
                                         <li class="nav-item">
-                                            <a class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#loginModal" href="#">Log in</a>
+                                            <a class="btn btn-primary" id='btn_login' href="#">Log in</a>
                                         </li>    
                                     <?php
                                         }

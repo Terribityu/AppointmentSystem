@@ -139,6 +139,7 @@
                     </select>&nbsp
                     <select id='salesFilter' class="form-select ml-3 btn btn-outline-dark" aria-label="Default select example">
                         <option selected value='all'>All Records</option>
+                        <option value="thisday">This Day</option>
                         <option value="thismonth">This Month</option>
                         <option value="6months">6 Months</option>
                         <option value="year">1 Year</option>

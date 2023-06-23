@@ -33,6 +33,14 @@ $(document).ready(function () {
     e.preventDefault();
 
     var currentPageURL = window.location.href;
+    var rememberMe = document.querySelector('input[name="remember"]').checked;
+    var username = $("#loginForm [name='username']").val();
+    var password = $("#loginForm [name='password']").val();
+
+    if (rememberMe) {
+      localStorage.setItem("username", username);
+      localStorage.setItem("password", password);
+    }
 
     var data = $(this).serialize();
     $.ajax({
@@ -65,6 +73,34 @@ $(document).ready(function () {
     // Example using jQuery:
     $("#loginModal").modal("show");
   }
+
+  $(document).on("click", "#showPasswordToggle", function () {
+    var passwordInput = $("#password");
+    var passwordFieldType = passwordInput.attr("type");
+
+    // Toggle the password field type between "password" and "text"
+    if (passwordFieldType === "password") {
+      passwordInput.attr("type", "text");
+      $("#showPasswordToggle").removeClass("fa-eye").addClass("fa-eye-slash");
+    } else {
+      passwordInput.attr("type", "password");
+      $("#showPasswordToggle").removeClass("fa-eye-slash").addClass("fa-eye");
+    }
+  });
+
+  $(document).on("click", "#btn_login", function (e) {
+    e.preventDefault();
+    var storedUsername = localStorage.getItem("username");
+    var storedPassword = localStorage.getItem("password");
+
+    if (storedUsername && storedPassword) {
+      // Auto-fill the login form with stored credentials
+      $("#loginForm [name='username']").val(storedUsername);
+      $("#loginForm [name='password']").val(storedPassword);
+    }
+
+    $("#loginModal").modal("show");
+  });
 
   var sessionTimeout;
 
@@ -99,4 +135,35 @@ $(document).ready(function () {
       },
     });
   }
+
+  $("#resetForm").on("submit", function (e) {
+    e.preventDefault();
+
+    var data = $(this).serialize();
+    console.log(data);
+    $.ajax({
+      url: "database/registration/resetpassword.php",
+      method: "post",
+      data: data,
+      success: function (data) {
+        console.log(data);
+        if (data != "error") {
+          $("#resetModal").modal("hide");
+          Swal.fire({
+            icon: "success",
+            title: "Recovery Email has been sent.",
+            text: "Please Check your email for more information.",
+            showConfirmButton: false,
+            timer: 1500,
+          });
+        } else {
+          Swal.fire({
+            icon: "error",
+            title: "Couldnt Reset Password...",
+            text: "The email is not yet registered.",
+          });
+        }
+      },
+    });
+  });
 });

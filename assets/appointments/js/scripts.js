@@ -46,6 +46,8 @@ $(document).ready(function () {
 
         if (data["status_a"] == "rejected" || daysRemaining <= 2) {
           $("#rescheduleApp").attr("hidden", "true");
+        } else {
+          $("#rescheduleApp").removeAttr("hidden");
         }
         if (
           data["status_a"] == "rejected" ||

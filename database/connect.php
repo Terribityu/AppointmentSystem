@@ -12,7 +12,7 @@ date_default_timezone_set('Asia/Manila');
 			global $conn;
 			$date = date('m-d-Y');
 			$time = date('H:i:s');
-			$username = "destinyadmin";
+			$user_name = "destinyadmin";
 			if(isset($_SESSION['username'])){
 				$user_name = $_SESSION['username'];
 			}

@@ -133,7 +133,15 @@ $(document).ready(function () {
   });
 
   $(document).on("click", "#generatereport", function () {
-    var type = $("#salesFilter").val();
-    window.location.href = "database/sales/generateReport.php?type=" + type;
+    var duration = $("#salesFilter").val();
+    var instructor = $("#instructFilter").val();
+    var type = $("#typeFilter").val();
+    window.location.href =
+      "database/sales/generateReport.php?duration=" +
+      duration +
+      "&instruct=" +
+      instructor +
+      "&type=" +
+      type;
   });
 });
