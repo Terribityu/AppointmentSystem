@@ -54,6 +54,7 @@ if (session_status() === PHP_SESSION_ACTIVE) {
 		if(mysqli_stmt_execute($stmt1)){
 			addSystemLogs($last_id, "registerstudent");
 		}
+		echo $email;
 	}else{
 		echo mysqli_error($conn);
 	}

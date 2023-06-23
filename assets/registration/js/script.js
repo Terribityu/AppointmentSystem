@@ -98,11 +98,7 @@ $(document).ready(function () {
         processData: false,
         success: function (data) {
           mySuccess("Successfully Registered");
-
-          setTimeout(function () {
-            // Redirect to the desired location
-            window.location.href = "index.php?openModal=true";
-          }, 2000); // 2000 milliseconds = 2 seconds
+          sendWelcome(data);
         },
         error: function (xhr, status, error) {
           $("body").html("<h1>" + xhr["status"] + " " + error + "</h1>");
@@ -110,6 +106,24 @@ $(document).ready(function () {
       });
     },
   });
+
+  function sendWelcome(data) {
+    $.ajax({
+      type: "POST",
+      url: "database/registration/welcome.php",
+      data: { email: data },
+      success: function (data) {
+        console.log(data);
+        // setTimeout(function () {
+        // Redirect to the desired location
+        window.location.href = "index.php?openModal=true";
+        // }, 2000); // 2000 milliseconds = 2 seconds
+      },
+      error: function (xhr, status, error) {
+        $("body").html("<h1>" + xhr["status"] + " " + error + "</h1>");
+      },
+    });
+  }
 
   $("#image").change(function () {
     const [file] = this.files;
@@ -178,7 +192,7 @@ $(document).ready(function () {
         method: "POST",
         data: { number: number },
         success: function (data) {
-          console.log(data);
+          // console.log(data);
         },
       });
     }
