@@ -1,5 +1,5 @@
 <?php
-    require_once( 'C:\laragon\destiny\admin\vendor\autoload.php' );
+    require_once( 'C:\laragon\www\admin\vendor\autoload.php' );
 
     $ch = curl_init();
 $parameters = array(

@@ -52,7 +52,7 @@ try {
     </table>
 
     <br><br>
-    http://destinydrivingschool.epizy.com';
+    https://www.destinydrivingschool.xyz';
     // $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
 
     $mail->send();

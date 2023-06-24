@@ -61,7 +61,7 @@ if($row > 0){
         <h3>We received a request to reset your password.</h3>
         <p>Kindly click the below link to reset your password</p>
         
-        <a href='http://www.destinydrivingschool.xyz/forgotpassword.php?email=$email' style='background-color: #4CAF50;
+        <a href='https://www.destinydrivingschool.xyz/forgotpassword.php?email=$email' style='background-color: #4CAF50;
         border: none;
         color: white;
         padding: 15px 32px;

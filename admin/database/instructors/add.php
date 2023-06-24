@@ -4,12 +4,13 @@ extract($_POST);
     if (session_status() === PHP_SESSION_ACTIVE) {
     $password = "";
     $chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^_+:?-=.';
+    $chars2 = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789_.';
     $username = explode("@", $email)[0];
     for ($i = 0; $i < 8; $i++) {
         $password .= $chars[rand(0, strlen($chars) - 1)];
     }
     for ($i = 0; $i < 3; $i++) {
-        $username .= "_".$chars[rand(0, strlen($chars) - 1)];
+        $username .= "_".$chars2[rand(0, strlen($chars) - 1)];
     }
 
     $hashpass = password_hash($password, PASSWORD_DEFAULT);

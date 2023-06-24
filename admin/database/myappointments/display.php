@@ -15,7 +15,7 @@ require ('../connect.php');
         or email like '%$search%') and appointments.status_a = '$stats' and start > CURDATE() ORDER BY start ASC, status_a ASC";
         
     }else {
-        $query = "SELECT * FROM `appointments` JOIN schedules ON schedules.id = appointments.scheduleID JOIN users ON appointments.studentID = users.userID JOIN user_details ON user_details.username = users.username where schedules.instructorID = '".$_SESSION['userID']."' and appointments.status_a = '$stats' and start >= CURDATE() ORDER BY start ASC, status_a ASC";
+        $query = "SELECT * FROM `appointments` JOIN schedules ON schedules.id = appointments.scheduleID JOIN users ON appointments.studentID = users.userID JOIN user_details ON user_details.username = users.username where schedules.instructorID = '".$_SESSION['userID']."' and appointments.status_a = '$stats' ORDER BY start ASC, status_a ASC";
     }
 
     $result = mysqli_query($conn,$query);
