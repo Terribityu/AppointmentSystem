@@ -7,7 +7,7 @@
         FROM schedules
         JOIN appointments ON schedules.id = appointments.scheduleID
         JOIN users ON users.userID = appointments.studentID JOIN user_details ON users.username = user_details.username
-        WHERE start = DATE_ADD(CURDATE(), INTERVAL 3 DAY) and users.username = '".$_SESSION['username']."' and status_a = 'approved'";
+        WHERE users.username = '".$_SESSION['username']."' and status_a = 'approved'";
 
         $result = mysqli_query($conn, $query);
         if(mysqli_num_rows($result)>0){

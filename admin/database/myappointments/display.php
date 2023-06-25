@@ -23,6 +23,7 @@ require ('../connect.php');
         while($row = mysqli_fetch_array($result)){
             $start = date("F d, Y", strtotime($row['start']));
     	    // $time = date("g:i A", strtotime($row['time']));
+            $time = $row['time'];
             if($stats == 'approved'){
                 echo "<tr class='clickable-row' data-value='".$row['appointmentID']."'>";
             }else{

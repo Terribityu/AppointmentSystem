@@ -15,6 +15,7 @@ require ('../connect.php');
                                 mysqli_query($conn , $sql);
                                 addSystemLogs($id, "rejectappointment");
                         }
+                        require('approvenotif.php');
                 }else{
                         echo "Error On Query";
                 }
