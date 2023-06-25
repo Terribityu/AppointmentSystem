@@ -10,7 +10,7 @@
 
         $ch = curl_init();
     $parameters = array(
-        'apikey' => '4afeb6f4b219814bc58eec20d61cb840', //Your API KEY
+        'apikey' => '', //Your API KEY
         'number' => $number,
         'message' => 'Dear user, Your Appointment Has been Approve at'.$appoint,
         'sendername' => 'Destiny'
