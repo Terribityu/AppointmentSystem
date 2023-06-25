@@ -1,5 +1,5 @@
 <?php
-    require_once '..\..\admin\vendor\autoload.php';
+    require_once '..\..\vendor\autoload.php';
 
     $checkthis = "SELECT * FROM appointments JOIN schedules ON appointments.scheduleID = schedules.id JOIN users ON appointments.studentID = users.userID WHERE appointmentID = $id";
     $result = mysqli_query($conn, $checkthis);
@@ -10,7 +10,7 @@
 
         $ch = curl_init();
     $parameters = array(
-        'apikey' => '', //Your API KEY
+        'apikey' => '4afeb6f4b219814bc58eec20d61cb840', //Your API KEY
         'number' => $number,
         'message' => 'Dear user, Your Appointment Has been Approve at'.$appoint,
         'sendername' => 'Destiny'
