@@ -30,9 +30,20 @@ $(document).ready(function () {
     });
   }
 
+  $.validator.addMethod(
+    "strongPassword",
+    function (value, element) {
+      var strongPasswordRegex =
+        /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*.=_-]).{8,}$/;
+      return this.optional(element) || strongPasswordRegex.test(value);
+    },
+    "Password must contain at least 8 characters, including uppercase, lowercase, numbers, and special characters"
+  );
+
   $("#registrationForm").validate({
     rules: {
       password: {
+        strongPassword: true,
         required: true,
       },
       password_cnf: {
@@ -67,6 +78,8 @@ $(document).ready(function () {
     messages: {
       password: {
         required: "Please enter a password",
+        strongPassword:
+          "Password must contain at least 8 characters, including uppercase, lowercase, numbers, and special characters",
       },
       password_cnf: {
         required: "Please confirm your password",
@@ -106,6 +119,42 @@ $(document).ready(function () {
       });
     },
   });
+
+  // $("#pass__word").on("keyup", function () {
+  //   var password = $(this).val();
+  //   var weakPasswordRegex = /^(?=.*[a-zA-Z]).{1,7}$/;
+  //   var mediumPasswordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$/;
+  //   var strongPasswordRegex =
+  //     /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*]).{12,}$/;
+
+  //   if (strongPasswordRegex.test(password)) {
+  //     // Password is strong
+  //     console.log("Password is strong");
+  //     $(".password-strength-indicator").text("Strong");
+  //     $(".password-strength-indicator")
+  //       .removeClass("weak medium")
+  //       .addClass("strong");
+  //   } else if (mediumPasswordRegex.test(password)) {
+  //     // Password is medium
+  //     console.log("Password is medium");
+  //     $(".password-strength-indicator").text("Medium");
+  //     $(".password-strength-indicator")
+  //       .removeClass("weak strong")
+  //       .addClass("medium");
+  //   } else if (weakPasswordRegex.test(password)) {
+  //     // Password is weak
+  //     console.log("Password is weak");
+  //     $(".password-strength-indicator").text("Weak");
+  //     $(".password-strength-indicator")
+  //       .removeClass("medium strong")
+  //       .addClass("weak");
+  //   } else {
+  //     // Invalid password
+  //     console.log("Invalid password");
+  //     $(".password-strength-indicator").text("");
+  //     $(".password-strength-indicator").removeClass("weak medium strong");
+  //   }
+  // });
 
   function sendWelcome(data) {
     $.ajax({

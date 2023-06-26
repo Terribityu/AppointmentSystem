@@ -160,12 +160,22 @@
   box-shadow: none;
 }
 
-/* Strong password style */
-.strong {
-  color: green;
+.password-strength-indicator {
+  display: inline-block;
+  width: 100px;
+  height: 10px;
+  margin-top: 5px;
+  border: 1px solid #ccc;
 }
 
-/* Weak password style */
 .weak {
-  color: red;
+  background-color: #ff6363;
+}
+
+.moderate {
+  background-color: #ffd663;
+}
+
+.strong {
+  background-color: #63ff63;
 }

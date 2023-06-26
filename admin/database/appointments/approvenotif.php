@@ -6,7 +6,7 @@
     $row = mysqli_fetch_array($result);
     $number = $row['number'];
     $start = date("F d, Y", strtotime($row['start']));
-    $appoint = $start .' '.$row['time']; 
+    $appoint = ' Schedule: '.$start .' '.$row['time']; 
 
         $ch = curl_init();
     $parameters = array(
